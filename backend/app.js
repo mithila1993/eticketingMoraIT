@@ -53,7 +53,37 @@ app.post('/getEvents',(req,res)=>{
     //       .then(res => console.log(res));
      });
 
+     app.post('/createevents',(req,res)=>{
+      const typedevent = req.body.event;
+      const typeddescription = req.body.description;
+      
+  
+      admin.database().ref().child('react/event').push({
+            event: typedevent,
+            description: typeddescription,
+            
+          })
+
+          .then(function(userRecord) {
+            // See the UserRecord reference doc for the contents of userRecord.
+            console.log("Successfully event:", event.uid);
+  
+          })
+          .catch(function(error) {
+            console.log("Error creating event:", error);
+          });
+        });
+
+        app.post('/recentevents',(req,res)=>{
+          
+      
+          admin.database().ref('react/event').once("value", function(snapshot) {
+            console.log(snapshot.val());
+          }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+          });
+        });
 
 app.listen(3001,()=>{
     console.log('listening ')
-})  
+})

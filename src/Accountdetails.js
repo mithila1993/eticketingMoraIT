@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 import * as firebase from 'firebase';
 
 class Accountdetails extends Component {
@@ -119,12 +120,26 @@ class Accountdetails extends Component {
             const descriptionEntered = this.refs.inputDescription.value;
         
             console.log('button clicked');
-        
-            firebase.database().ref().child('react/event').push({
+
+            axios.post('http://localhost:3001/createevents', {
                 event: eventEntered,
-                description: descriptionEntered,
+                description:descriptionEntered,
                 
+    
+              })
+              .then(function (response) {
+                
+                console.log("event response",response);
+              })
+              .catch(function (error) {
+                console.log("event error",error);
               });
+        
+            // firebase.database().ref().child('react/event').push({
+            //     event: eventEntered,
+            //     description: descriptionEntered,
+                
+            //   });
 
             
 

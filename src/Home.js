@@ -5,6 +5,7 @@ import Dhar from './img/darmayuddaya.jpg';
 import Spi from './img/spiderman.jpg';
 import Unl from './img/unlocked.jpg';
 import Last from './img/last.jpg';
+import axios from 'axios';
 
 
 
@@ -20,6 +21,17 @@ class Home extends Component {
 
 
   render() {
+
+    // var places=axios.post('http://localhost:3001/recentevents', {
+
+    // })
+    // .then(function (response) {
+      
+    //   console.log("event response",response);
+    // })
+    // .catch(function (error) {
+    //   console.log("event error",error);
+    // });
     
       
     
@@ -32,8 +44,8 @@ class Home extends Component {
     return (<div>
             <h2 key={i}> {data.event} </h2>
             <p> {data.description}</p></div>)
-    }
-)
+    });
+
  
     
     // });

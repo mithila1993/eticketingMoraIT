@@ -10,6 +10,8 @@ class Login extends Component {
       message : "Hello"
     }
     this.getkey = this.getkey.bind(this);
+    
+    
   }
 
   getkey(e){
@@ -40,12 +42,26 @@ class Login extends Component {
     
 }
 
+//google sign in
+googlesignin(e){
+  e.preventDefault();
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider);
+}
+
+fbsignin(e){
+  e.preventDefault();
+  var provider = new firebase.auth.FacebookAuthProvider();
+  firebase.auth().signInWithPopup(provider);
+}
+
   render() {
     // const User = firebase.auth().onAuthStateChanged(firebaseUser=>
     //   firebaseUser ? console.log(firebaseUser) : console.log('not logged in')+"Hello"
 
     var user = firebase.auth().currentUser;
     console.log(user);
+    
 
     
    return(
@@ -67,8 +83,12 @@ class Login extends Component {
                                     </div>
                                     <div className="col-lg-2"></div>
                                     <div className="col-lg-10">
-                                    <button type="submit" className="btn btn-default" onClick={this.getkey}>Login</button>
+                                    <button type="submit" className="btn btn-default" onClick={this.getkey}>Login</button>&nbsp;&nbsp;&nbsp;
+                                    <img id="myImg" src="https://i.stack.imgur.com/ZW4QC.png" alt="Trolltunga, Norway" onClick={this.googlesignin}/>
+                                    <img id="myImg" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" height="52px" weight="50px" alt="Trolltunga, Norway" onClick={this.fbsignin} />
+
                                     </div>
+                                    
                                     {this.state.showComponent ?
                                     <h1>Success</h1> :
                                     null

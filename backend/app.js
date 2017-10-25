@@ -30,15 +30,16 @@ app.post('/getEvents',(req,res)=>{
         displayName: typedName,
         email: typedEmail,
         password : typedPass,
-      })
-        .then(function(userRecord) {
-          // See the UserRecord reference doc for the contents of userRecord.
-          console.log("Successfully created new user:", userRecord.uid);
+      });
+        // .then(function(userRecord) {
+        //   // See the UserRecord reference doc for the contents of userRecord.
+        //   console.log("Successfully created new user:", userRecord.uid);
 
-        })
-        .catch(function(error) {
-          console.log("Error creating new user:", error);
-        });
+        // })
+        // .catch(function(error) {
+        //   console.log("Error creating new user:", error);
+        // });
+        console.log(res)
     
     // var jsonClient = new FirebaseREST.JSONClient('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCsitGuoGQA-yDnLD38vb-awoUgzuy0i8c"');
     // jsonClient.post('/',{
@@ -78,7 +79,7 @@ app.post('/getEvents',(req,res)=>{
           
       
           admin.database().ref('react/event').once("value", function(snapshot) {
-            console.log(snapshot.val());
+            res.json({msg:true, data:snapshot.val()});
           }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
           });

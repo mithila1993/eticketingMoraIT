@@ -15,42 +15,102 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            datas: []
+            datas: {},
+            temp : {} 
         }
+
+        
     }
+
+   
+   componentDidMount() {
+    var places=axios.post('http://localhost:3001/recentevents', {
+      
+          })
+          .then( (response) => {
+            
+            // console.log("event response",response);
+            // this.setState({datas: response});
+            // console.log('state', this.state.datas);
+            
+            const p = "nimal";
+            var nim = "kam";
+            console.log('nim',nim);
+            this.setState({datas: response});
+            console.log(this.state.datas.data.data);
+            
+            
+         })
+            
+            
+       
+            
+            
+      
+          
+          .catch( (error) => {
+            console.log("event error",error);
+          });
+          
+     
+   }
+      
+    
 
 
   render() {
 
+    
+
     // var places=axios.post('http://localhost:3001/recentevents', {
 
     // })
-    // .then(function (response) {
+    // .then( (response) => {
       
-    //   console.log("event response",response);
+    //   // console.log("event response",response);
+    //   // this.setState({datas: response});
+    //   // console.log('state', this.state.datas);
+      
+    //   const p = "nimal";
+    //   var nim = "kam";
+    //   console.log('nim',nim);
+    //   this.setState({datas: response});
+      
+      
+
     // })
-    // .catch(function (error) {
+    // .catch( (error) => {
     //   console.log("event error",error);
     // });
     
       
     
-    const starCountRef = firebase.database().ref('react/event');
+     const starCountRef = firebase.database().ref('react/event');
     starCountRef.once('value', (snapshot)=>{
-        this.setState({datas: Object.values(snapshot.val())})
+        this.setState({temp: Object.values(snapshot.val())})
+        
     });
 
-    var places = Object.values(this.state.datas).map((data, i) => {
+    var vplaces = Object.values(this.state.temp).map((data, i) => {
     return (<div>
             <h2 key={i}> {data.event} </h2>
             <p> {data.description}</p></div>)
     });
 
- 
+    // var vplaces = Object.values(this.state.datas.data.data).map((data, i) => {
+    //   return (
+        
+    //   <div>
+    //   <h2 key={i}> {data} </h2>
+    //   <p> {}</p></div>
+    //           )
+    //   });
     
     // });
     // // var starCountRef = 5;
+    // {console.log('hello nimal',this.state.datas)}
     return (
+      
       <div>
           <div id="myCarousel" className="carousel slide" data-ride="carousel">
  
@@ -94,7 +154,14 @@ class Home extends Component {
 </div>
 
         <h1>Recent Events</h1>
-        {places}
+       {/* {this.state.datas.data.data.map((goal,i) => {
+         return(
+           <div key={i}>{goal.event}</div>
+         )
+       })} */}
+       
+        
+        {vplaces}
       </div>
     );
   }

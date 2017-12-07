@@ -1,75 +1,53 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import * as firebase from 'firebase';
-import Account from './Account';
 
 class Login extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      message : "Hello"
+    constructor(props){
+        super(props);
+        this.state = {
+          message : "Hello"
+        }
+        this.getkey = this.getkey.bind(this);
     }
-    this.getkey = this.getkey.bind(this);
     
+    getkey(e){
+        e.preventDefault(); 
+        const emailRegistered = this.refs.inputEmail.value;
+        const passRegistered = this.refs.inputPassword.value;
     
-  }
-
-  getkey(e){
-    e.preventDefault(); 
-    const emailRegistered = this.refs.inputEmail.value;
-    const passRegistered = this.refs.inputPassword.value;
-
-    firebase.auth().signInWithEmailAndPassword(emailRegistered, passRegistered).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-
-      // ...
-    });
-
+        firebase.auth().signInWithEmailAndPassword(emailRegistered, passRegistered).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode);
     
-    setTimeout(function(){
-      window.location = ''
-    },120000)
-  
+          // ...
+        });
+    };
 
-   this.setState({
-      showComponent: true,
-    });
-    
-}
 
-//google sign in
-googlesignin(e){
-  e.preventDefault();
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-}
+    googlesignin(e){
+        e.preventDefault();
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var m = firebase.auth().signInWithPopup(provider);
+        console.log(m);
+      }
+      
+      fbsignin(e){
+        e.preventDefault();
+        var provider = new firebase.auth.FacebookAuthProvider();
+        var n = firebase.auth().signInWithPopup(provider);
+        console.log(n);
+        
+        
+      }
 
-fbsignin(e){
-  e.preventDefault();
-  var provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-
-  
-}
-
-  render() {
-    // const User = firebase.auth().onAuthStateChanged(firebaseUser=>
-    //   firebaseUser ? console.log(firebaseUser) : console.log('not logged in')+"Hello"
-
-    var user = firebase.auth().currentUser;
-    console.log(user);
-    
-
-    
-   return(
-    <div>
-    
-    {user ? <Account/> :
-      <div className="container-new login">
-      <div className="login">
+    render() {
+        return (
+            <div className="container-new">
+                <div className="container-new login">
+                    <div className="login">
           <form className="form-horizontal">
                 <fieldset>
                       <legend><h1>Login</h1></legend>
@@ -99,14 +77,12 @@ fbsignin(e){
           </form>
           </div>
 </div>    
-    
-     }
-
-    
-
-    </div>
-   )
-  }
+                <button className="btn btn-default" onClick={()=>this.props.menulink(5)}>Go to Event Organizer</button>
+                <br/>
+                <button className="btn btn-default" onClick={()=>this.props.menulink(6)}>Go to User</button>
+            </div>
+        );
+    }
 }
 
 export default Login;

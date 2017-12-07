@@ -57,11 +57,14 @@ app.post('/getEvents',(req,res)=>{
      app.post('/createevents',(req,res)=>{
       const typedevent = req.body.event;
       const typeddescription = req.body.description;
+      //const typeuid = req.body.uid
       
   
       admin.database().ref().child('react/event').push({
             event: typedevent,
             description: typeddescription,
+            //uid: typeuid,
+            
             
           })
 
@@ -76,8 +79,8 @@ app.post('/getEvents',(req,res)=>{
         });
 
         app.post('/recentevents',(req,res)=>{
+          console.log("Received");
           
-      
           admin.database().ref('react/event').once("value", function(snapshot) {
             res.json({msg:true, data:snapshot.val()});
           }, function (errorObject) {

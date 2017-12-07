@@ -37,6 +37,68 @@ input {
 } */
 
 .container{
-  background-color: #FFFFFF;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 0px;
+  
 }
+
+.logo{
+  padding-right: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.nav navbar-nav{
+  float : right;
+}
+
+.menulink{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 20px;
+  color: black;
+  
+}
+
+.container-fluid{
+  background-color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: rgb(146, 26, 26);
+  font-weight: bold;
+}
+
+.navbar-default{
+  margin: 0px;
+  background-color: red;
+}
+
+.navbar-nav{
+  float: right;
+}
+
+.navbar-default{
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: red;
+  
+}
+
+.container-new{
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+
+.navbar{
+  border: 0px;
+}
+
+.login{
+  padding :20px;
+  
+}
+
 

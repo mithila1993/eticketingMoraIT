@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import axios from 'axios';
 
-class Register extends Component {
+class Userregister extends Component {
     constructor(props){
         super(props);
         this.state = {
             showComponent: false,
         };
-        this.getkey = this.getkey.bind(this);
+        this.register = this.register.bind(this);
     
     }
 
@@ -20,10 +20,11 @@ class Register extends Component {
     
         console.log('button clicked');
 
-        axios.post('http://localhost:3001/getEvents', {
+        axios.post('http://localhost:3002/createUser', {
             name: nameRegistered,
             email: emailRegistered,
-            pass :passRegistered
+            pass :passRegistered,
+            role : "User",
 
           })
           .then(function (response) {
@@ -38,12 +39,12 @@ class Register extends Component {
         
     }
 
-  render() {
-    return (
-        <div className="container-new">
-          <form className="form-horizontal">
+    render() {
+        return (
+            <div className="container-new">
+                <form className="form-horizontal">
                 <fieldset>
-                      <legend><h1>Register</h1></legend>
+                      <legend><h1>User Register</h1></legend>
                             <div className="form-group">
                                     <label htmlFor="inputName" className="col-lg-2 control-label">Name</label>
                                     <div className="col-lg-10">
@@ -65,9 +66,10 @@ class Register extends Component {
                             </div>
                 </fieldset>
           </form>
-</div>    
-    );
-  }
+                <button className="btn btn-default" onClick={()=>this.props.menulink(4)}>Go to login</button>
+            </div>
+        );
+    }
 }
 
-export default Register;
+export default Userregister;

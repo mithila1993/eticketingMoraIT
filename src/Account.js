@@ -14,6 +14,8 @@ class Account extends Component {
         this.numsecond = this.numsecond.bind(this);
         this.numthird = this.numthird.bind(this);
         this.numfourth = this.numfourth.bind(this);
+        this.numfifth = this.numfifth.bind(this);
+        this.numsixth = this.numsixth.bind(this);
         
       }
       //signout function
@@ -61,6 +63,20 @@ class Account extends Component {
         })
     }
 
+    numfifth(e){
+        e.preventDefault();
+        this.setState({
+            linknumb:5
+        })
+    }
+
+    numsixth(e){
+        e.preventDefault();
+        this.setState({
+            linknumb:6
+        })
+    }
+
   render() {
     var user = firebase.auth().currentUser;
     return (
@@ -71,6 +87,7 @@ class Account extends Component {
         <p>
         {user.displayName}
         {user.email}
+        {user.u}
       
         </p>
         </div>
@@ -86,6 +103,8 @@ class Account extends Component {
             <h1>Events</h1>
             <ul className="nav nav-pills nav-stacked">
                 <li><a href="#" onClick={this.numfourth}>Create Events</a></li>
+                <li><a href="#" onClick={this.numfifth}>Upload Photo</a></li>
+                <li><a href="#" onClick={this.numsixth}>My Events</a></li>
             </ul>
             </div>
             <div className="col-md-8">

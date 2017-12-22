@@ -15,7 +15,7 @@ class Eventlist extends Component {
 
     render() {
 
-        var places=axios.post('http://localhost:3001/recentevents', {
+        var places=axios.post('http://localhost:3002/recentevents', {
             
                 })
                 .then( (response) => {

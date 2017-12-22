@@ -23,6 +23,9 @@ server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}))
 server.use(bodyParser.json());
 
+var userSystem = admin.database().ref('react/users');
+
+
 //Create User
 server.post('/createUser',(req,res)=>{
   
@@ -36,7 +39,6 @@ server.post('/createUser',(req,res)=>{
   admin.database().ref("react/users").push({
       displayName: req.body.name,
       email: req.body.email,
-      password : req.body.pass,
       role: req.body.role
         });
 
@@ -44,11 +46,11 @@ server.post('/createUser',(req,res)=>{
    });
 
 //Recent Events
-server.post('/recentevents',(req,res)=>{
+server.get('/recentevents',(req,res)=>{
     
     
     admin.database().ref('react/event').once("value", function(snapshot) {
-      res.json({msg:true, data:snapshot.val()});
+      res.json({data:snapshot.val()});
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
@@ -56,9 +58,7 @@ server.post('/recentevents',(req,res)=>{
 
 //Choose user 
 server.post('/chooseUser',(req,res)=>{
-    console.log(req.body.email);
-    console.log('rec');
-    admin.database().ref('react/users').orderByChild("email").equalTo(req.body.email).once("child_added", function(snapshot) {
+    userSystem.orderByChild("email").equalTo(req.body.email).once("child_added", function(snapshot) {
       // res.json({msg:true, data:snapshot.val().role});
       res.send(snapshot.val().role);
       
@@ -66,6 +66,36 @@ server.post('/chooseUser',(req,res)=>{
       console.log("The read failed: " + errorObject.code);
     });
   });
+
+//Add Locations
+server.post('/addLocations',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/admin/locations').push({
+        name: req.body.location,   
+      })
+
+      .then(function(userRecord) {
+        
+        console.log("Successfully event:", event.uid);
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+//Display Event Details
+server.post('/displayEventDetails',(req,res)=>{
+  var nimal = req.body.eventId;
+  
+  admin.database().ref('react/event').child(nimal).once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
 
 
 
@@ -82,22 +112,108 @@ server.post('/mello', function(req, res) {
 
 //Create Events
 server.post('/createevents',(req,res)=>{
-  const typedevent = req.body.event;
-  const typeddescription = req.body.description;
-  
+      
   admin.database().ref().child('react/event').push({
-        event: typedevent,
-        description: typeddescription,       
+      description : req.body.description,
+      category : req.body.category,
+      name : req.body.name,
+      image : req.body.image
       })
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {
         console.log("Error creating event:", error);
       });
     });
+
+//Display Events when creates the event
+    server.post('/displayEventsOrganizer',(req,res)=>{
+      
+      admin.database().ref('react/event').once("value", function(snapshot) {
+        res.json({data:snapshot.val()});
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+    });
+
+//Create Shows
+server.post('/createShows',(req,res)=>{
+  var eventid = req.body.eventid
+  
+admin.database().ref().child('react/event/' + eventid + '/shows').push({
+  venue : req.body.venue,
+  district : req.body. district,
+  hall : req.body.hall,
+  starttime : req.body.starttime,
+  endtime : req.body.endtime,
+
+  })
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+//Display Events when creates the show
+server.post('/displayShowsOrganizer',(req,res)=>{
+  var eventid = req.body.eventid
+  admin.database().ref().child('react/event/' + eventid + '/shows').once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Add foods
+server.post('/addFoods',(req,res)=>{
+  var eventid = req.body.eventid;
+  var showid = req.body.showid
+  console.log(eventid);
+  console.log(showid);
+  
+admin.database().ref('react/event/' + eventid + '/shows/'+ showid).child('/foods/').set({
+  name : req.body.name,
+  description : req.body.description,
+  category : req.body.category,
+  price : req.body.price,
+  })
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+//Add Seats
+server.post('/addSeats',(req,res)=>{
+  var seats = req.body.seats;
+  var eventid = req.body.eventid;
+  var showid = req.body.showid
+  
+admin.database().ref('react/event/' + eventid + '/shows/'+ showid).child('/seats/').set(seats)
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
 
 server.listen(3002, () => console.log('Example app listening on port 3001!'));

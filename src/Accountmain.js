@@ -7,8 +7,9 @@ import Account from './Account';
 import axios from 'axios';
 import Usermain from './User/Usermain';
 import Eventorganizermain from './Eventorganizer/Eventorganizermain';
+import Adminmain from './Admin/Adminmain';
 
-var user;
+//var user;
 
 class Accountmain extends Component {
 
@@ -19,7 +20,8 @@ class Accountmain extends Component {
         this.state = {
             isloggin: {},
             accountmenu:4,
-            chooseuser:{}
+            chooseuser:{},
+            user:{}
         }
         this.changeMenuLink = this.changeMenuLink.bind(this);
         this.chooseUser = this.chooseUser.bind(this);
@@ -33,6 +35,15 @@ class Accountmain extends Component {
         
     }
 
+    
+    componentDidMount() {
+        this.setState({
+            user : firebase.auth().currentUser
+        });
+        
+    }
+    
+
     chooseUser(typedemail){
         
         axios.post('http://localhost:3002/chooseUser', {
@@ -40,26 +51,27 @@ class Accountmain extends Component {
         })
         .then( (response) => {
         this.setState({chooseuser: response.data});
-        console.log('hello',response.data);
 
         })
         .catch( (error) => {
-        console.log("event error",error);
+        console.log("choose user",error);
         });
 
         if(this.state.chooseuser==="Event Organizer"){
             return <Eventorganizermain/>
         }if(this.state.chooseuser==="User"){
                 return <Usermain/>
+        }if(this.state.chooseuser==="Admin"){
+            return <Adminmain/>
         }
     }
     
     render() {
 
-        user = firebase.auth().currentUser;
+        // user = firebase.auth().currentUser;
         var accmenu;
-        if(user){
-            accmenu = this.chooseUser(user.email);
+        if(this.state.user){
+            accmenu = this.chooseUser(this.state.user.email);
         }else{
             if(this.state.accountmenu===4){
             accmenu = <Login menulink={this.changeMenuLink}/>

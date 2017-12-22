@@ -57,7 +57,7 @@ class Eventregister extends Component {
                                     </div>
                                     <label htmlFor="inputPassword" className="col-lg-2 control-label">Password</label>
                                     <div className="col-lg-10">
-                                    <input type="password" className="form-control" id="inputEmail" placeholder="Password" ref="inputPassword"/>
+                                    <input type="password" className="form-control" id="inputPassword" placeholder="Password" ref="inputPassword"/>
                                     </div>
                                     <div className="col-lg-2"></div>
                                     <div className="col-lg-10">

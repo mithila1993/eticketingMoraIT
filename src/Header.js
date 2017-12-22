@@ -14,6 +14,9 @@ import Login from './Login';
 import logo from './img/logo.jpg';
 import Accountmain from './Accountmain';
 import Events from './Events';
+import Eventdetails from './Events/Eventdetails';
+
+
 
 
 
@@ -59,7 +62,7 @@ class Header extends Component {
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
       <Route path="/Accountmain" component={Accountmain} />
-      
+      <Route path="/Eventdetails/:eventId" component={Eventdetails} />      
       
 
       {/* <Route path="/Login" component={Login} history={history}/>

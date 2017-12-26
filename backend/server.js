@@ -87,7 +87,7 @@ server.post('/addLocations',(req,res)=>{
 
 //Display Event Details
 server.post('/displayEventDetails',(req,res)=>{
-  var nimal = req.body.eventId;
+  var nimal = req.body.eventid;
   
   admin.database().ref('react/event').child(nimal).once("value", function(snapshot) {
     res.json({data:snapshot.val()});
@@ -163,7 +163,7 @@ admin.database().ref().child('react/event/' + eventid + '/shows').push({
   });
 });
 
-//Display Events when creates the show
+//Display Shows when creates the show
 server.post('/displayShowsOrganizer',(req,res)=>{
   var eventid = req.body.eventid
   admin.database().ref().child('react/event/' + eventid + '/shows').once("value", function(snapshot) {
@@ -181,9 +181,8 @@ server.post('/addFoods',(req,res)=>{
   console.log(eventid);
   console.log(showid);
   
-admin.database().ref('react/event/' + eventid + '/shows/'+ showid).child('/foods/').set({
+admin.database().ref('react/event/' + eventid + '/shows/'+ showid).child('/foods/').push({
   name : req.body.name,
-  description : req.body.description,
   category : req.body.category,
   price : req.body.price,
   })
@@ -215,5 +214,100 @@ admin.database().ref('react/event/' + eventid + '/shows/'+ showid).child('/seats
     console.log("Error creating event:", error);
   });
 });
+
+//Create Order with event details
+server.post('/addOrder',(req,res)=>{
+  var eventid = req.body.eventid;
+  var showid = req.body.showid
+  console.log(eventid);
+  console.log(showid);
+  
+admin.database().ref('react').child('orders').push({
+  name : req.body.name,
+  showid : req.body.showid,
+  eventid : req.body.eventid,
+  }).then((snap) => {
+    
+    res.json(snap.key);
+ })
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+//Display Seats Allocation
+server.post('/displaySeatAllocation',(req,res)=>{
+  var eventid = req.body.eventid;
+  var showid = req.body.showid
+  admin.database().ref().child('react/event/' + eventid + '/shows/'+ showid +'/seats').once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Reserve Seats
+server.post('/reserveSeats',(req,res)=>{
+  var seats = req.body.seats;
+  var orderid = req.body.orderid;
+  
+admin.database().ref('react/orders/'+orderid).child('/seats/').set(seats)
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+//Display food items to user
+server.post('/displayFoodsUser',(req,res)=>{
+  var eventid = req.body.eventid;
+  var showid = req.body.showid;
+  admin.database().ref().child('react/event/' + eventid + '/shows/' + showid + '/foods').once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Add Foods by user
+server.post('/addFoodsUser',(req,res)=>{
+  var orderid = req.body.orderid;
+  
+admin.database().ref('react/orders/' + orderid).child('/foods/').push(
+{
+  foodid : req.body.foodid,
+  })
+
+  .then(function(userRecord) {
+    
+    
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+//Display Order Details
+server.post('/displayOrderUser',(req,res)=>{
+  var orderid = req.body.orderid;
+  admin.database().ref().child('react/orders/' + orderid).once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
 
 server.listen(3002, () => console.log('Example app listening on port 3001!'));

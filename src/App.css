@@ -108,7 +108,7 @@ td{
 }
 
 td:hover {
-  background-color: #ff0000;
+  background-color: #4307a5;
   color: #000000;
 }
 
@@ -117,5 +117,14 @@ td:hover {
   padding:0; 
   height:50px; 
 }
+
+.VIP{
+  background-color: #ff0000;
+}
+
+.clear{
+  background-color: #7bff00;
+}
+
 
 

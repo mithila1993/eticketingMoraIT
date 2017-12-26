@@ -15,10 +15,9 @@ import logo from './img/logo.jpg';
 import Accountmain from './Accountmain';
 import Events from './Events';
 import Eventdetails from './Events/Eventdetails';
-
-
-
-
+import Seatallocation from './Events/Seatallocation';
+import FoodsReserve from './Events/FoodsReserve';
+import Checkout from './Events/Checkout';
 
 
 class Header extends Component {
@@ -62,7 +61,11 @@ class Header extends Component {
       <Route path="/Register" component={Register} />
       <Route path="/Login" component={Login} />
       <Route path="/Accountmain" component={Accountmain} />
-      <Route path="/Eventdetails/:eventId" component={Eventdetails} />      
+      <Route path="/Eventdetails/:eventId" component={Eventdetails} />     
+      <Route path="/Seatallocation/:eventId/:showId/:orderId" component={Seatallocation} />
+      <Route path="/FoodsReserve/:eventId/:showId/:orderId" component={FoodsReserve} />
+      <Route path="/Checkout/:eventId/:showId/:orderId" component={Checkout} />
+
       
 
       {/* <Route path="/Login" component={Login} history={history}/>

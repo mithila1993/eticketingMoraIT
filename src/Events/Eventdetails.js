@@ -1,21 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class Eventdetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             datas: {},
-            shows:{}
-            
-            
-        }
+            shows:{},
+            orderid:{}
+            }
+          
+    }
+
+    seats(showId){
+      var thisprop = this;
+      console.log('seats clicked');
+      console.log(showId);
+      console.log(this.state.datas.name);
+      console.log(this.props.match.params.eventId);
+        
+            axios.post('http://localhost:3002/addOrder', {
+                showid : showId,
+                name : this.state.datas.name,
+                eventid : this.props.match.params.eventId
+              })
+              .then( (response) => {
+                
+                console.log("event response",response.data);
+                this.props.history.push('/Seatallocation/'+ this.props.match.params.eventId +'/'+ showId+'/'+ response.data);
+
+              })
+              .catch(function (error) {
+                console.log("event error",error);
+              });
+      
     }
 
     componentDidMount() {
     axios.post('http://localhost:3002/displayEventDetails', {
-            eventId: this.props.match.params.eventId,
+            eventid: this.props.match.params.eventId,
           })
           .then( (response) => {
             
@@ -32,6 +57,7 @@ class Eventdetails extends Component {
           .then( (response) => {
             
             this.setState({shows: response.data.data});
+            console.log('response',this.state.shows);
             
           })
           .catch(function (error) {
@@ -71,7 +97,8 @@ class Eventdetails extends Component {
                   <div className="col-md-2"><p> {description[1].starttime}</p></div>
                   <div className="col-md-2"><p> {description[1].endtime}</p></div>
                   <div className="col-md-2">
-                  <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Book Now</Link>
+                  {/* <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Book Now</Link> */}
+                  <button className="btn btn-default" onClick={this.seats.bind(this,description[0])}>Book Now</button>
                   </div>
                   </div>
                   

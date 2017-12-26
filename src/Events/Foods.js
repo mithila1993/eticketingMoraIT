@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Beverages extends Component {
+class Foods extends Component {
     render() {
         return (
             <div>
-                <h1>Beverages</h1>
+                <h1>Foods</h1>
             </div>
         );
     }
 }
 
-export default Beverages;
+export default Foods;

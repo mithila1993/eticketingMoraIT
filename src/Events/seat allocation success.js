@@ -93,88 +93,9 @@ class Seatallocation extends Component {
         super(props);
         this.state = {
             seatCategory:"Clear",
-            datas :{},
-            tool :"not mentioned",
-            id: false,
-            mousei:0,
-            mousej:0
+            datas :{}
         }
         // this.loadtable = this.loadtable.bind(this);
-    }
-
-    seatall(value){
-        this.setState({
-            tool:value
-        });
-    }
-
-    getSeatNum(value1,value2){
-        console.log('value1',value1 );
-        console.log('value2',value2 );
-    if(this.state.tool=='VIP-square'){
-        if(this.state.id=== true){
-        for(var i = this.state.mousei ; i <= value1; i++){
-            for(var j = this.state.mousej ; j <= value2; j++){
-            console.log("i " + i + " j " +j);
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[i][j] = 'VIP';
-            this.setState({jasper});
-            }
-        }
-        }
-    }else if(this.state.tool=='clear-square'){
-        if(this.state.id=== true){
-        for(var i = this.state.mousei ; i <= value1; i++){
-            for(var j = this.state.mousej ; j <= value2; j++){
-            console.log("i " + i + " j " +j);
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[i][j] = 'clear';
-            this.setState({jasper});
-            }
-        }
-        }
-    }else if(this.state.tool=='eraser-square'){
-        if(this.state.id=== true){
-        for(var i = this.state.mousei ; i <= value1; i++){
-            for(var j = this.state.mousej ; j <= value2; j++){
-            console.log("i " + i + " j " +j);
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[i][j] = 'Not';
-            this.setState({jasper});
-            }
-        }
-        }
-    }else if(this.state.tool=='VIP-pen'){
-        if(this.state.id=== true){
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[value1][value2] = 'VIP';
-            this.setState({jasper});
-            
-        
-        }
-    }else if(this.state.tool=='clear-pen'){
-        if(this.state.id=== true){
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[value1][value2] = 'clear';
-            this.setState({jasper});
-            
-        
-        }
-    }else if(this.state.tool=='eraser-pen'){
-        if(this.state.id=== true){
-            let jasper = Object.assign({}, this.state.datas);
-            console.log(this.state.datas);
-            jasper[value1][value2] = 'Not';
-            this.setState({jasper});
-            
-        
-        }
-    }
     }
 
     mouseDown(value1,value2){
@@ -278,31 +199,18 @@ seatCategory(value){
         //         }
         //     }
         // });
-        // let jasper = Object.assign({}, this.state.datas); 
+        let jasper = Object.assign({}, this.state.datas); 
         
-        // // if(jasper[value1][value2] === 'clear'){
+        // if(jasper[value1][value2] === 'clear'){
             
-        // // };   
-        // if(jasper[value1][value2] === 'VIP'){
-        //     jasper[value1][value2] = 'clear'
-        // }else if(jasper[value1][value2] === 'clear'){
-        //     jasper[value1][value2] = 'VIP'
-        // }                  
-        // this.setState({jasper});
-        this.setState({
-            id: !this.state.id,
-            mousei:value1,
-            mousej:value2
-        });
-        console.log(this.state.datas);
-        console.log(this.state.id);   
-    }
-
-    submitseat(){
-        console.log('hello');
-        firebase.database().ref('react/seatttttt/seat').set(this.state.datas);
-        
-
+        // };   
+        if(jasper[value1][value2] === 'VIP'){
+            jasper[value1][value2] = 'clear'
+        }else if(jasper[value1][value2] === 'clear'){
+            jasper[value1][value2] = 'VIP'
+        }                  
+        this.setState({jasper});
+        console.log(this.state.datas);   
     }
 
 
@@ -395,28 +303,28 @@ seatCategory(value){
                                  {/* {console.log('description',description[1][0])}  */}
                                 {/* {description[1][3]}  */}
                                  <tr>
-                                <td key={i} className={description[1][0]} onClick={this.name.bind(this,i,0)} onMouseOver={this.getSeatNum.bind(this,i,0)}>
+                                <td key={i} className={description[1][0]} onClick={this.name.bind(this,i,0)}>
                                 <p  > {description[1][0]}</p>
                                 </td>
-                                <td className={description[1][1]} onClick={this.name.bind(this,i,1)} onMouseOver={this.getSeatNum.bind(this,i,1)}>
+                                <td className={description[1][1]} onClick={this.name.bind(this,i,1)}>
                                 <p key={i}> {description[1][1]} </p>
                                 </td>
-                                <td  className={description[1][2]} onClick={this.name.bind(this,i,2)} onMouseOver={this.getSeatNum.bind(this,i,2)}>
+                                <td  className={description[1][2]} onClick={this.name.bind(this,i,2)}>
                                 <p key={i}> {description[1][2]} </p>
                                 </td> 
-                                <td  className={description[1][3]} onClick={this.name.bind(this,i,3)} onMouseOver={this.getSeatNum.bind(this,i,3)}>
+                                <td  className={description[1][3]} onClick={this.name.bind(this,i,3)}>
                                 <p key={i}> {description[1][3]} </p>
                                 </td>        
-                                <td  className={description[1][4]} onClick={this.name.bind(this,i,4)} onMouseOver={this.getSeatNum.bind(this,i,4)}>
+                                <td  className={description[1][4]} onClick={this.name.bind(this,i,4)}>
                                 <p key={i}> {description[1][4]} </p>
                                 </td>     
-                                <td  className={description[1][5]} onClick={this.name.bind(this,i,5)} onMouseOver={this.getSeatNum.bind(this,i,5)}>
+                                <td  className={description[1][5]} onClick={this.name.bind(this,i,5)}>
                                 <p key={i}> {description[1][5]} </p>
                                 </td>     
-                                <td  className={description[1][6]} onClick={this.name.bind(this,i,6)} onMouseOver={this.getSeatNum.bind(this,i,6)}>
+                                <td  className={description[1][6]} onClick={this.name.bind(this,i,6)}>
                                 <p key={i}> {description[1][6]} </p>
                                 </td>     
-                                <td  className={description[1][7]} onClick={this.name.bind(this,i,7)} onMouseOver={this.getSeatNum.bind(this,i,7)}>
+                                <td  className={description[1][7]} onClick={this.name.bind(this,i,7)}>
                                 <p key={i}> {description[1][7]} </p>
                                 </td>  
                                 </tr>
@@ -429,17 +337,6 @@ seatCategory(value){
                         
                         </tbody>
                         </table>
-                        <button onClick={this.seatall.bind(this,'VIP-square')}>VIP Square</button>
-                        <button onClick={this.seatall.bind(this,'clear-square')}>clear Square</button>
-                        <button onClick={this.seatall.bind(this,'eraser-square')}>Eraser Square</button>
-                        <button onClick={this.seatall.bind(this,'VIP-pen')}>VIP pen</button>
-                        <button onClick={this.seatall.bind(this,'clear-pen')}>clear pen</button>
-                        <button onClick={this.seatall.bind(this,'eraser-pen')}>eraser pen</button>
-                        
-                        <button onClick={this.submitseat.bind(this)}>submit</button>
-                        <p>{this.state.tool}</p>
-                        <p>{this.state.id}</p>
-
             </div>
             </div>
         );

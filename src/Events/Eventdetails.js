@@ -51,7 +51,7 @@ class Eventdetails extends Component {
             console.log("event error",error);
           });
 
-    axios.post('http://localhost:3002/displayShowsOrganizer', {
+    axios.get('http://localhost:3002/displayShowsOrganizer', {
             eventid: this.props.match.params.eventId,
           })
           .then( (response) => {

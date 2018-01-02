@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Eventregister extends Component {
+class Adminfront extends Component {
     render() {
         return (
             <div>
-                <h1>Event Register</h1>
+                <h1>Admin Front</h1>
             </div>
         );
     }
 }
 
-export default Eventregister;
+export default Adminfront;

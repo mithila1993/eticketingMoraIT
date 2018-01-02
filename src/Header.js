@@ -8,9 +8,10 @@ import {
     NavLink
   } from 'react-router-dom';
   //import createBrowserHistory from 'history/createBrowserHistory'
-import Register from './Entersite/Eventregister';
+import Premiumregister from './Entersite/Premiumregister';
+import Userregister from './Entersite/Userregister';
+import Login from './Entersite/Login';
 import Home from './Home';
-import Login from './Login';
 import logo from './img/logo.jpg';
 import Accountmain from './Accountmain';
 import Events from './Events';
@@ -18,6 +19,7 @@ import Eventdetails from './Events/Eventdetails';
 import Seatallocation from './Events/Seatallocation';
 import FoodsReserve from './Events/FoodsReserve';
 import Checkout from './Events/Checkout';
+import Acc from './Acc';
 
 
 class Header extends Component {
@@ -47,10 +49,11 @@ class Header extends Component {
                 <ul className="nav navbar-nav">
                   <li className="menulink"><NavLink exact activeClassName="activeNav" to="/">Home</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Events</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Register">Register</NavLink></li>
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register 1</NavLink></li>
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Accountmain">Account main</NavLink></li>
                   
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Acc">Acc</NavLink></li>
                 </ul>
               </div>
             </div>
@@ -58,13 +61,15 @@ class Header extends Component {
 
       <Route exact path="/" component={Home} />
       <Route path="/Events" component={Events} />
-      <Route path="/Register" component={Register} />
+      <Route path="/Premiumregister" component={Premiumregister} />
+      <Route path="/Userregister" component={Userregister} />
       <Route path="/Login" component={Login} />
       <Route path="/Accountmain" component={Accountmain} />
       <Route path="/Eventdetails/:eventId" component={Eventdetails} />     
       <Route path="/Seatallocation/:eventId/:showId/:orderId" component={Seatallocation} />
       <Route path="/FoodsReserve/:eventId/:showId/:orderId" component={FoodsReserve} />
       <Route path="/Checkout/:eventId/:showId/:orderId" component={Checkout} />
+      <Route path="/Acc" component={Acc} />
 
       
 

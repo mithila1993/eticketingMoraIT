@@ -57,10 +57,12 @@ server.get('/recentevents',(req,res)=>{
   });
 
 //Choose user 
+
 server.post('/chooseUser',(req,res)=>{
     userSystem.orderByChild("email").equalTo(req.body.email).once("child_added", function(snapshot) {
       // res.json({msg:true, data:snapshot.val().role});
       res.send(snapshot.val().role);
+      
       
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);

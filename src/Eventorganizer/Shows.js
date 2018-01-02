@@ -14,7 +14,7 @@ class Shows extends Component {
     }
 
     componentDidMount() {
-        axios.post('http://localhost:3002/displayShowsOrganizer', {
+        axios.get('http://localhost:3002/displayShowsOrganizer', {
             eventid: this.props.match.params.eventId,
           })
           .then( (response) => {

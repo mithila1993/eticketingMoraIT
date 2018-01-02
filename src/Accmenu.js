@@ -1,48 +1,42 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
-import Userregister from './Entersite/Userregister';
-import Eventregister from './Entersite/Eventregister';
-import Login from './Entersite/Login';
-import Account from './Account';
 import axios from 'axios';
 import Usermain from './User/Usermain';
 import Eventorganizermain from './Eventorganizer/Eventorganizermain';
 import Adminmain from './Admin/Adminmain';
 
-//var user;
-
-class Accountmain extends Component {
-
-    
-
+class Component1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isloggin: {},
-            accountmenu:4,
-            chooseuser:{},
             user:{}
         }
-        this.changeMenuLink = this.changeMenuLink.bind(this);
         this.chooseUser = this.chooseUser.bind(this);
-        
+        this.signout = this.signout.bind(this);
     }
 
-    changeMenuLink(value){
-        this.setState({
-            accountmenu:value,
-        });
-        
-    }
+    signout(e){
+        e.preventDefault(); 
+        firebase.auth().signOut().then(() => {
+            this.props.changeLog(0);
+          }).catch(function(error) {
+            console.log(error);
 
+          });
+        //   <script type="text/javascript">
+        //   setTimeout(function(){
+        //     window.location = ''
+        //   },60000)
+        // </script>
+          
+      }
     
-    componentDidMount() {
+    componentWillMount() {
         this.setState({
             user : firebase.auth().currentUser
         });
         console.log('user check');
     }
-    
 
     chooseUser(typedemail){
         
@@ -66,29 +60,25 @@ class Accountmain extends Component {
         }
     }
     
+    
     render() {
-
-        // user = firebase.auth().currentUser;
         var accmenu;
         if(this.state.user){
             accmenu = this.chooseUser(this.state.user.email);
-        }else{
-            if(this.state.accountmenu===4){
-            accmenu = <Login menulink={this.changeMenuLink}/>
-            }if(this.state.accountmenu===5){
-            accmenu = <Eventregister menulink={this.changeMenuLink}/>
-            }if(this.state.accountmenu===6){
-            accmenu = <Userregister menulink={this.changeMenuLink}/>
-            }
         }
-        
-        
         return (
             <div>
+                <h1>Account</h1>
+                <button className="btn btn-default" onClick={this.signout}>Logout</button>
+                <p>
+                {this.state.user.email}
+      
+                </p>
+
                 {accmenu}
             </div>
         );
     }
 }
 
-export default Accountmain;
+export default Component1;

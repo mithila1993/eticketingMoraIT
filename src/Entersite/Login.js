@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import * as firebase from 'firebase';
+import { Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props){
@@ -15,17 +18,32 @@ class Login extends Component {
         e.preventDefault(); 
         const emailRegistered = this.refs.inputEmail.value;
         const passRegistered = this.refs.inputPassword.value;
+        console.log('key');
     
-        firebase.auth().signInWithEmailAndPassword(emailRegistered, passRegistered).catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(emailRegistered, passRegistered)
+        .then((firebaseUser) =>{
+            console.log('success -',firebaseUser);
+            this.props.changeLog(1);
+        })
+        
+        .catch(function(error) {
+            console.log('key2');
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
-          console.log(errorCode);
+          console.log('error',errorCode);
+
+        //   setTimeout(() => {
+        //     console.log('time');
+            
+        //   }, 2000);
     
           // ...
         });
+        console.log('key3');
     };
 
+    
 
     googlesignin(e){
         e.preventDefault();
@@ -78,8 +96,13 @@ class Login extends Component {
           </div>
 </div>    
                 <button className="btn btn-default" onClick={()=>this.props.menulink(5)}>Go to Event Organizer</button>
+                
+
                 <br/>
                 <button className="btn btn-default" onClick={()=>this.props.menulink(6)}>Go to User</button>
+                
+                {/* <button onClick={()=>this.props.changeLog(1)}>Checkout</button> */}
+           
             </div>
         );
     }

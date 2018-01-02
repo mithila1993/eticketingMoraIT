@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css';
 import * as firebase from 'firebase';
-import Venuelocations from './Venuelocations';
-import Halls from './Halls';
+import Adminfront from './Adminfront';
+import Recentcarparkowners from './Recent/Recentcarparkowners';
+import Recenteventorganizers from './Recent/Recenteventorganizers';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link, NavLink
+  } from 'react-router-dom'
+  import { Switch} from 'react-router'
+
 
 
 var user;
@@ -16,35 +24,69 @@ class Adminmain extends Component {
             locationId:0
         }
 
-        this.adminMenu = this.adminMenu.bind(this);
+        // this.adminMenu = this.adminMenu.bind(this);
     }
     
-    adminMenu(adminMenuNum, locationId, locationName){
+    // adminMenu(adminMenuNum, locationId, locationName){
         
-        console.log('normal button');
+    //     console.log('normal button');
 
-        this.setState({
-            locationId :locationId,
-            adminMenuNum:adminMenuNum,
-            locationName :locationName
-        });
-    }
+    //     this.setState({
+    //         locationId :locationId,
+    //         adminMenuNum:adminMenuNum,
+    //         locationName :locationName
+    //     });
+    // }
 
     
     render() {
-        if(this.state.adminMenuNum===4){
-            adminMenuDisplay = <Venuelocations adminMenu={this.adminMenu}/>
-        }if(this.state.adminMenuNum===7){
-            adminMenuDisplay = <Halls adminMenu={this.adminMenu} locationId={this.state.locationId}
-            locationName ={this.state.locationName}
-            />
-        }
+        // if(this.state.adminMenuNum===4){
+        //     adminMenuDisplay = <Venuelocations adminMenu={this.adminMenu}/>
+        // }if(this.state.adminMenuNum===7){
+        //     adminMenuDisplay = <Halls adminMenu={this.adminMenu} locationId={this.state.locationId}
+        //     locationName ={this.state.locationName}
+        //     />
+        // }
 
         
         return (<div>
-        <h1>Account</h1>
+        <Router>
+            <div>
+            <div className="col-md-2">
+            <h1></h1>
+            <h1>Recent Users</h1>
+                <ul>
+                     <li><NavLink to="/Adminfront">Front</NavLink></li>
+                     <li><NavLink to="/Recenteventorganizers">Event Organizers</NavLink></li>
+                     <li><NavLink to="/Recentcarparkowners">Car Park Owners</NavLink></li>
+                </ul>
+            <h1>Approved Users</h1>
+                <ul>
+                    <li><NavLink to="/Recenteventorganizers">Event Organizers</NavLink></li>
+                     <li><NavLink to="/Recentcarparkowners">Car Park Owners</NavLink></li>
+                </ul>
+                    {/* <li><NavLink to="/EventOrganizer">Event Organizers</NavLink></li>
+                    <li><NavLink to="/Createevent">Create event</NavLink></li> */}
+                    
+
+                    
+                
+            </div>
+                <div className="col-md-10">
+                <Switch>
+                <Route path="/Recentcarparkowners" component={Recentcarparkowners}/>
+                <Route path="/Recenteventorganizers" component={Recenteventorganizers}/>
+                <Route component={Adminfront}/>
+                
+                </Switch>
+                
+                </div>
+                </div>
+            </Router>
+
+
         
-        <div className="row">
+        {/* <div className="row">
             <div className="col-md-2">
             <h1>My Account</h1>
             <ul className="nav nav-pills nav-stacked">
@@ -66,8 +108,8 @@ class Adminmain extends Component {
                 
                 
             </div>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
     );
     }
 }

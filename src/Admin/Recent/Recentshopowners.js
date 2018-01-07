@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Recentcarparkowners extends Component {
+class Recentshopowners extends Component {
     constructor(props) {
         super(props);
         this.state = {
             datas:{}
         }
         this.approve = this.approve.bind(this);
-        this.getRecentcarparkowners = this.getRecentcarparkowners.bind(this);
+        this.getRecentshopowners = this.getRecentshopowners.bind(this);
         this.delete = this.delete.bind(this);
     }
 
-getRecentcarparkowners(){
-    axios.post('http://localhost:3002/RecentcarparkownersOnAdmin', {
+getRecentshopowners(){
+    axios.post('http://localhost:3002/RecentshopownersOnAdmin', {
             
                 })
                 .then( (response) => {
@@ -25,13 +25,13 @@ getRecentcarparkowners(){
 }
 
 componentDidMount() {
-    this.getRecentcarparkowners();
+    this.getRecentshopowners();
 }
 
     approve(value){
             console.log('button click',value);
 
-            axios.post('http://localhost:3002/RecentcarparkownersApprove', {
+            axios.post('http://localhost:3002/RecentshopownersApprove', {
                 value : value,
               })
               .then(function (response) {
@@ -42,13 +42,13 @@ componentDidMount() {
                 console.log("event error",error);
               });
             
-              this.getRecentcarparkowners();
+              this.getRecentshopowners();
     }
 
     delete(value){
         console.log('button click',value);
 
-        axios.post('http://localhost:3002/RecentcarparkownersDelete', {
+        axios.post('http://localhost:3002/RecentshopownersDelete', {
             value : value,
           })
           .then(function (response) {
@@ -59,7 +59,7 @@ componentDidMount() {
             console.log("event error",error);
           });
         
-          this.getRecentcarparkowners();
+          this.getRecentshopowners();
 }
 
 
@@ -89,4 +89,4 @@ componentDidMount() {
     }
 }
 
-export default Recentcarparkowners;
+export default Recentshopowners;

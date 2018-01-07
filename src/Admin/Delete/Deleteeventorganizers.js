@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Recentcarparkowners extends Component {
+class Deleteeventorganizers extends Component {
     constructor(props) {
         super(props);
         this.state = {
             datas:{}
         }
         this.approve = this.approve.bind(this);
-        this.getRecentcarparkowners = this.getRecentcarparkowners.bind(this);
-        this.delete = this.delete.bind(this);
+        this.getDeleteOrganizers = this.getDeleteOrganizers.bind(this);
     }
 
-getRecentcarparkowners(){
-    axios.post('http://localhost:3002/RecentcarparkownersOnAdmin', {
+getDeleteOrganizers(){
+    axios.post('http://localhost:3002/deleteEventOrganizersOnAdmin', {
             
                 })
                 .then( (response) => {
@@ -25,13 +24,13 @@ getRecentcarparkowners(){
 }
 
 componentDidMount() {
-    this.getRecentcarparkowners();
+    this.getDeleteOrganizers();
 }
 
     approve(value){
             console.log('button click',value);
 
-            axios.post('http://localhost:3002/RecentcarparkownersApprove', {
+            axios.post('http://localhost:3002/recentEventOrganizersApprove', {
                 value : value,
               })
               .then(function (response) {
@@ -42,33 +41,13 @@ componentDidMount() {
                 console.log("event error",error);
               });
             
-              this.getRecentcarparkowners();
+              this.getDeleteOrganizers();
     }
-
-    delete(value){
-        console.log('button click',value);
-
-        axios.post('http://localhost:3002/RecentcarparkownersDelete', {
-            value : value,
-          })
-          .then(function (response) {
-            
-            console.log("event response",response);
-          })
-          .catch(function (error) {
-            console.log("event error",error);
-          });
-        
-          this.getRecentcarparkowners();
-}
-
-
-
     
     render() {
         return (
             <div>
-                <h1>Recent Event Organizers</h1>
+                <h1>Deleted Event Organizers</h1>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
                     
@@ -78,7 +57,6 @@ componentDidMount() {
                   <p> {description[1].email}</p>
                   <p> {description[0]}</p>
                   <button onClick={(e) => this.approve(description[0])}>Approve</button>
-                  <button onClick={(e) => this.delete(description[0])}>Delete</button>
                   </div>
                   </div>
                           )
@@ -89,4 +67,4 @@ componentDidMount() {
     }
 }
 
-export default Recentcarparkowners;
+export default Deleteeventorganizers;

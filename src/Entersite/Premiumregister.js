@@ -44,7 +44,7 @@ class Eventregister extends Component {
 
     setRole(event) {
         this.setState({
-            setRole: event.target.value + 'Unapproved'
+            setRole: event.target.value + 'Unapprove'
         });
     }
 

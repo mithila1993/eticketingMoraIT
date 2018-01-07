@@ -4,6 +4,7 @@ import axios from 'axios';
 import Usermain from './User/Usermain';
 import Eventorganizermain from './Eventorganizer/Eventorganizermain';
 import Adminmain from './Admin/Adminmain';
+import Unapproved from './Entersite/Unapproved';
 
 class Component1 extends Component {
     constructor(props) {
@@ -57,6 +58,8 @@ class Component1 extends Component {
                 return <Usermain/>
         }if(this.state.chooseuser==="Admin"){
             return <Adminmain/>
+        }if(this.state.chooseuser==="EventOrganizerUnapprove"){
+            return <Unapproved/>
         }
     }
     

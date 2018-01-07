@@ -4,6 +4,10 @@ import * as firebase from 'firebase';
 import Adminfront from './Adminfront';
 import Recentcarparkowners from './Recent/Recentcarparkowners';
 import Recenteventorganizers from './Recent/Recenteventorganizers';
+import Approveeventorganizers from './Approve/Approveeventorganizers';
+import Deleteeventorganizers from './Delete/Deleteeventorganizers';
+import Recentshopowners from './Recent/Recentshopowners';
+
 import {
     BrowserRouter as Router,
     Route,
@@ -52,18 +56,24 @@ class Adminmain extends Component {
         return (<div>
         <Router>
             <div>
-            <div className="col-md-2">
+            <div className="col-md-2" >
             <h1></h1>
             <h1>Recent Users</h1>
                 <ul>
                      <li><NavLink to="/Adminfront">Front</NavLink></li>
                      <li><NavLink to="/Recenteventorganizers">Event Organizers</NavLink></li>
                      <li><NavLink to="/Recentcarparkowners">Car Park Owners</NavLink></li>
+                     <li><NavLink to="/Recentshopowners">Shop Owners</NavLink></li>
                 </ul>
-            <h1>Approved Users</h1>
+            <h1>Approved </h1>
                 <ul>
-                    <li><NavLink to="/Recenteventorganizers">Event Organizers</NavLink></li>
-                     <li><NavLink to="/Recentcarparkowners">Car Park Owners</NavLink></li>
+                    <li><NavLink to="/Approveeventorganizers">Event Organizers</NavLink></li>
+                     
+                </ul>
+            <h1>Deleted </h1>
+                <ul>
+                    <li><NavLink to="/Deleteeventorganizers">Event Organizers</NavLink></li>
+                     
                 </ul>
                     {/* <li><NavLink to="/EventOrganizer">Event Organizers</NavLink></li>
                     <li><NavLink to="/Createevent">Create event</NavLink></li> */}
@@ -76,6 +86,9 @@ class Adminmain extends Component {
                 <Switch>
                 <Route path="/Recentcarparkowners" component={Recentcarparkowners}/>
                 <Route path="/Recenteventorganizers" component={Recenteventorganizers}/>
+                <Route path="/Approveeventorganizers" component={Approveeventorganizers}/>
+                <Route path="/Deleteeventorganizers" component={Deleteeventorganizers}/>
+                <Route path="/Recentshopowners" component={Recentshopowners}/>
                 <Route component={Adminfront}/>
                 
                 </Switch>

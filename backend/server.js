@@ -28,7 +28,8 @@ var userSystem = admin.database().ref('react/users');
 
 //Create User
 server.post('/createUser',(req,res)=>{
-  
+  console.log(req.body.role);
+  console.log('added');
 
   admin.auth().createUser({
       displayName: req.body.name,
@@ -42,8 +43,10 @@ server.post('/createUser',(req,res)=>{
       role: req.body.role
         });
 
-    console.log(res);
+    res.send('POST request'); 
    });
+
+   
 
 
 //Recent Events
@@ -332,7 +335,7 @@ server.post('/recentEventOrganizersApprove',(req,res)=>{
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {
@@ -349,7 +352,7 @@ server.post('/recentEventOrganizersDelete',(req,res)=>{
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {
@@ -384,7 +387,7 @@ server.post('/deleteEventOrganizersOnAdmin',(req,res)=>{
 server.post('/RecentcarparkownersOnAdmin',(req,res)=>{
     
     
-  admin.database().ref('react/users').orderByChild("role").equalTo("CarparkownersUnapprove").once("value", function(snapshot) {
+  admin.database().ref('react/users').orderByChild("role").equalTo("CarparkownerUnapprove").once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -396,11 +399,11 @@ server.post('/RecentcarparkownersOnAdmin',(req,res)=>{
 server.post('/RecentcarparkownersApprove',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownersApprove')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownerApprove')
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {
@@ -413,11 +416,11 @@ server.post('/RecentcarparkownersApprove',(req,res)=>{
 server.post('/RecentcarparkownersDelete',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownersDelete')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownerDelete')
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {
@@ -429,7 +432,7 @@ server.post('/RecentcarparkownersDelete',(req,res)=>{
 server.post('/RecentshopownersOnAdmin',(req,res)=>{
     
     
-  admin.database().ref('react/users').orderByChild("role").equalTo("ShopownersUnapprove").once("value", function(snapshot) {
+  admin.database().ref('react/users').orderByChild("role").equalTo("ShopownerUnapprove").once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -441,11 +444,10 @@ server.post('/RecentshopownersOnAdmin',(req,res)=>{
 server.post('/RecentshopownersApprove',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownersApprove')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownerApprove')
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
 
       })
       .catch(function(error) {
@@ -458,11 +460,11 @@ server.post('/RecentshopownersApprove',(req,res)=>{
 server.post('/RecentshopownersDelete',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownersDelete')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownerDelete')
 
       .then(function(userRecord) {
         
-        console.log("Successfully event:", event.uid);
+        
 
       })
       .catch(function(error) {

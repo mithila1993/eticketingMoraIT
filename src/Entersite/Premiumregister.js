@@ -28,6 +28,7 @@ class Eventregister extends Component {
             email: emailRegistered,
             pass :passRegistered,
             role :roleRegistered,
+            
 
           })
           .then(function (response) {

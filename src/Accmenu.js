@@ -5,6 +5,9 @@ import Usermain from './User/Usermain';
 import Eventorganizermain from './Eventorganizer/Eventorganizermain';
 import Adminmain from './Admin/Adminmain';
 import Unapproved from './Entersite/Unapproved';
+import Deleted from './Entersite/Deleted';
+import Shopownermain from './Shopowner/Shopownermain';
+import Carparkownermain from './Carparkowner/Carparkownermain';
 
 class Component1 extends Component {
     constructor(props) {
@@ -52,15 +55,30 @@ class Component1 extends Component {
         console.log("choose user",error);
         });
 
-        if(this.state.chooseuser==="Event Organizer"){
-            return <Eventorganizermain/>
-        }if(this.state.chooseuser==="User"){
+        if(this.state.chooseuser==="User"){
                 return <Usermain/>
         }if(this.state.chooseuser==="Admin"){
             return <Adminmain/>
         }if(this.state.chooseuser==="EventOrganizerUnapprove"){
             return <Unapproved/>
+        }if(this.state.chooseuser==="CarparkownersUnapprove"){
+            return <Unapproved/>
+        }if(this.state.chooseuser==="ShopownersUnapprove"){
+            return <Unapproved/>
+        }if(this.state.chooseuser==="EventOrganizerDelete"){
+            return <Deleted/>
+        }if(this.state.chooseuser==="CarparkownersDelete"){
+            return <Deleted/>
+        }if(this.state.chooseuser==="ShopownersDelete"){
+            return <Deleted/>
+        }if(this.state.chooseuser==="EventOrganizerApprove"){
+            return <Eventorganizermain/>
+        }if(this.state.chooseuser==="CarparkownersApprove"){
+            return <Eventorganizermain/>
+        }if(this.state.chooseuser==="ShopownersApprove"){
+            return <Eventorganizermain/>
         }
+        
     }
     
     

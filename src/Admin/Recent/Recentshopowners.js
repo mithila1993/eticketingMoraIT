@@ -68,7 +68,7 @@ componentDidMount() {
     render() {
         return (
             <div>
-                <h1>Recent Event Organizers</h1>
+                <h1>Recent Shop owners</h1>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
                     

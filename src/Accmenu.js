@@ -61,21 +61,21 @@ class Component1 extends Component {
             return <Adminmain/>
         }if(this.state.chooseuser==="EventOrganizerUnapprove"){
             return <Unapproved/>
-        }if(this.state.chooseuser==="CarparkownersUnapprove"){
+        }if(this.state.chooseuser==="CarParkOwnerUnapprove"){
             return <Unapproved/>
-        }if(this.state.chooseuser==="ShopownersUnapprove"){
+        }if(this.state.chooseuser==="ShopOwnerUnapprove"){
             return <Unapproved/>
         }if(this.state.chooseuser==="EventOrganizerDelete"){
             return <Deleted/>
-        }if(this.state.chooseuser==="CarparkownersDelete"){
+        }if(this.state.chooseuser==="CarParkOwnerDelete"){
             return <Deleted/>
-        }if(this.state.chooseuser==="ShopownersDelete"){
+        }if(this.state.chooseuser==="ShopOwnerDelete"){
             return <Deleted/>
         }if(this.state.chooseuser==="EventOrganizerApprove"){
             return <Eventorganizermain/>
-        }if(this.state.chooseuser==="CarparkownersApprove"){
+        }if(this.state.chooseuser==="CarParkOwnerApprove"){
             return <Eventorganizermain/>
-        }if(this.state.chooseuser==="ShopownersApprove"){
+        }if(this.state.chooseuser==="ShopOwnerApprove"){
             return <Eventorganizermain/>
         }
         

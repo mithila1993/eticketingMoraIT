@@ -122,9 +122,13 @@ td:hover {
   background-color: #ff0000;
 }
 
-.clear{
+.odc{
   background-color: #7bff00;
 }
 
+.erase{
+  opacity: 0.5;
+  background-color: cornflowerblue;
+}
 
 

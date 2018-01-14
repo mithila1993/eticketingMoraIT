@@ -387,7 +387,7 @@ server.post('/deleteEventOrganizersOnAdmin',(req,res)=>{
 server.post('/RecentcarparkownersOnAdmin',(req,res)=>{
     
     
-  admin.database().ref('react/users').orderByChild("role").equalTo("CarparkownerUnapprove").once("value", function(snapshot) {
+  admin.database().ref('react/users').orderByChild("role").equalTo("CarParkOwnerUnapprove").once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -399,7 +399,7 @@ server.post('/RecentcarparkownersOnAdmin',(req,res)=>{
 server.post('/RecentcarparkownersApprove',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownerApprove')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarParkOwnerApprove')
 
       .then(function(userRecord) {
         
@@ -416,7 +416,7 @@ server.post('/RecentcarparkownersApprove',(req,res)=>{
 server.post('/RecentcarparkownersDelete',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarparkownerDelete')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('CarParkOwnerDelete')
 
       .then(function(userRecord) {
         
@@ -431,8 +431,8 @@ server.post('/RecentcarparkownersDelete',(req,res)=>{
 //Display Recent Shop Owners on Admin Panel
 server.post('/RecentshopownersOnAdmin',(req,res)=>{
     
-    
-  admin.database().ref('react/users').orderByChild("role").equalTo("ShopownerUnapprove").once("value", function(snapshot) {
+  console.log('Hello');  
+  admin.database().ref('react/users').orderByChild("role").equalTo("ShopOwnerUnapprove").once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -444,7 +444,7 @@ server.post('/RecentshopownersOnAdmin',(req,res)=>{
 server.post('/RecentshopownersApprove',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownerApprove')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopOwnerApprove')
 
       .then(function(userRecord) {
         
@@ -460,7 +460,7 @@ server.post('/RecentshopownersApprove',(req,res)=>{
 server.post('/RecentshopownersDelete',(req,res)=>{
   
   
-  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopownerDelete')
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopOwnerDelete')
 
       .then(function(userRecord) {
         
@@ -471,6 +471,27 @@ server.post('/RecentshopownersDelete',(req,res)=>{
         console.log("Error creating event:", error);
       });
     });
+
+    
+//Add Seat allocation
+server.post('/addSeatAllocation',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/seatallocations').push({
+        name: req.body.name,
+        seats: req.body.seats, 
+        venue: req.body.venue,
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
 
 
 server.listen(3002, () => console.log('Example app listening on port 3001!'));

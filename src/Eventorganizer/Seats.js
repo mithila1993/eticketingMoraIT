@@ -148,7 +148,7 @@ seatCategory(value){
 
                         <button onClick={this.submitSeats.bind(this)}>Submit</button>
                         
-                        <Link className="btn btn-default" to={`/Foods/${this.props.match.params.eventid}/${this.props.match.params.showid}`}>Seat Allocations</Link>
+                       
 
             </div>
             </div>
@@ -157,3 +157,5 @@ seatCategory(value){
 }
 
 export default Seats;
+
+//<Link className="btn btn-default" to={`/Foods/${this.props.match.params.eventid}/${this.props.match.params.showid}`}>Seat Allocations</Link>

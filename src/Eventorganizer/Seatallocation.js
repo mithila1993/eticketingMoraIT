@@ -3,67 +3,144 @@ import * as firebase from 'firebase';
 import '../App.css';
 import JsonTable from 'react-json-table';
 import axios from 'axios';
-import {withRouter} from 'react-router';
-
-var j1 = {r1: {
-    c1: 'clear', 
-    c2: 'clear',
-    c3: 'clear',
-    c4: 'clear',
-    c5: 'clear',
-    c6: 'clear',
-    c7: 'clear',
-},r2: {
-    c1: 'clear', 
-    c2: 'clear',
-    c3: 'clear',
-    c4: 'clear',
-    c5: 'clear',
-    c6: 'clear',
-    c7: 'clear',
-},r3: {
-    c1: 'clear', 
-    c2: 'clear',
-    c3: 'clear',
-    c4: 'clear',
-    c5: 'clear',
-    c6: 'clear',
-    c7: 'clear',
-},r4: {
-    c1: 'clear', 
-    c2: 'clear',
-    c3: 'clear',
-    c4: 'clear',
-    c5: 'clear',
-    c6: 'clear',
-    c7: 'clear',
-},
-
-        };
+import { Link } from 'react-router-dom';
 
 class Seatallocation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            seatCategory:"Not Mentioned",
+            venue:'Radish',
+            seatCategory:"Clear",
+            datas :{0: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+            },1: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+            },2: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+            },3: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+            },4: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+            },
+            
+            },
+            tool :"not mentioned",
+            id: false,
+            mousei:0,
+            mousej:0
         }
- 
+        
     }
 
-submitSeats(){
-    axios.post('http://localhost:3002/addSeats', {
-        eventid :this.props.match.params.eventId,
-        showid :this.props.match.params.showId,
-        seats :j1
-      })
-      .then(function (response) {
+    seatall(value){
+        this.setState({
+            tool:value
+        });
+    }
+
+    getSeatNum(value1,value2){
+        console.log('value1',value1 );
+        console.log('value2',value2 );
+    if(this.state.tool=='VIP-square'){
+        if(this.state.id=== true){
+        for(var i = this.state.mousei ; i <= value1; i++){
+            for(var j = this.state.mousej ; j <= value2; j++){
+            console.log("i " + i + " j " +j);
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[i][j] = 'VIP';
+            this.setState({jasper});
+            }
+        }
+        }
+    }else if(this.state.tool=='odc-square'){
+        if(this.state.id=== true){
+        for(var i = this.state.mousei ; i <= value1; i++){
+            for(var j = this.state.mousej ; j <= value2; j++){
+            console.log("i " + i + " j " +j);
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[i][j] = 'odc';
+            this.setState({jasper});
+            }
+        }
+        }
+    }else if(this.state.tool=='eraser-square'){
+        if(this.state.id=== true){
+        for(var i = this.state.mousei ; i <= value1; i++){
+            for(var j = this.state.mousej ; j <= value2; j++){
+            console.log("i " + i + " j " +j);
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[i][j] = 'erase';
+            this.setState({jasper});
+            }
+        }
+        }
+    }else if(this.state.tool=='VIP-pen'){
+        if(this.state.id=== true){
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[value1][value2] = 'VIP';
+            this.setState({jasper});
+            
         
-        console.log("event response",response);
-      })
-      .catch(function (error) {
-        console.log("event error",error);
-      });
-}
+        }
+    }else if(this.state.tool=='odc-pen'){
+        if(this.state.id=== true){
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[value1][value2] = 'odc';
+            this.setState({jasper});
+            
+        
+        }
+    }else if(this.state.tool=='eraser-pen'){
+        if(this.state.id=== true){
+            let jasper = Object.assign({}, this.state.datas);
+            console.log(this.state.datas);
+            jasper[value1][value2] = 'erase';
+            this.setState({jasper});
+            
+        
+        }
+    }
+    }
 
     mouseDown(value1,value2){
         console.log('mousedown1',value1 );
@@ -73,19 +150,7 @@ submitSeats(){
     mouseUp(value1,value2){
         console.log('mouseup1',value1 );
         console.log('mouseup2',value2 );
-    }
-
-    
-    
-    editJson(value1,value2){
-        
-        // firebase.database().ref('react/temp').set(
-        //    {j1}
-        //   );
-        j1[value1][value2] = this.state.seatCategory;
-        
-        console.log(j1);
-    }
+    }    
 
 seatCategory(value){
         this.setState({
@@ -93,85 +158,139 @@ seatCategory(value){
         });
 
     }
+    
+    
 
+    name(value1,value2){
+        console.log('mello1',value1);
+        console.log('mello2',value2);
+        this.setState({
+            id: !this.state.id,
+            mousei:value1,
+            mousej:value2
+        });
+        console.log(this.state.datas);
+        console.log(this.state.id);   
+    }
+
+    submitseat(){
+            axios.post('http://localhost:3002/addSeatAllocation', {
+                name: this.refs.inputName.value,
+                seats:this.state.datas,
+                venue:this.state.venue,
+                
+              })
+              .then(function (response) {
+                
+                console.log("event response",response);
+              })
+              .catch(function (error) {
+                console.log("event error",error);
+              });
+
+    }
+
+    handleVenue(e){
+        this.setState({venue:e.target.value});   
+    }
+
+    
 
 
     render() {
-        // var table = "Nimal";
-        // var items = [
-        //     { name: 'Louise', age: 27, color: 'red' },
-        //     { name: 'Margaret', age: 15, color: 'blue'},
-        //     { name: 'Lisa', age:34, color: 'yellow'}
-        //   ];
-
-        // var columns = [
-        //     'name',
-        //     {key: 'age', label: 'Age'},
-        //     {key: 'color', label: 'Colourful', cell: function( item, columnKey ){
-        //         return <span style={{color: item.color}}>{ item.color }</span>;
-        //     }}
-        // ];
-        console.log(this.props.match);
-        console.log(this.props.match.params.showid);
         
-        return (
-            // <div>
-            //     <h1>Seatallocation</h1>
-            //     <JsonTable rows={ items } columns={ columns } />
-            // </div>
-
-
-
-
-            <div>
-                <table className="allocate">
+        
+         return (
+            <div className="container-new">
+               <h1>Draw Seat Allocation  </h1><br/> 
+               <p>{this.props.match.params.eventId}</p>
+               <p>{this.props.match.params.showId}</p>
+               <p>{this.props.match.params.orderId}</p>
+               <div>
+            <form className="form-horizontal">
+                  <fieldset>
                         
-                        <tr>
-                            <td onClick={this.editJson.bind(this,"r1","c1")} onMouseDown={this.mouseDown.bind(this,"r1","c1")} onMouseUp={this.mouseUp.bind(this,"r1","c1")}></td>
-                            <td onClick={this.editJson.bind(this,"r1","c2")} onMouseDown={this.mouseDown.bind(this,"r1","c2")} onMouseUp={this.mouseUp.bind(this,"r1","c2")}></td> 
-                            <td onClick={this.editJson.bind(this,"r1","c3")} onMouseDown={this.mouseDown.bind(this,"r1","c3")} onMouseUp={this.mouseUp.bind(this,"r1","c3")}></td>
-                            <td onClick={this.editJson.bind(this,"r1","c4")} onMouseDown={this.mouseDown.bind(this,"r1","c4")} onMouseUp={this.mouseUp.bind(this,"r1","c4")}></td>
-                            <td onClick={this.editJson.bind(this,"r1","c5")} onMouseDown={this.mouseDown.bind(this,"r1","c5")} onMouseUp={this.mouseUp.bind(this,"r1","c5")}></td>
-                            <td onClick={this.editJson.bind(this,"r1","c6")} onMouseDown={this.mouseDown.bind(this,"r1","c6")} onMouseUp={this.mouseUp.bind(this,"r1","c6")}></td>
-                            <td onClick={this.editJson.bind(this,"r1","c7")} onMouseDown={this.mouseDown.bind(this,"r1","c7")} onMouseUp={this.mouseUp.bind(this,"r1","c7")}></td>
-                        </tr>
-                        <tr>
-                            <td onClick={this.editJson.bind(this,"r2","c1")}></td>
-                            <td onClick={this.editJson.bind(this,"r2","c2")}></td> 
-                            <td onClick={this.editJson.bind(this,"r2","c3")}></td>
-                            <td onClick={this.editJson.bind(this,"r2","c4")}></td>
-                            <td onClick={this.editJson.bind(this,"r2","c5")}></td>
-                            <td onClick={this.editJson.bind(this,"r2","c6")}></td>
-                            <td onClick={this.editJson.bind(this,"r2","c7")}></td>
-                        </tr>
-                        <tr>
-                            <td onClick={this.editJson.bind(this,"r3","c1")}></td>
-                            <td onClick={this.editJson.bind(this,"r3","c2")}></td> 
-                            <td onClick={this.editJson.bind(this,"r3","c3")}></td>
-                            <td onClick={this.editJson.bind(this,"r3","c4")}></td>
-                            <td onClick={this.editJson.bind(this,"r3","c5")}></td>
-                            <td onClick={this.editJson.bind(this,"r3","c6")}></td>
-                            <td onClick={this.editJson.bind(this,"r3","c7")}></td>
-                        </tr>
-                        <tr>
-                            <td onClick={this.editJson.bind(this,"r4","c1")}></td>
-                            <td onClick={this.editJson.bind(this,"r4","c2")}></td> 
-                            <td onClick={this.editJson.bind(this,"r4","c3")}></td>
-                            <td onClick={this.editJson.bind(this,"r4","c4")}></td>
-                            <td onClick={this.editJson.bind(this,"r4","c5")}></td>
-                            <td onClick={this.editJson.bind(this,"r4","c6")}></td>
-                            <td onClick={this.editJson.bind(this,"r4","c7")}></td>
-                        </tr>
+                              <div className="form-group">
+                              <div className="col-lg-12">
+                              <label htmlFor="inputEmail" className="col-lg-2 control-label">Venue</label>
+                              <div className="col-lg-8">
+                              <select className="form-control" onChange={this.handleVenue.bind(this)} >
+                                    <option value="Savoy">Savoy</option>
+                                    <option value="Majestic City">Magestic City</option>
+                                    <option value="Liberty">Liberty</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                    
+                                    <div className="col-lg-12">
+                                      <label htmlFor="inputEmail" className="col-lg-2 control-label">Name</label>
+                                      <div className="col-lg-8">
+                                      <input type="text" className="form-control" id="inputName" placeholder="Seat Allocation Name" ref="inputName"/>
+                                      </div>
+                                      </div>
+                              </div>
+                  </fieldset>
+            </form>
+  </div>                 
 
+               <div>
+               
+                        <table>
+                        <tbody>
+                        { Object.entries(this.state.datas).map((description, i) => {  
+                                return (
+                    
+                                    <div>
+                                <div>
+                                 {/* {console.log('description',description[1][0])}  */}
+                                {/* {description[1][3]}  */}
+                                 <tr>
+                                <td key={i} className={description[1][0]} onClick={this.name.bind(this,i,0)} onMouseOver={this.getSeatNum.bind(this,i,0)}>
+                                <p  > {description[1][0]} {i}</p>
+                                </td>
+                                <td className={description[1][1]} onClick={this.name.bind(this,i,1)} onMouseOver={this.getSeatNum.bind(this,i,1)}>
+                                <p key={i}> {description[1][1]} </p>
+                                </td>
+                                <td  className={description[1][2]} onClick={this.name.bind(this,i,2)} onMouseOver={this.getSeatNum.bind(this,i,2)}>
+                                <p key={i}> {description[1][2]} </p>
+                                </td> 
+                                <td  className={description[1][3]} onClick={this.name.bind(this,i,3)} onMouseOver={this.getSeatNum.bind(this,i,3)}>
+                                <p key={i}> {description[1][3]} </p>
+                                </td>        
+                                <td  className={description[1][4]} onClick={this.name.bind(this,i,4)} onMouseOver={this.getSeatNum.bind(this,i,4)}>
+                                <p key={i}> {description[1][4]} </p>
+                                </td>     
+                                <td  className={description[1][5]} onClick={this.name.bind(this,i,5)} onMouseOver={this.getSeatNum.bind(this,i,5)}>
+                                <p key={i}> {description[1][5]} </p>
+                                </td>     
+                                <td  className={description[1][6]} onClick={this.name.bind(this,i,6)} onMouseOver={this.getSeatNum.bind(this,i,6)}>
+                                <p key={i}> {description[1][6]} </p>
+                                </td>     
+                                <td  className={description[1][7]} onClick={this.name.bind(this,i,7)} onMouseOver={this.getSeatNum.bind(this,i,7)}>
+                                <p key={i}> {description[1][7]} </p>
+                                </td>  
+                                </tr>
+                                </div>
+                                </div>
+                                        )
+                                })}
+    
+                        {/* {rows} */}
+                        
+                        </tbody>
                         </table>
-                        <button onClick={this.seatCategory.bind(this,"VIP")}>VIP</button>
-                        <button onClick={this.seatCategory.bind(this,"ODC")}>ODC</button>
-                        <h1>You selected {this.state.seatCategory}</h1>
-
-                        <button onClick={this.submitSeats.bind(this)}>Submit</button>
+                        <button onClick={this.seatall.bind(this,'VIP-square')}>VIP Square</button>
+                        <button onClick={this.seatall.bind(this,'odc-square')}>odc Square</button>
+                        <button onClick={this.seatall.bind(this,'eraser-square')}>Eraser Square</button>
+                        <button onClick={this.seatall.bind(this,'VIP-pen')}>VIP pen</button>
+                        <button onClick={this.seatall.bind(this,'odc-pen')}>odc pen</button>
+                        <button onClick={this.seatall.bind(this,'eraser-pen')}>eraser pen</button>
                         
+                        <button onClick={this.submitseat.bind(this)}>submit</button>
+                        <p>{this.state.tool}</p>
+                        <p>{this.state.id}</p>
 
-
+            </div>
             </div>
         );
     }

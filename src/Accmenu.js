@@ -76,7 +76,7 @@ class Component1 extends Component {
         }if(this.state.chooseuser==="CarParkOwnerApprove"){
             return <Eventorganizermain/>
         }if(this.state.chooseuser==="ShopOwnerApprove"){
-            return <Eventorganizermain/>
+            return <Shopownermain/>
         }
         
     }

@@ -9,7 +9,7 @@ class Seatallocation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            venue:'Radish',
+            venue:'',
             seatCategory:"Clear",
             datas :{0: {
                 0: 'erase',

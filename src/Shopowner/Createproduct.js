@@ -6,9 +6,7 @@ import {
   } from 'react-router-dom';
   import axios from 'axios';
 
-
-
-class Createevent extends Component {
+class Createproduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,22 +14,9 @@ class Createevent extends Component {
             showdeatils :0,
             datas: {}
         }
-        // this.addShows = this.addShows.bind(this);
         this.submitEvent = this.submitEvent.bind(this);
         
     }
-
-    
-
-    // addShows(e){
-    //     e.preventDefault();
-    //     this.setState(prevState => ({
-    //         counter: prevState.counter + 1
-    //       }));
-    // }
-
-    
-    
 
     submitEvent(e){
         let thiscom = this;
@@ -59,78 +44,13 @@ class Createevent extends Component {
         });
             
         console.log(uploadState);
-        // firebase.database().ref().child('react/files').push({
-        //     fileName: file.name, });
-        // setTimeout(function() { //Start the timer
-        //     var nimal = firebase.storage().ref('events').child(file.name).getDownloadURL();
-        //     console.log('nimal',nimal.aa);
-                
-        // }.bind(this), 1000);
-        
-    //   console.log('2nd url',downImage);
-
-        // var event = {
-        //     name : this.refs.inputEvent.value,
-        //     description : this.refs.inputDescription.value,
-        //     category : this.refs.inputCategory.value,
-        //     image : file.name,
-        // }
-    //     axios.post('http://localhost:3002/createevents', {
-    //         name : this.refs.inputEvent.value,
-    //         description : this.refs.inputDescription.value,
-    //         category : this.refs.inputCategory.value,
-    //         image : file.name
-            
-    //       })
-    //       .then(function (response) {
-            
-    //         console.log("event response",response);
-    //       })
-    //       .catch(function (error) {
-    //         console.log("event error",error);
-    //       });
-
-    //     // firebase.database().ref('react/event').push(
-    //     //        event
-    //     //       );
     }
-    
 
     render() {
-
-        
-
-    // var shows = [];
-    // for (var i = 0; i < this.state.counter; i++) {
-    //     shows.push(
-    //     <div>
-    //     <h1>Show {i}</h1>
-    //     <label htmlFor="inputEmail" className="col-lg-2 control-label">Venu Location</label>
-    //     <div className="col-lg-10">
-    //     <input type="text" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputVenue"/>
-    //     </div>
-    //     <label htmlFor="inputEmail" className="col-lg-2 control-label">Hall</label>
-    //     <div className="col-lg-10">
-    //     <input type="text" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputHall"/>
-    //     </div>
-    //     <label htmlFor="inputEmail" className="col-lg-2 control-label">Date</label>
-    //     <div className="col-lg-10">
-    //     <input type="date" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputDate"/>
-    //     </div>
-    //     <label htmlFor="inputEmail" className="col-lg-2 control-label">Start Time</label>
-    //     <div className="col-lg-10">
-    //     <input type="time" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputStartTime"/>
-    //     </div>
-    //     <label htmlFor="inputEmail" className="col-lg-2 control-label">End Time</label>
-    //     <div className="col-lg-10">
-    //     <input type="time" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputEndTime"/>
-    //     </div>
-    //     </div>
-    //   ); 
-    //   }
-
         return (
             <div>
+                {this.props.match.params.shopid}
+                <div>
             <form className="form-horizontal">
                   <fieldset>
                         <legend><h1>Create Event</h1></legend>
@@ -171,9 +91,10 @@ class Createevent extends Component {
                   </fieldset>
             </form>
             
-  </div>               
+  </div>
+            </div>
         );
     }
 }
 
-export default Createevent;
+export default Createproduct;

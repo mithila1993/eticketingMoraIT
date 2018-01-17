@@ -5,6 +5,7 @@ import Seatallocation from './Seatallocation';
 import Shows from './Shows';
 import Seats from './Seats';
 import Foods from './Foods';
+import Yourevents from './Yourevents';
 
 
 import {
@@ -24,6 +25,8 @@ class Eventorganizermain extends Component {
                      <li><NavLink to="/Eventorganizerfront">Front</NavLink></li>
                     <li><NavLink to="/seatallocation">Seat Allocation</NavLink></li>
                     <li><NavLink to="/Createevent">Create event</NavLink></li>
+                    <li><NavLink to="Yourevents">Your events</NavLink></li>
+
                     
 
                     
@@ -37,6 +40,7 @@ class Eventorganizermain extends Component {
                 <Route path="/Seatallocation/:eventId/:showid" component={Seatallocation} />
                 <Route path="/Seats/:eventid/:showid" component={Seats} />
                 <Route path="/Foods/:eventid/:showid" component={Foods} />
+                <Route path="/Yourevents" component={Yourevents}/>
                 <Route component={Eventorganizerfront}/>
                 
                 </Switch>

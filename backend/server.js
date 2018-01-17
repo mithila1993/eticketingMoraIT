@@ -153,7 +153,6 @@ server.post('/createShows',(req,res)=>{
   admin.database().ref().child('react/event/' + eventid + '/shows').push({
   venue : req.body.venue,
   district : req.body. district,
-  hall : req.body.hall,
   starttime : req.body.starttime,
   endtime : req.body.endtime,
 
@@ -491,6 +490,53 @@ server.post('/addSeatAllocation',(req,res)=>{
         console.log("Error creating event:", error);
       });
     });
+
+
+//Display Seat Allocations to Event Organizers
+
+server.post('/displaySeatallocationsOnEventOrganizers',(req,res)=>{
+    
+    
+  admin.database().ref('react/seatallocations').orderByChild("venue").equalTo(req.body.venue).once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Add Shops
+
+server.post('/addShops',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/shops').push({
+        name: req.body.name,
+        description: req.body.description,
+        venue: req.body.venue,   
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+//Receive Shops list
+server.post('/receiveShops',(req,res)=>{
+    
+    
+  admin.database().ref('react/shops').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
 
 
 

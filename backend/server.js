@@ -127,7 +127,7 @@ server.post('/createevents',(req,res)=>{
       })
 
       .then(function(userRecord) {
-        
+        res.send('POST Method');
         
 
       })
@@ -153,14 +153,18 @@ server.post('/createShows',(req,res)=>{
   admin.database().ref().child('react/event/' + eventid + '/shows').push({
   venue : req.body.venue,
   district : req.body. district,
-  starttime : req.body.starttime,
-  endtime : req.body.endtime,
+  time : req.body.time,
+  seats : req.body.seats,
+  carparkingid : req.body.carparkingid,
+  shopid : req.body.shopid,
+  
+  
 
   })
 
   .then(function(userRecord) {
     
-    
+    res.send('hello world');
 
   })
   .catch(function(error) {
@@ -538,6 +542,204 @@ server.post('/receiveShops',(req,res)=>{
   });
 });
 
+//Add products to Shop
+
+server.post('/addProductsToShop',(req,res)=>{
+      
+  admin.database().ref().child('react/shops/'+req.body.id+'/products').push({
+      description : req.body.description,
+      category : req.body.category,
+      name : req.body.name,
+      image : req.body.image,
+      amount : req.body.amount,
+      price : req.body.price,
+      })
+
+      .then(function(userRecord) {
+        res.send('POST Method');
+        
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+//Receive Products from Shop
+
+server.post('/receiveProductsFromShop',(req,res)=>{
+    
+    
+  admin.database().ref('react/shops/'+req.body.shopid+'/products').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Update Stock
+
+server.post('/updateStock',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/shops/'+req.body.shopid +'/products/'+req.body.productid+'/amount/').set(
+        req.body.amount   
+      )
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Display Shops to Event Organizers
+
+server.post('/displayShopsEventOrganizers',(req,res)=>{
+    
+    
+  admin.database().ref('react/shops').orderByChild("venue").equalTo(req.body.venue).once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Add Carparks
+
+
+server.post('/addCarParks',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/carparks').push({
+        name: req.body.name,
+        carparkslots: req.body.carparkslots,
+        venue: req.body.venue,
+        carprice: req.body.carprice,
+        threewheelerprice: req.body.threewheelerprice,
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Receive Car park list
+server.post('/receiveCarParks',(req,res)=>{
+    
+    
+  admin.database().ref('react/carparks').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Receive Car park on id
+server.post('/receiveCarParksOnId',(req,res)=>{
+    
+    
+  admin.database().ref('react/carparks/'+req.body.carparkid).once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Add Cark slot to id
+
+
+server.post('/addCarParkSlotToId',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/carparks/'+req.body.carparkid+'/carparkdates').push({
+        date: req.body.date,
+        carparkslot: req.body.carparkslot,
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Receive Car park dates
+
+server.post('/receiveCarParkDates',(req,res)=>{
+    
+    
+  admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Edit Car park dates
+
+server.post('/editCarParkDates',(req,res)=>{
+    
+    
+  admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates/'+req.body.carparkdateid+'/carparkslot/').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Update Car park dates
+
+
+server.post('/updateCarParkDate',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/carparks/'+req.body.carparkid+'/carparkdates/'+req.body.carparkdateid+'/carparkslot').set(req.body.seats)
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+
+//Edit Car park dates
+
+server.post('/displayCarParkingsEventOrganizers',(req,res)=>{
+    
+    
+  admin.database().ref('react/carparks').orderByChild("venue").equalTo(req.body.venue).once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
 
 
 server.listen(3002, () => console.log('Example app listening on port 3001!'));

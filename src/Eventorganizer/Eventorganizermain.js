@@ -6,6 +6,7 @@ import Shows from './Shows';
 import Seats from './Seats';
 import Foods from './Foods';
 import Yourevents from './Yourevents';
+import Viewshows from './Viewshows';
 
 
 import {
@@ -37,6 +38,7 @@ class Eventorganizermain extends Component {
                 <Route path="/seatallocation" component={Seatallocation}/>
                 <Route path="/Createevent" component={Createevent}/>
                 <Route path="/Shows/:eventId/" component={Shows}/>
+                <Route path="/Viewshows/:eventId/" component={Viewshows}/>
                 <Route path="/Seatallocation/:eventId/:showid" component={Seatallocation} />
                 <Route path="/Seats/:eventid/:showid" component={Seats} />
                 <Route path="/Foods/:eventid/:showid" component={Foods} />

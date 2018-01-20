@@ -12,25 +12,29 @@ class Createproduct extends Component {
         this.state = {
             counter: 0,
             showdeatils :0,
-            datas: {}
+            datas: {},
+            category:'',
         }
-        this.submitEvent = this.submitEvent.bind(this);
+        this.submitProduct = this.submitProduct.bind(this);
         
     }
 
-    submitEvent(e){
+    submitProduct(e){
         let thiscom = this;
         e.preventDefault();
         var downImage;
         var file = this.refs.inputFile.files[0];
-        var storageRef = firebase.storage().ref('events/'+ file.name);
+        var storageRef = firebase.storage().ref('products/'+ file.name);
         var uploadState = storageRef.put(file).then(function(snapshot){
             
                 console.log(snapshot.downloadURL);
-                axios.post('http://localhost:3002/createevents', {
-                name : thiscom.refs.inputEvent.value,
+                axios.post('http://localhost:3002/addProductsToShop', {
+                id: thiscom.props.match.params.shopid,
+                name : thiscom.refs.inputProduct.value,
                 description : thiscom.refs.inputDescription.value,
-                category : thiscom.refs.inputCategory.value,
+                category : thiscom.state.category,
+                amount : thiscom.refs.inputAmount.value,
+                price : thiscom.refs.inputPrice.value,
                 image : snapshot.downloadURL
                 
               })
@@ -46,6 +50,17 @@ class Createproduct extends Component {
         console.log(uploadState);
     }
 
+    handleCategory(e){
+    
+        this.setState({category:e.target.value},()=>{
+          if(this.state.category !== 'None'){
+             console.log(this.state.category);
+        }
+          
+        });   
+    }
+    
+
     render() {
         return (
             <div>
@@ -53,21 +68,42 @@ class Createproduct extends Component {
                 <div>
             <form className="form-horizontal">
                   <fieldset>
-                        <legend><h1>Create Event</h1></legend>
+                        <legend><h1>Create Product</h1></legend>
                               <div className="form-group">
-                                      <label htmlFor="inputEmail" className="col-lg-2 control-label">Event Name</label>
+                                      <label htmlFor="inputEmail" className="col-lg-2 control-label">Product Name</label>
                                       <div className="col-lg-10">
-                                      <input type="text" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputEvent"/>
+                                      <input type="text" className="form-control" id="inputEmail" placeholder="Product Name" ref="inputProduct"/>
                                       </div>
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Description</label>
                                       <div className="col-lg-10">
                                       <textarea rows="4" cols="50" className="form-control" id="inputEmail" placeholder="Write a description" ref="inputDescription"/>
                                     </div>
                                       <div className="col-lg-10">
-                                      <label htmlFor="inputPassword" className="col-lg-2 control-label">Category</label>
-                                      <div className="col-lg-10">
-                                      <input type="text" className="form-control" id="inputCategory" placeholder="Write Category" ref="inputCategory"/>
+
+                                      <div className="col-lg-12">
+                                        <label htmlFor="inputEmail" className="col-lg-2 control-label">Category</label>
+                              <div className="col-lg-8">
+                              <select className="form-control" onChange={this.handleCategory.bind(this)} >
+                                    <option value="Other">Other</option>
+                                    <option value="Ice Cream">Ice Cream</option>
+                                    <option value="Biscuits">Biscuits</option>
+                                    </select>
+                                    </div>
+                                    </div>
+                                    
+                                    <div className="col-lg-12">
+                                         <label htmlFor="inputPassword" className="col-lg-2 control-label">Amount</label>
+                                      <div className="col-lg-4">
+                                      <input type="number" className="form-control" id="inputCategory" placeholder="Amount" ref="inputAmount"/>
                                          </div>
+                                        </div>
+
+                                    <div className="col-lg-12">
+                                         <label htmlFor="inputPassword" className="col-lg-2 control-label">Price Rs.</label>
+                                      <div className="col-lg-4">
+                                      <input type="number" className="form-control" id="inputCategory" placeholder="Price" ref="inputPrice"/>
+                                         </div>
+                                    </div>
                                      
                                     <label htmlFor="inputCategory" className="col-lg-2 control-label">Upload image</label>
                                      <div className="col-lg-10">
@@ -83,7 +119,7 @@ class Createproduct extends Component {
                                       <br/><br/>
                                       <div className="col-lg-2"></div>
                                       <div className="col-lg-10">
-                                      <button type="submit" className="btn btn-default" onClick={this.submitEvent}>Submit</button>
+                                      <button type="submit" className="btn btn-default" onClick={this.submitProduct}>Submit</button>
                                       
                                       </div>
                                         

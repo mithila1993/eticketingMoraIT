@@ -131,4 +131,21 @@ td:hover {
   background-color: cornflowerblue;
 }
 
+.car{
+  background-color: #ff0000;
+}
+
+.threewheeler{
+  background-color: #7bff00;
+}
+
+.car-reserved{
+  background-color: #ec9191;
+}
+
+.threewheeler-reserved{
+  background-color: #d5e0ca;
+}
+
+
 

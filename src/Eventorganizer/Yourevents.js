@@ -49,6 +49,7 @@ componentDidMount() {
                   </div>
                   <div className="col-md-2" >
                   <Link className="btn btn-default" to={`/Shows/${description[0]}`}>Add Shows</Link>
+                  <Link className="btn btn-default" to={`/Viewshows/${description[0]}`}>View Shows</Link>
                   </div>
                   
                   </div>

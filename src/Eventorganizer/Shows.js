@@ -11,13 +11,22 @@ class Shows extends Component {
           datas: {},
           venue:'',
           district:'',
+          time:'',
           seatallocationsnames:'',
           selectecdseatallocation:{},
           getseatsonly:{},
+          shopnames:{},
+          selectshop:'',
+          carparkingnames:{},
+          selectcarparking:'',
+          
       }
         this.displaySeatallocationsOnEventOrganizers = this.displaySeatallocationsOnEventOrganizers.bind(this);
         this.submitShow = this.submitShow.bind(this);
+        this.displayShopsEventOrganizers = this.displayShopsEventOrganizers.bind(this);
+        this.displayCarParkingsEventOrganizers = this.displayCarParkingsEventOrganizers.bind(this);
     }
+//Display Seat Allocations
 
     displaySeatallocationsOnEventOrganizers(value){
       axios.post('http://localhost:3002/displaySeatallocationsOnEventOrganizers', {
@@ -30,30 +39,51 @@ class Shows extends Component {
         console.log("event error",error);
       });
     }
+
+  //Display Shops
+
+    displayShopsEventOrganizers(value){
+      axios.post('http://localhost:3002/displayShopsEventOrganizers', {
+          venue: value,  
+      })
+      .then( (response) => {
+        this.setState({shopnames: response.data.data});
+      })
+      .catch( (error) => {
+        console.log("event error",error);
+      });
+    }
+
+    // Display Car Parkings
+
+    displayCarParkingsEventOrganizers(value){
+      axios.post('http://localhost:3002/displayCarParkingsEventOrganizers', {
+          venue: value,  
+      })
+      .then( (response) => {
+        this.setState({carparkingnames: response.data.data});
+      })
+      .catch( (error) => {
+        console.log("event error",error);
+      });
+    }
     
 
 
-    componentDidMount() {
-        axios.post('http://localhost:3002/displayShowsOrganizer', {
-            eventid: this.props.match.params.eventId,
-          })
-          .then( (response) => {
-            
-            this.setState({datas: response.data.data});
-            
-          })
-          .catch(function (error) {
-            console.log("event error",error);
-          });
-    }
+
+    //Submit Show
 
     submitShow(e){
         e.preventDefault();
+
         axios.post('http://localhost:3002/createShows', {
-            venue : this.refs.inputVenue.value,
-            district : this.refs.inputDistrict.value,
-            starttime : this.refs.inputStartTime.value,
-            endtime : this.refs.inputEndTime.value,
+            venue : this.state.venue,
+            district : this.state.district,
+            time : this.state.time,
+            date:this.refs.inputDate.value,
+            seats : this.state.getseatsonly,
+            carparkingid:this.state.selectcarparking,
+            shopid:this.state.selectshop,
             eventid :this.props.match.params.eventId,
           })
           .then(function (response) {
@@ -65,11 +95,15 @@ class Shows extends Component {
           });
     }
 
+  //When Select Venue
+
     handleVenue(e){
       this.setState({venue:e.target.value},()=>{
         if(this.state.venue !== 'None'){
            console.log(this.state.venue);           
            this.displaySeatallocationsOnEventOrganizers(this.state.venue);
+           this.displayShopsEventOrganizers(this.state.venue);
+           this.displayCarParkingsEventOrganizers(this.state.venue);
                     }if(this.state.venue === 'Savoy'){
                         this.setState({district:'Colombo'});
                         console.log(this.state.district);
@@ -84,15 +118,19 @@ class Shows extends Component {
       });   
   }
 
-  handleDate(e){
+  //When Select Date
+
+  handleTime(e){
     
-    this.setState({date:e.target.value},()=>{
+    this.setState({time:e.target.value},()=>{
       if(this.state.date !== 'None'){
          console.log(this.state.date);
     }
       
     });   
 }
+
+//When Select Seat Alocation (Show also Preview)
 
 handleSeatAllocations(e){
   this.setState({selectecdseatallocation:e.target.value},()=>{
@@ -104,6 +142,30 @@ handleSeatAllocations(e){
              
         });
       });
+  }
+    
+  });   
+}
+
+// When Select Carparking
+
+handleCarParking(e){
+    
+  this.setState({selectcarparking:e.target.value},()=>{
+    if(this.state.selectcarparking !== 'None'){
+       console.log(this.state.selectcarparking);
+  }
+    
+  });   
+}
+
+// When Select Shops
+
+handleShop(e){
+    
+  this.setState({selectshop:e.target.value},()=>{
+    if(this.state.selectshop !== 'None'){
+       console.log(this.state.selectshop);
   }
     
   });   
@@ -173,7 +235,7 @@ handleSeatAllocations(e){
                                             <div className="col-lg-12">
                                         <label htmlFor="inputEmail" className="col-lg-2 control-label">Time</label>
                               <div className="col-lg-8">
-                              <select className="form-control" onChange={this.handleDate.bind(this)} >
+                              <select className="form-control" onChange={this.handleTime.bind(this)} >
                                     <option value="None">None</option>
                                     <option value="5.00 PM">5.00 PM</option>
                                     <option value="6.00 PM">6.00 PM</option>
@@ -196,7 +258,7 @@ handleSeatAllocations(e){
                                          {/* {shows} */}
 
                                          <div className="col-lg-12">
-                                        <label htmlFor="inputEmail" className="col-lg-2 control-label">Time</label>
+                                        <label htmlFor="inputEmail" className="col-lg-2 control-label">Seat Allocations</label>
                               <div className="col-lg-8">
                               <select className="form-control" onChange={this.handleSeatAllocations.bind(this)} >
                                       <option value="None">None</option>
@@ -208,9 +270,37 @@ handleSeatAllocations(e){
                                     </select>
                                     </div>
                                     </div>
+
+
                                     <div className="col-lg-12">
                                     <div className="col-lg-2">Preview</div> 
                                     <div className="col-lg-8">{m}</div>
+                                    </div>
+
+                                    <div className="col-lg-12">
+                                        <label htmlFor="inputEmail" className="col-lg-2 control-label">Car Parking</label>
+                              <div className="col-lg-8">
+                              <select className="form-control" onChange={this.handleCarParking.bind(this)} >
+                                      <option value="None">None</option>
+                                       { Object.entries(this.state.carparkingnames).map((description, i) => {
+                                         
+                                        return (<option key={i} value={description[0]}>{description[1].name}</option>)
+                                        })}
+                                    </select>
+                                    </div>
+                                    </div>
+
+                                    <div className="col-lg-12">
+                                        <label htmlFor="inputEmail" className="col-lg-2 control-label">Shops</label>
+                              <div className="col-lg-8">
+                              <select className="form-control" onChange={this.handleShop.bind(this)} >
+                                      <option value="None">None</option>
+                                       { Object.entries(this.state.shopnames).map((description, i) => {
+                                         
+                                        return (<option key={i} value={description[0]}>{description[1].name}</option>)
+                                        })} 
+                                    </select>
+                                    </div>
                                     </div>
                                          
                                          <br/><br/>
@@ -223,30 +313,7 @@ handleSeatAllocations(e){
                                  
                      </fieldset>
                </form>
-               { Object.entries(this.state.datas).map((description, i) => {  
-                  return (
-                    
-                    <div>
-                  <div>
-                  <div className="col-md-12" >
-                 
-                  <div className="col-md-2">
-                  <h1 key={i}> {description[1].destrict} </h1></div>
-                  <div className="col-md-2"><p> {description[1].venue}</p></div>
-                  <div className="col-md-2"><p> {description[1].hall}</p></div>
-                  <div className="col-md-2"><p> {description[1].starttime}</p></div>
-                  <div className="col-md-2"><p> {description[1].endtime}</p></div>
-                  <div className="col-md-2">
-                  <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Seat Allocations</Link>
-                  </div>
-                  </div>
-                  
-                  </div>
-
-                  </div>
-                  
-                          )
-                  })}
+               
             </div>
             </div>
         );

@@ -14,21 +14,25 @@ class Eventdetails extends Component {
           
     }
 
-    seats(showId){
+    seats(showId,date,carparkingId,shopId){
       var thisprop = this;
       console.log('seats clicked');
       console.log(showId);
+      console.log('shopId',shopId);
       console.log(this.state.datas.name);
       console.log(this.props.match.params.eventId);
         
             axios.post('http://localhost:3002/addOrder', {
                 showid : showId,
                 name : this.state.datas.name,
-                eventid : this.props.match.params.eventId
+                eventid : this.props.match.params.eventId,
+                carparkingid : carparkingId,
+                shopid : shopId,
+                date :date,
               })
               .then( (response) => {
                 
-                console.log("event response",response.data);
+                console.log("order id",response.data);
                 this.props.history.push('/Seatallocation/'+ this.props.match.params.eventId +'/'+ showId+'/'+ response.data);
 
               })
@@ -93,12 +97,14 @@ class Eventdetails extends Component {
                   <div className="col-md-2">
                   <h1 key={i}> {description[1].destrict} </h1></div>
                   <div className="col-md-2"><p> {description[1].venue}</p></div>
-                  <div className="col-md-2"><p> {description[1].hall}</p></div>
-                  <div className="col-md-2"><p> {description[1].starttime}</p></div>
-                  <div className="col-md-2"><p> {description[1].endtime}</p></div>
+                  <div className="col-md-2"><p> {description[1].district}</p></div>
+                  <div className="col-md-2"><p> {description[1].date}</p></div>
+                  <div className="col-md-2"><p> {description[1].time}</p></div>
+                  
+                  
                   <div className="col-md-2">
                   {/* <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Book Now</Link> */}
-                  <button className="btn btn-default" onClick={this.seats.bind(this,description[0])}>Book Now</button>
+                  <button className="btn btn-default" onClick={this.seats.bind(this,description[0],description[1].date,description[1].carparkingid,description[1].shopid)}>Book Now</button>
                   </div>
                   </div>
                   

@@ -43,13 +43,14 @@ class Viewshows extends Component {
                   <div className="col-md-12" >
                  
                   <div className="col-md-2">
-                  <h1 key={i}> {description[1].destrict} </h1></div>
+                  </div>
                   <div className="col-md-2"><p> {description[1].venue}</p></div>
-                  <div className="col-md-2"><p> {description[1].hall}</p></div>
-                  <div className="col-md-2"><p> {description[1].starttime}</p></div>
-                  <div className="col-md-2"><p> {description[1].endtime}</p></div>
+                  <div className="col-md-2"><p> {description[1].district}</p></div>
+                  <div className="col-md-2"><p> {description[1].time}</p></div>
+        
+                  
                   <div className="col-md-2">
-                  <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Seat Allocations</Link>
+                  {/* <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Seat Allocations</Link> */}
                   </div>
                   </div>
                   

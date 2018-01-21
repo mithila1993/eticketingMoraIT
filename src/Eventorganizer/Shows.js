@@ -75,12 +75,13 @@ class Shows extends Component {
 
     submitShow(e){
         e.preventDefault();
+        console.log(this.refs.inputDate.value);
 
         axios.post('http://localhost:3002/createShows', {
             venue : this.state.venue,
             district : this.state.district,
             time : this.state.time,
-            date:this.refs.inputDate.value,
+            date: this.refs.inputDate.value,
             seats : this.state.getseatsonly,
             carparkingid:this.state.selectcarparking,
             shopid:this.state.selectshop,
@@ -173,8 +174,9 @@ handleShop(e){
 
     
     render() {
+      
       var m =  Object.entries(this.state.getseatsonly).map((description, i) => {  
-        
+         
         return (
           
             <div>

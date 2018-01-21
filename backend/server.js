@@ -153,6 +153,7 @@ server.post('/createShows',(req,res)=>{
   admin.database().ref().child('react/event/' + eventid + '/shows').push({
   venue : req.body.venue,
   district : req.body. district,
+  date:req.body.date,
   time : req.body.time,
   seats : req.body.seats,
   carparkingid : req.body.carparkingid,
@@ -228,8 +229,6 @@ server.post('/addSeats',(req,res)=>{
 server.post('/addOrder',(req,res)=>{
   var eventid = req.body.eventid;
   var showid = req.body.showid
-  console.log(eventid);
-  console.log(showid);
   
   admin.database().ref('react').child('orders').push({
   name : req.body.name,
@@ -237,7 +236,7 @@ server.post('/addOrder',(req,res)=>{
   eventid : req.body.eventid,
   }).then((snap) => {
     
-    res.json(snap.key);
+    res.send(snap.key);
  })
 
   .then(function(userRecord) {
@@ -741,5 +740,71 @@ server.post('/displayCarParkingsEventOrganizers',(req,res)=>{
   });
 });
 
+//Display Show details to User
+server.post('/displayShowDetailsToUser',(req,res)=>{
+  
+  admin.database().ref('react/event/'+req.body.eventid+'/shows/'+req.body.showid).once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
 
-server.listen(3002, () => console.log('Example app listening on port 3001!'));
+//Update Seat Allocation after user buy
+
+server.post('/updateSeatAfterUserBuy',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/event/'+req.body.eventid+'/shows/'+req.body.showid+'/seats').set(req.body.seats)
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+// Update seats on order
+
+server.post('/updateSeatsOnOrder',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/orders/'+req.body.orderid).update({
+    
+    vip:req.body.vip,
+    odc:req.body.odc
+  })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+//Display Car park on User
+
+server.post('/displayCarParkOnUser',(req,res)=>{
+  console.log('hello -',req.body.date);
+  admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates').orderByChild("date").equalTo(req.body.date).once("child_added", function(snapshot) {
+    // res.json({msg:true, data:snapshot.val().role});
+    res.send(snapshot.val());
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+
+
+server.listen(3002, () => console.log('Example app listening on port 3002!'));

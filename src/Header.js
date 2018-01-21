@@ -17,6 +17,7 @@ import Accountmain from './Accountmain';
 import Events from './Events';
 import Eventdetails from './Events/Eventdetails';
 import Seatallocation from './Events/Seatallocation';
+import Carparking from './Events/Carparking';
 import FoodsReserve from './Events/FoodsReserve';
 import Checkout from './Events/Checkout';
 import Acc from './Acc';
@@ -66,7 +67,8 @@ class Header extends Component {
       <Route path="/Login" component={Login} />
       <Route path="/Accountmain" component={Accountmain} />
       <Route path="/Eventdetails/:eventId" component={Eventdetails} />     
-      <Route path="/Seatallocation/:eventId/:showId/:orderId" component={Seatallocation} />
+      <Route path="/Seatallocation/:eventId/:showId/:orderId/" component={Seatallocation} />
+      <Route path="/Carparking/:eventId/:showId/:orderId/" component={Carparking} />
       <Route path="/FoodsReserve/:eventId/:showId/:orderId" component={FoodsReserve} />
       <Route path="/Checkout/:eventId/:showId/:orderId" component={Checkout} />
       <Route path="/Acc" component={Acc} />

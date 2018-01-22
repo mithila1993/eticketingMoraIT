@@ -234,6 +234,7 @@ server.post('/addOrder',(req,res)=>{
   name : req.body.name,
   showid : req.body.showid,
   eventid : req.body.eventid,
+  status :"Inactive"
   }).then((snap) => {
     
     res.send(snap.key);
@@ -483,6 +484,9 @@ server.post('/addSeatAllocation',(req,res)=>{
         name: req.body.name,
         seats: req.body.seats, 
         venue: req.body.venue,
+        vipprice: req.body.vipprice,
+        odcprice: req.body.odcprice,
+
       })
 
       .then(function(userRecord) {
@@ -794,16 +798,144 @@ server.post('/updateSeatsOnOrder',(req,res)=>{
 //Display Car park on User
 
 server.post('/displayCarParkOnUser',(req,res)=>{
-  console.log('hello -',req.body.date);
-  admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates').orderByChild("date").equalTo(req.body.date).once("child_added", function(snapshot) {
-    // res.json({msg:true, data:snapshot.val().role});
-    res.send(snapshot.val());
+  //Getting the carparking id
+  admin.database().ref('react/event/'+req.body.eventid+'/shows/'+req.body.showid).once("value", (snapshot) =>{
+  
+    //getting the prices of car & threewheelers
+    admin.database().ref('react/carparks/'+snapshot.val().carparkingid).once("value", (s) => {
+          
+              //Getting the car park slots
+              admin.database().ref('react/carparks/'+snapshot.val().carparkingid+'/carparkdates').orderByChild("date").equalTo(snapshot.val().date).once("child_added", (snap) => {
+                
+                
+               // Sending the respond
+                res.send({
+                  carparkingid:snapshot.val().carparkingid,
+                  carprice:s.val().carprice,
+                  threewheelerprice:s.val().threewheelerprice,
+                  carparkslot:snap.val().carparkslot,
+                  date:snap.val().date
+                })
+                
+                
+              }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+              });
+    
+    
     
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
 });
 
+
+//Update Car Parking after user buy
+
+server.post('/updateCarParkingAfterUserBuy',(req,res)=>{
+
+  admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates').orderByChild("date").equalTo(req.body.date).once("child_added", (snapshot) =>{
+        // get the carparking key according to the date
+    console.log(snapshot.key);
+        // search the key & update the car park slot
+    admin.database().ref('react/carparks/'+req.body.carparkid+'/carparkdates/'+snapshot.key).update({
+    carparkslot:req.body.carparkslot
+  })
+
+      .then((userRecord) => {
+
+        //After Results Come order update
+
+        admin.database().ref().child('react/orders/'+req.body.orderid).update({
+    
+          car:req.body.car,
+          threewheeler:req.body.threewheeler
+        })
+      
+            .then(function(userRecord) {
+              
+              res.send('Update the car park slot & Order');
+      
+      
+            })
+            .catch(function(error) {
+              console.log("Error creating event:", error);
+            });
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });   
+
+});
+
+//Display Products on User
+
+server.post('/displayShopProductsOnUser',(req,res)=>{
+  //Getting the shoping id
+  admin.database().ref('react/event/'+req.body.eventid+'/shows/'+req.body.showid).once("value", (snapshot) =>{
+    
+    //shops 
+    admin.database().ref('react/shops/'+snapshot.val().shopid+'/products').once("value", (s) => {
+          
+          res.send(s.val());
+          // Sending the respond
+          // res.send({
+          //   carparkingid:snapshot.val().carparkingid,
+          //   carprice:s.val().carprice,
+          //   threewheelerprice:s.val().threewheelerprice,
+          //   carparkslot:snap.val().carparkslot,
+          //   date:snap.val().date
+          // })
+    
+    
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+});
+
+//enter Shop Cost
+
+server.post('/enterShopCost',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/orders/'+req.body.orderid).update({
+        shop: req.body.shop,   
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
+
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+
+
+
+
+  
 
 
 

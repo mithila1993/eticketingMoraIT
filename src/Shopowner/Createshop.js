@@ -58,8 +58,9 @@ class Createshop extends Component {
                                         <select className="form-control" onChange={this.handleVenue.bind(this)} >
                                         <option value="None">None</option>
                                         <option value="Savoy">Savoy</option>
-                                        <option value="Majestic City">Magestic City</option>
                                         <option value="Liberty">Liberty</option>
+                                        <option value="Majestic City">Magestic City</option>
+                                        
                                     </select>
                                     </div>
                                       <br/><br/>

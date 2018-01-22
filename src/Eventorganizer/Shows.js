@@ -107,13 +107,23 @@ class Shows extends Component {
            this.displayCarParkingsEventOrganizers(this.state.venue);
                     }if(this.state.venue === 'Savoy'){
                         this.setState({district:'Colombo'});
-                        console.log(this.state.district);
+                        
                     }if(this.state.venue === 'Liberty'){
-                        this.setState({district:'Gampaha'});
-                        console.log(this.state.district);
+                        this.setState({district:'Colombo'});   
                     }if(this.state.venue === 'Majestic City'){
-                        this.setState({district:'Kandy'});
-                        console.log(this.state.district);
+                        this.setState({district:'Colombo'});
+                      }if(this.state.venue === 'Regal'){
+                        this.setState({district:'Galle'});    
+                      }if(this.state.venue === 'Sinexpo 3D'){
+                        this.setState({district:'Kurunegala'});    
+                      }if(this.state.venue === 'Jothi 3D'){
+                        this.setState({district:'Ratnapura'});    
+                      }if(this.state.venue === 'Queens 3D'){
+                        this.setState({district:'Galle'});  
+                      }if(this.state.venue === 'Willmax 3D'){
+                        this.setState({district:'Anuradhapura'});     
+                      }if(this.state.venue === 'Tower'){
+                        this.setState({district:'Colombo'});     
       }
         
       });   
@@ -227,8 +237,14 @@ handleShop(e){
                               <select className="form-control" onChange={this.handleVenue.bind(this)} >
                                     <option value="None">None</option>
                                     <option value="Savoy">Savoy</option>
-                                    <option value="Majestic City">Magestic City</option>
                                     <option value="Liberty">Liberty</option>
+                                    <option value="Majestic City">Magestic City</option>
+                                    <option value="Tower">Tower</option>
+                                    <option value="Regal">Regal</option>
+                                    <option value="Sinexpo 3D">Sinexpo 3D</option>
+                                    <option value="Jothi 3D">Jothi 3D</option>
+                                    <option value="Queens 3D">Queens 3D</option>
+                                    <option value="Willmax 3D">Willmax 3D</option>
                                     </select>
                                     </div>
                                     </div>

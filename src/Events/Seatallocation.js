@@ -71,6 +71,7 @@ class Seatallocation extends Component {
             console.log(this.state.datas);
             jasper[value1][value2] = 'VIP-reserved';
             this.setState({jasper});
+            
             this.setState(prevState => ({
                 vipprice: prevState.vipprice + this.state.datas.vipprice
               }));
@@ -87,6 +88,7 @@ class Seatallocation extends Component {
             console.log(this.state.datas);
             jasper[value1][value2] = 'odc-reserved';
             this.setState({jasper});
+            console.log(jasper);
             this.setState(prevState => ({
                 odcprice: prevState.odcprice + this.state.datas.odcprice
               }));
@@ -95,6 +97,7 @@ class Seatallocation extends Component {
             console.log(this.state.datas);
             jasper[value1][value2] = 'odc';
             this.setState({jasper});
+            console.log(jasper);
             this.setState(prevState => ({
                 odcprice: prevState.odcprice - this.state.datas.odcprice
               }));
@@ -113,28 +116,28 @@ class Seatallocation extends Component {
                 <div>
                  <tr>
                 <td key={i} className={description[1][0]} onClick={this.getSeatNum.bind(this,i,0,description[1][0])}>
-                <p  >{description[1][0]} {i}</p>
+                <p  > </p>
                 </td>
                 <td className={description[1][1]} onClick={this.getSeatNum.bind(this,i,1,description[1][1])}>
-                <p key={i}> {description[1][1]} </p>
+                <p key={i}>  </p>
                 </td>
                 <td  className={description[1][2]} onClick={this.getSeatNum.bind(this,i,2,description[1][2])}>
-                <p key={i}> {description[1][2]} </p>
+                <p key={i}>  </p>
                 </td> 
                 <td  className={description[1][3]} onClick={this.getSeatNum.bind(this,i,3,description[1][3])}>
-                <p key={i}> {description[1][3]} </p>
+                <p key={i}>  </p>
                 </td>        
                 <td  className={description[1][4]} onClick={this.getSeatNum.bind(this,i,4,description[1][4])}>
-                <p key={i}> {description[1][4]} </p>
+                <p key={i}>  </p>
                 </td>     
                 <td  className={description[1][5]} onClick={this.getSeatNum.bind(this,i,5,description[1][5])}>
-                <p key={i}> {description[1][5]} </p>
+                <p key={i}>  </p>
                 </td>     
                 <td  className={description[1][6]} onClick={this.getSeatNum.bind(this,i,6,description[1][6])}>
-                <p key={i}> {description[1][6]} </p>
+                <p key={i}>  </p>
                 </td>     
                 <td  className={description[1][7]} onClick={this.getSeatNum.bind(this,i,7,description[1][7])}>
-                <p key={i}> {description[1][7]} </p>
+                <p key={i}>  </p>
                 </td>  
                 </tr>
                 </div>

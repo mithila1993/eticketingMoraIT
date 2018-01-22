@@ -210,8 +210,9 @@ carparkslotCategory(value){
                               <div className="col-lg-8">
                               <select className="form-control" onChange={this.handleVenue.bind(this)} >
                                     <option value="Savoy">Savoy</option>
-                                    <option value="Majestic City">Magestic City</option>
                                     <option value="Liberty">Liberty</option>
+                                    <option value="Majestic City">Magestic City</option>
+                                    
                                     </select>
                                     </div>
                                     </div>
@@ -254,28 +255,28 @@ carparkslotCategory(value){
                                 {/* {description[1][3]}  */}
                                  <tr>
                                 <td key={i} className={description[1][0]} onClick={this.name.bind(this,i,0)} onMouseOver={this.getSeatNum.bind(this,i,0)}>
-                                <p  > {description[1][0]} {i}</p>
+                                <p  > </p>
                                 </td>
                                 <td className={description[1][1]} onClick={this.name.bind(this,i,1)} onMouseOver={this.getSeatNum.bind(this,i,1)}>
-                                <p key={i}> {description[1][1]} </p>
+                                <p key={i}> </p>
                                 </td>
                                 <td  className={description[1][2]} onClick={this.name.bind(this,i,2)} onMouseOver={this.getSeatNum.bind(this,i,2)}>
-                                <p key={i}> {description[1][2]} </p>
+                                <p key={i}> </p>
                                 </td> 
                                 <td  className={description[1][3]} onClick={this.name.bind(this,i,3)} onMouseOver={this.getSeatNum.bind(this,i,3)}>
-                                <p key={i}> {description[1][3]} </p>
+                                <p key={i}> </p>
                                 </td>        
                                 <td  className={description[1][4]} onClick={this.name.bind(this,i,4)} onMouseOver={this.getSeatNum.bind(this,i,4)}>
-                                <p key={i}> {description[1][4]} </p>
+                                <p key={i}> </p>
                                 </td>     
                                 <td  className={description[1][5]} onClick={this.name.bind(this,i,5)} onMouseOver={this.getSeatNum.bind(this,i,5)}>
-                                <p key={i}> {description[1][5]} </p>
+                                <p key={i}> </p>
                                 </td>     
                                 <td  className={description[1][6]} onClick={this.name.bind(this,i,6)} onMouseOver={this.getSeatNum.bind(this,i,6)}>
-                                <p key={i}> {description[1][6]} </p>
+                                <p key={i}> </p>
                                 </td>     
                                 <td  className={description[1][7]} onClick={this.name.bind(this,i,7)} onMouseOver={this.getSeatNum.bind(this,i,7)}>
-                                <p key={i}> {description[1][7]} </p>
+                                <p key={i}> </p>
                                 </td>  
                                 </tr>
                                 </div>

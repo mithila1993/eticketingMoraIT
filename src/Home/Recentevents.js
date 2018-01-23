@@ -39,7 +39,7 @@ class Recentevents extends Component {
                  <div className="col-md-2"><img src={description[1].image} height="250px" width="170px"/></div>
                   <div className="col-md-10">
                   <h1 key={i}> {description[1].name} </h1>
-                  <p> {description[1].description}</p>
+                  <p align="justify"> {description[1].description}</p>
                   
                   <Link className="btn btn-default" to={`/Eventdetails/${description[0]}`}>More Details</Link>
                   

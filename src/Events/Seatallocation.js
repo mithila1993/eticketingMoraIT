@@ -107,9 +107,11 @@ class Seatallocation extends Component {
     
 
     render() {
+        console.log(this.state.datas.seats);
         if(this.state.datas.seats !== undefined){
             var m =  Object.entries(this.state.datas.seats).map((description, i) => {  
-        
+                console.log('des',description);
+                console.log('des-1',description[1]);
                 return (
                   
                     <div>

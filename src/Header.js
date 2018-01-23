@@ -20,6 +20,7 @@ import Seatallocation from './Events/Seatallocation';
 import Carparking from './Events/Carparking';
 import FoodsReserve from './Events/FoodsReserve';
 import Checkout from './Events/Checkout';
+import Paynow from './Events/Paynow';
 import Acc from './Acc';
 
 
@@ -71,6 +72,7 @@ class Header extends Component {
       <Route path="/Carparking/:eventId/:showId/:orderId/" component={Carparking} />
       <Route path="/FoodsReserve/:eventId/:showId/:orderId" component={FoodsReserve} />
       <Route path="/Checkout/:eventId/:showId/:orderId" component={Checkout} />
+      <Route path="/Paynow/:eventId/:showId/:orderId" component={Paynow} />
       <Route path="/Acc" component={Acc} />
 
       

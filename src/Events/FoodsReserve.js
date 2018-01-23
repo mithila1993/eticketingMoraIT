@@ -117,7 +117,7 @@ enterShopCost(){
                     
                     <div><Oneproduct 
                         ima={`${description[1].image}`} 
-                        image={'${description[1].image}'} 
+                        image={`${description[1].image}`} 
                         name={`${description[1].name}`} 
                         description={`${description[1].description}`} 
                         price={`${description[1].price}`} 

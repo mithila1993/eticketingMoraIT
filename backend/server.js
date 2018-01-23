@@ -93,9 +93,9 @@ server.post('/addLocations',(req,res)=>{
 
 //Display Event Details
 server.post('/displayEventDetails',(req,res)=>{
-  var nimal = req.body.eventid;
+   
   
-  admin.database().ref('react/event').child(nimal).once("value", function(snapshot) {
+  admin.database().ref('react/event').child(req.body.eventid).once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -234,6 +234,9 @@ server.post('/addOrder',(req,res)=>{
   name : req.body.name,
   showid : req.body.showid,
   eventid : req.body.eventid,
+  carparkingid : req.body.carparkingid,
+  shopid : req.body.shopid,
+  date : req.body.date,
   status :"Inactive"
   }).then((snap) => {
     
@@ -931,8 +934,38 @@ server.post('/enterShopCost',(req,res)=>{
     });
 
 
+//Pay Now
+
+server.post('/payNow',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/orders/'+req.body.orderid).update({
+        tel: req.body.tel,
+        status:"active"   
+      })
+
+      .then(function(userRecord) {
+        
+        res.send('POST request');
 
 
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Get Orders
+server.post('/getOrders',(req,res)=>{
+    
+    
+  admin.database().ref('react/orders').once("value", function(snapshot) {
+    res.json({msg:true, data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
 
 
   

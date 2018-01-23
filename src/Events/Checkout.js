@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Checkout extends Component {
     constructor(props) {
@@ -37,6 +38,8 @@ class Checkout extends Component {
                <p>odc cost - {this.state.datas.odc}  </p>
                <h1>Total -  {this.state.datas.shop + this.state.datas.car + this.state.datas.threewheeler + this.state.datas.vip + this.state.datas.odc} </h1>
                
+               <Link className="btn btn-default" to={`/Paynow/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Checkout</Link>
+
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 class Viewproducts extends Component {
@@ -36,7 +37,7 @@ changeAmount(id,e){
                 productid:id
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Stock Updated');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -49,27 +50,37 @@ changeAmount(id,e){
     render() {
         return (
             <div>
-                {this.props.match.params.shopid}
-                Viewproducts
+                
+                <h1>View Products</h1>
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Name</th>
+                    
+                            <th scope="col">Image</th>
+                            <th scope="col">description</th>
+                            <th scope="col">Price</th>
+                            
+                            <th scope="col">Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
-                    
-                    
-                  <div className="col-md-12" >
-                 <div className="col-md-2"><img src={description[1].image} height="250px" width="170px"/></div>
-                  <div className="col-md-10">
-                  <h1 key={i}> {description[1].name} </h1>
-                  <p> {description[1].description}</p>
-                  <p> {description[1].category}</p>
-                  <p> {description[1].amount}</p>
-                 <input type="number" name="quantity" ref="amount" defaultValue={description[1].amount} onChange={(e) => this.changeAmount(description[0], e)}/> 
-                  <p> {description[1].price}</p>
-                  <p> {description[0]}</p>
-                  </div>
-                  </div>
-                  
+                    <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].name} </th>
+                            <td> <img src={description[1].image} height="100px" width="75px"/></td>
+                            <td> {description[1].description}</td>
+                            <td> Rs.{description[1].price}</td>
+                            <td> <input type="number" name="quantity" ref="amount" defaultValue={description[1].amount} onChange={(e) => this.changeAmount(description[0], e)}/></td>
+                            
+                            </tr> 
                           )
                   })}
+                  </tbody>
+                        </table>
+                  </div>
 
             </div>
         );

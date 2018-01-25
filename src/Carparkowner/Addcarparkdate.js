@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Addcarparkdate extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Addcarparkdate extends Component {
                 carparkslot:this.state.datas.carparkslots,
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Date Added');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -51,17 +52,18 @@ class Addcarparkdate extends Component {
                   <fieldset>
                         <legend><h1>Add Available Dates for Car Parks</h1></legend>
                               <div className="form-group">
-                              <div className="col-lg-12">
-                                      <label htmlFor="inputEmail" className="col-lg-2 control-label">Event Name</label>
-                                      <div className="col-lg-4">
+                              
+                                      <label htmlFor="inputEmail" className="col-lg-2 control-label">Car Park Date</label>
+                                      <div className="col-lg-3">
                                       <input type="date" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputDate"/>
                                       </div>
-                                      </div>
                                       
+                                      <div className="col-lg-12">
                                       <div className="col-lg-2"></div>
                                       <div className="col-lg-10">
                                       
-                                      <button type="submit" className="btn btn-default" onClick={this.createCarParkDate}>create Car Park Date</button>
+                                      <button type="submit" className="btn btn-default" onClick={this.createCarParkDate}>Create Car Park Date</button>
+                                      </div>
                                       </div>
                               </div>
                   </fieldset>

@@ -5,6 +5,7 @@ import {
     Link
   } from 'react-router-dom';
   import axios from 'axios';
+  import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Createproduct extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class Createproduct extends Component {
                 
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Product Added');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -64,21 +65,31 @@ class Createproduct extends Component {
     render() {
         return (
             <div>
-                {this.props.match.params.shopid}
                 <div>
             <form className="form-horizontal">
                   <fieldset>
                         <legend><h1>Create Product</h1></legend>
                               <div className="form-group">
+                              <div className="col-lg-12">
+
+                              <div className="col-lg-12">
                                       <label htmlFor="inputEmail" className="col-lg-2 control-label">Product Name</label>
                                       <div className="col-lg-10">
                                       <input type="text" className="form-control" id="inputEmail" placeholder="Product Name" ref="inputProduct"/>
                                       </div>
+                                      </div>
+
+
+                                      <div className="col-lg-12">
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Description</label>
-                                      <div className="col-lg-10">
+                                      <div className="col-lg-10  textarea ">
                                       <textarea rows="4" cols="50" className="form-control" id="inputEmail" placeholder="Write a description" ref="inputDescription"/>
                                     </div>
-                                      <div className="col-lg-10">
+                                    </div>
+
+
+
+                                      
 
                                       <div className="col-lg-12">
                                         <label htmlFor="inputEmail" className="col-lg-2 control-label">Category</label>
@@ -89,16 +100,17 @@ class Createproduct extends Component {
                                     <option value="Biscuits">Biscuits</option>
                                     </select>
                                     </div>
-                                    </div>
                                     
-                                    <div className="col-lg-12">
+                                    
+
+                                    <div className="col-lg-12 numberinput ">
                                          <label htmlFor="inputPassword" className="col-lg-2 control-label">Amount</label>
-                                      <div className="col-lg-4">
+                                      <div className="col-lg-4 ">
                                       <input type="number" className="form-control" id="inputCategory" placeholder="Amount" ref="inputAmount"/>
                                          </div>
                                         </div>
 
-                                    <div className="col-lg-12">
+                                    <div className="col-lg-12 numberinput">
                                          <label htmlFor="inputPassword" className="col-lg-2 control-label">Price Rs.</label>
                                       <div className="col-lg-4">
                                       <input type="number" className="form-control" id="inputCategory" placeholder="Price" ref="inputPrice"/>
@@ -111,16 +123,17 @@ class Createproduct extends Component {
                                         <input type="file" className="upload-group" id="file" ref="inputFile"/>
                                         </div>
                                       </div>
+                                      </div>
                                       {/* <div className="col-lg-2"></div>
                                       <div className="col-lg-10">
                                       <button type="submit" className="btn btn-default" onClick={this.addShows}>Add Show</button>
                                       </div> */}
                                       {/* {shows} */}
-                                      <br/><br/>
+                                      <div className="col-lg-12 submitbuttoncreateevent">
                                       <div className="col-lg-2"></div>
                                       <div className="col-lg-10">
                                       <button type="submit" className="btn btn-default" onClick={this.submitProduct}>Submit</button>
-                                      
+                                      </div>
                                       </div>
                                         
                               </div>

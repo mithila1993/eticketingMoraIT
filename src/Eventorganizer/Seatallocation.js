@@ -4,6 +4,7 @@ import '../App.css';
 import JsonTable from 'react-json-table';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Seatallocation extends Component {
     constructor(props) {
@@ -183,7 +184,7 @@ seatCategory(value){
                 
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Drawing Added');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -254,7 +255,10 @@ seatCategory(value){
                
                         <table>
                         <tbody>
+                            <div className="seats">
+                            <div  className="col-lg-2"></div><div  className="col-lg-10">
                         { Object.entries(this.state.datas).map((description, i) => {  
+                                
                                 return (
                     
                                     <div>
@@ -291,9 +295,9 @@ seatCategory(value){
                                 </div>
                                         )
                                 })}
-    
+                            </div>
                         {/* {rows} */}
-                        
+                        </div>
                         </tbody>
                         </table>
                         <button onClick={this.seatall.bind(this,'VIP-square')}>VIP Square</button>
@@ -306,7 +310,7 @@ seatCategory(value){
                         <button onClick={this.submitseat.bind(this)}>submit</button>
                         <p>{this.state.tool}</p>
                         <p>{this.state.id}</p>
-
+                                    
             </div>
             </div>
         );

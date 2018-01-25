@@ -17,10 +17,10 @@ class Shopownermain extends Component {
         return (
             <Router>
             <div>
-            <div className="col-md-2">
-                <ul>
+            <div className="col-md-2 leftmenu">
+                <ul className="nav nav-pills nav-stacked red">
                      <li><NavLink to="/Shopownerfront">Front</NavLink></li>
-                     <li><NavLink to="/Shoplist">Shop list</NavLink></li>
+                     <li><NavLink to="/Shoplist">Shop List</NavLink></li>
                     <li><NavLink to="/Createshop">Add Shops</NavLink></li>
 
                     
@@ -28,7 +28,7 @@ class Shopownermain extends Component {
                     
                 </ul>
             </div>
-                <div className="col-md-10">
+                <div className="col-md-10 rightcontent">
                 <Switch>
                 <Route path="/Shoplist" component={Shoplist}/>
                 <Route path="/Createshop" component={Createshop}/>

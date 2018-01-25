@@ -31,7 +31,7 @@ class OneProduct extends Component {
     render() {
         return (
             <div>
-                <h1>{this.props.student}</h1>
+                
                 <div className="col-md-12" >
                  <div className="col-md-2"><img src={this.props.ima} height="250px" width="170px"/></div>
                   <div className="col-md-8">

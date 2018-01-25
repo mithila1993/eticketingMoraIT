@@ -34,30 +34,38 @@ componentDidMount() {
         return (
             <div>
                 <h1>Your Events</h1>
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                
             { Object.entries(this.state.datas).map((description, i) => {  
                   return (
                     
-                    <div>
-                  <div>
-                  <div className="col-md-12" >
-                 
-                  <div className="col-md-4" >
-                  <h1 key={i}> {description[1].name} </h1>
-                  </div>
-                  <div className="col-md-6" >
-                  <p> {description[1].description}</p>
-                  </div>
-                  <div className="col-md-2" >
-                  <Link className="btn btn-default" to={`/Shows/${description[0]}`}>Add Shows</Link>
-                  <Link className="btn btn-default" to={`/Viewshows/${description[0]}`}>View Shows</Link>
-                  </div>
-                  
-                  </div>
-
-                  </div>
-                  </div>
+                        <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].name} </th>
+                            <td> {description[1].description}</td>
+                            <td><Link className="btn btn-info" to={`/Shows/${description[0]}`}>Add Shows</Link></td>
+                            <td><Link className="btn btn-success" to={`/Viewshows/${description[0]}`}>View Shows</Link></td>
+                            </tr>
+                                            
                           )
                   })}
+                  
+                            
+                            
+                            
+                        </tbody>
+                        </table>
+                  </div>
             </div>
         );
     }

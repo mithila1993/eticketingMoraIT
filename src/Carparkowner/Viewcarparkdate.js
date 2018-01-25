@@ -27,24 +27,27 @@ class Viewcarparkdate extends Component {
     render() {
         return (
             <div>
-                {this.props.match.params.carparkid}
                 <h1>View car park date</h1>
-                
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Car Parks</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
-                    
-                    <div>
-                  <div >
-                  <h1 key={i}> {description[1].date} </h1>
-                  <p> {description[0]}</p>
-                  <Link className="btn btn-default" to={`/EditCarParkDate/${this.props.match.params.carparkid}/${description[0]}`}>Edit Car Park Date</Link>
-                  
-
-
-                  </div>
-                  </div>
+                    <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].date}  </th>
+                            <td><Link className="btn btn-success" to={`/EditCarParkDate/${this.props.match.params.carparkid}/${description[0]}`}>Edit Car Park Date</Link></td>
+                            </tr>
                           )
                   })}
+                  </tbody>
+                        </table>
+                  </div>
             </div>
         );
     }

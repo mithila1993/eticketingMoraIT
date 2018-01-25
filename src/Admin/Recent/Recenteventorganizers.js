@@ -28,11 +28,11 @@ componentDidMount() {
     this.getRecentOrganizers();
 }
 
-    approve(value){
-            console.log('button click',value);
+    approve(passedvalue){
+            
 
             axios.post('http://localhost:3002/recentEventOrganizersApprove', {
-                value : value,
+                value : passedvalue,
               })
               .then(function (response) {
                 
@@ -45,11 +45,11 @@ componentDidMount() {
               this.getRecentOrganizers();
     }
 
-    delete(value){
-        console.log('button click',value);
+    delete(passedvalue){
+        
 
         axios.post('http://localhost:3002/recentEventOrganizersDelete', {
-            value : value,
+            value : passedvalue,
           })
           .then(function (response) {
             
@@ -70,6 +70,9 @@ componentDidMount() {
             <div>
                 <h1>Recent Event Organizers</h1>
                 { Object.entries(this.state.datas).map((description, i) => {  
+                    //console.log("description",description);
+                   // console.log("description 0",description[0]);
+                   // console.log("description 1",description[1]);
                   return (
                     
                     <div>

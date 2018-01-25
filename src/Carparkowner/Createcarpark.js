@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Createcarpark extends Component {
     constructor(props) {
@@ -182,7 +183,7 @@ carparkslotCategory(value){
                 
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Car Park Created');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -199,7 +200,7 @@ carparkslotCategory(value){
     render() {
         return (
             <div className="container-new">
-               <h1>Craete Car Park </h1><br/> 
+               <h1>Create Car Park </h1><br/> 
                <div>
             <form className="form-horizontal">
                   <fieldset>
@@ -246,6 +247,7 @@ carparkslotCategory(value){
                
                         <table>
                         <tbody>
+                        <div className="seats">
                         { Object.entries(this.state.datas).map((description, i) => {  
                                 return (
                     
@@ -283,7 +285,7 @@ carparkslotCategory(value){
                                 </div>
                                         )
                                 })}
-    
+                        </div>
                         {/* {rows} */}
                         
                         </tbody>

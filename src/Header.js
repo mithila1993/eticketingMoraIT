@@ -22,13 +22,15 @@ import FoodsReserve from './Events/FoodsReserve';
 import Checkout from './Events/Checkout';
 import Paynow from './Events/Paynow';
 import Acc from './Acc';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 
 class Header extends Component {
     render() {
         return (
             <div>
-              
+              <NotificationContainer/>
                <Router>
             
             <div className="container">
@@ -51,11 +53,11 @@ class Header extends Component {
                 <ul className="nav navbar-nav">
                   <li className="menulink"><NavLink exact activeClassName="activeNav" to="/">Home</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Events</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register 1</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li>
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register</NavLink></li>
+                  {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li> */}
+                  {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li> */}
                   
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Acc">Acc</NavLink></li>
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Acc">Account</NavLink></li>
                 </ul>
               </div>
             </div>

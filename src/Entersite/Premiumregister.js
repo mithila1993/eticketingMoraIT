@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
+
 
 class Eventregister extends Component {
     constructor(props){
@@ -10,8 +13,31 @@ class Eventregister extends Component {
             setRole:''
         };
         this.register = this.register.bind(this);
+        this.temp = this.temp.bind(this);
     
     }
+
+
+    createNotification = (type) => {
+        return () => {
+          switch (type) {
+            case 'info':
+            NotificationManager.info('Info message');
+              break;
+            case 'success':
+              NotificationManager.success('Success message', 'Title here');
+              break;
+            case 'warning':
+              NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+              break;
+            case 'error':
+              NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                alert('callback');
+              });
+              break;
+          }
+        };
+      };
 
     register(e){
         e.preventDefault(); 
@@ -32,7 +58,7 @@ class Eventregister extends Component {
 
           })
           .then(function (response) {
-            
+            NotificationManager.success('Successfully Account Created');
             console.log(response);
           })
           .catch(function (error) {
@@ -43,18 +69,25 @@ class Eventregister extends Component {
         
     }
 
+    temp(){
+        
+    }
+
     setRole(event) {
         this.setState({
             setRole: event.target.value + 'Unapprove'
         });
     }
+        
 
     render() {
+        
         return (
+
             <div className="container-new">
                 <form className="form-horizontal">
                 <fieldset>
-                      <legend><h1>Event Organizer Register</h1></legend>
+                      <legend><h1>Premium Register</h1></legend>
                             <div className="form-group">
                                     <label htmlFor="inputName" className="col-lg-2 control-label">Name</label>
                                     <div className="col-lg-10">
@@ -70,11 +103,11 @@ class Eventregister extends Component {
                                     <input type="password" className="form-control" id="inputPassword" placeholder="Password" ref="inputPassword"/>
                                     </div>
                                     <div className="col-lg-2"></div>
-                                    <div className="col-lg-10">
+                                    <div className="col-lg-10 form-check">
                                     <div onChange={this.setRole.bind(this)}>
-                                    <input type="radio" value="EventOrganizer" name="gender"/> Event Organizer
-                                    <input type="radio" value="CarParkOwner" name="gender"/> Car Park Owner
-                                    <input type="radio" value="ShopOwner" name="gender"/> Shop Owner
+                                    <input type="radio" value="EventOrganizer" name="gender"/> Event Organizer<br/>
+                                    <input type="radio" value="CarParkOwner" name="gender"/> Car Park Owner<br/>
+                                    <input type="radio" value="ShopOwner" name="gender"/> Shop Owner<br/>
                                     </div>
                                     </div>
                                     <div className="col-lg-2"></div>
@@ -87,7 +120,9 @@ class Eventregister extends Component {
           </form>
           {console.log(this.state.setRole)}
                 <button className="btn btn-default" onClick={()=>this.props.menulink(4)}>Go to login</button>
+                
             </div>
+            
         );
     }
 }

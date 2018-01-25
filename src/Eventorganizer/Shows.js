@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import '../App.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Shows extends Component {
     constructor(props) {
@@ -88,7 +89,7 @@ class Shows extends Component {
             eventid :this.props.match.params.eventId,
           })
           .then(function (response) {
-            
+            NotificationManager.success('Successfully Event Created');
             console.log("event response",response);
           })
           .catch(function (error) {
@@ -195,28 +196,28 @@ handleShop(e){
         {/* {description[1][3]}  */}
          <tr>
         <td key={i} className={description[1][0]} >
-        <p  >{description[1][0]} {i}</p>
+        <p  ></p>
         </td>
         <td className={description[1][1]}>
-        <p key={i}> {description[1][1]} </p>
+        <p key={i}>  </p>
         </td>
         <td  className={description[1][2]}>
-        <p key={i}> {description[1][2]} </p>
+        <p key={i}>  </p>
         </td> 
         <td  className={description[1][3]}>
-        <p key={i}> {description[1][3]} </p>
+        <p key={i}>  </p>
         </td>        
         <td  className={description[1][4]}>
-        <p key={i}> {description[1][4]} </p>
+        <p key={i}>  </p>
         </td>     
         <td  className={description[1][5]}>
-        <p key={i}> {description[1][5]} </p>
+        <p key={i}>  </p>
         </td>     
         <td  className={description[1][6]}>
-        <p key={i}> {description[1][6]} </p>
+        <p key={i}>  </p>
         </td>     
         <td  className={description[1][7]}>
-        <p key={i}> {description[1][7]} </p>
+        <p key={i}>  </p>
         </td>  
         </tr>
         </div>
@@ -231,8 +232,10 @@ handleShop(e){
                      <fieldset>
                            <legend><h1>Create Show</h1></legend>
                                  <div className="form-group">
+                                 <div className="col-lg-12">
 
-                              <label htmlFor="inputEmail" className="col-lg-2 control-label">Venue</label>
+                                 
+                                <label htmlFor="inputEmail" className="col-lg-2 control-label">Venue</label>
                               <div className="col-lg-8">
                               <select className="form-control" onChange={this.handleVenue.bind(this)} >
                                     <option value="None">None</option>
@@ -248,7 +251,7 @@ handleShop(e){
                                     </select>
                                     </div>
                                     </div>
-                                    
+                                   
                                          
                                             <div className="col-lg-12">
                                         <label htmlFor="inputEmail" className="col-lg-2 control-label">Time</label>
@@ -264,7 +267,7 @@ handleShop(e){
                                     
                                      <div className="col-lg-12">   
                                             <label htmlFor="inputPassword" className="col-lg-2 control-label">Date</label>
-                                         <div className="col-lg-10">
+                                         <div className="col-lg-3">
                                          <input type="date" className="form-control" id="inputEndTime" placeholder="Write Category" ref="inputDate"/>
                                             </div>
                                             </div>
@@ -290,10 +293,13 @@ handleShop(e){
                                     </div>
 
 
-                                    <div className="col-lg-12">
-                                    <div className="col-lg-2">Preview</div> 
-                                    <div className="col-lg-8">{m}</div>
+                                    
+                                    <div className="col-lg-2"></div> 
+                                    <div className="seats">
+
+                                    <div className="col-lg-8 submitbuttoncreateevent">{m}</div>
                                     </div>
+                                    
 
                                     <div className="col-lg-12">
                                         <label htmlFor="inputEmail" className="col-lg-2 control-label">Car Parking</label>
@@ -328,7 +334,7 @@ handleShop(e){
                                          
                                          </div>
                                            
-                                 
+                                         </div>          
                      </fieldset>
                </form>
                

@@ -22,42 +22,23 @@ class Eventorganizermain extends Component {
         return (
             <Router>
             <div>
-            <div className="col-md-2">
-                {/* <div className="nav nav-pills nav-stacked span2">
-                <ul>
+            <div className="col-md-2 leftmenu ">
+            
+                <ul className="nav nav-pills nav-stacked red">
                      <li><NavLink to="/Eventorganizerfront">Front</NavLink></li>
                     <li><NavLink to="/seatallocation">Seat Allocation</NavLink></li>
                     <li><NavLink to="/Createevent">Create event</NavLink></li>
                     <li><NavLink to="Yourevents">Your events</NavLink></li>
                     <li><NavLink to="Recentorders">Recent orders</NavLink></li>
 
-                </ul> */}
+                </ul>
 
-                <div id="sidebar-wrapper">
-        <ul className="sidebar-nav">
-            <li className="sidebar-brand"><a href="#">Start Bootstrap</a>
-            </li>
-            {/* <img src="https://cf.ltkcdn.net/cats/images/std/64219-336x357-Smallest-cat.jpg" alt="Girl in a jacket"/> */}
-            <li><a href="#">Dashboard</a>
-            </li>
-            <li><a href="#">Shortcuts</a>
-            </li>
-            <li><a href="#">Overview</a>
-            </li>
-            <li><a href="#">Events</a>
-            </li>
-            <li><a href="#">About</a>
-            </li>
-            <li><a href="#">Services</a>
-            </li>
-            <li><a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
+                
 
-                {/* </div> */}
+                
             </div>
-                <div className="col-md-10 car">
+                <div className="col-md-10 rightcontent">
+                <div className="">
                 <Switch>
                 <Route path="/seatallocation" component={Seatallocation}/>
                 <Route path="/Createevent" component={Createevent}/>
@@ -74,6 +55,7 @@ class Eventorganizermain extends Component {
                 
                 
 
+                </div>
                 </div>
                 </div>
             </Router>

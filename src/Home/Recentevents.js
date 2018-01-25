@@ -16,7 +16,7 @@ class Recentevents extends Component {
 
    
 
-    componentDidMount() {
+    componentWillMount() {
         var places=axios.get('http://localhost:3002/recentevents', {
                 })
                 .then( (response) => {
@@ -32,14 +32,16 @@ class Recentevents extends Component {
         return (
             <div>
                 <h1>Recent Events</h1>
-               { Object.entries(this.state.datas).map((description, i) => {  
+               { Object.entries(this.state.datas).map((description, i) => { 
+                   console.log('description',description);
+                   console.log('description[1]',description[1]); 
                   return (
 
-                  <div className="col-md-12" >
+                  <div className="col-md-12 recentevents" >
                  <div className="col-md-2"><img src={description[1].image} height="250px" width="170px"/></div>
                   <div className="col-md-10">
                   <h1 key={i}> {description[1].name} </h1>
-                  <p align="justify"> {description[1].description}</p>
+                  <p className="recenteventsdes"> {description[1].description}</p>
                   
                   <Link className="btn btn-default" to={`/Eventdetails/${description[0]}`}>More Details</Link>
                   

@@ -28,19 +28,29 @@ componentWillMount() {
         return (
             <div>
                 <h1>Recent Orders</h1>
+                <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Event Id</th>
+                            <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
                     
-                    <div>
-                  <div>
-                  <h1 key={i}> {description[1].name} </h1>
-                  <p> {description[1].eventid}</p>
-                  <p> {description[1].status}</p>
-                  <p> {description[0]}</p>
-                  </div>
-                  </div>
+                    <tr className="table-hover">
+                  <th scope="row" key={i}>{description[0]} </th>
+                  <td> {description[1].name}</td>
+                  <td> {description[1].eventid}</td>
+                  <td> {description[1].status}</td>
+                  </tr>
                           )
                   })}
+                  </tbody>
+                        </table>
 
             </div>
         );

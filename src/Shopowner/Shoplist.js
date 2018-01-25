@@ -29,24 +29,33 @@ componentWillMount() {
     render() {
         return (
             <div>
-                <h1>Shoplist</h1>
+                <h1>Shop List</h1>
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Venue</th>
+                            <th scope="col">District</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
+                    <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].name}</th>
+                            <td> {description[1].description}</td>
+                            
+                            <td><Link className="btn btn-info" to={`/Createproduct/${description[0]}`}>Add Products</Link>  </td>
+                            <td><Link className="btn btn-success" to={`/Viewproducts/${description[0]}`}>View Products</Link></td>
+                            </tr>
                     
-                    <div>
-                  <div>
-                  <h1 key={i}> {description[1].name} </h1>
-                  <p> {description[1].description}</p>
-                  <p> {description[0]}</p>
-                  <Link className="btn btn-default" to={`/Createproduct/${description[0]}`}>Add Products</Link>
-                  <Link className="btn btn-default" to={`/Viewproducts/${description[0]}`}>View Products</Link>
-
-
-                  </div>
-                  </div>
+                   
                           )
                   })}
-
+                    </tbody>
+                        </table>
+                  </div>
             </div>
         );
     }

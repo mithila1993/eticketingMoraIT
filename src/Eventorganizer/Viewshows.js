@@ -33,33 +33,33 @@ class Viewshows extends Component {
     render() {
         return (
             <div>
-                Viewshows
                 <h1>View shows</h1>
-                <div>{ Object.entries(this.state.datas).map((description, i) => {  
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Venue</th>
+                            <th scope="col">District</th>
+                            <th scope="col">Time</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                { Object.entries(this.state.datas).map((description, i) => {  
                   return (
+                    <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].venue} </th>
+                            <td> {description[1].district}</td>
+                            <td> {description[1].time}</td>
+                            <td><Link className="btn btn-info" to={`/Shows/${description[0]}`}>Update Shows</Link>   <Link className="btn btn-danger" to={`/Viewshows/${description[0]}`}>Delete Shows</Link></td>
+                            </tr>
                     
-                    <div>
-                  <div>
-                  <div className="col-md-12" >
-                 
-                  <div className="col-md-2">
-                  </div>
-                  <div className="col-md-2"><p> {description[1].venue}</p></div>
-                  <div className="col-md-2"><p> {description[1].district}</p></div>
-                  <div className="col-md-2"><p> {description[1].time}</p></div>
-        
-                  
-                  <div className="col-md-2">
-                  {/* <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Seat Allocations</Link> */}
-                  </div>
-                  </div>
-                  
-                  </div>
-
-                  </div>
                   
                           )
-                  })}</div>
+                  })}
+                  </tbody>
+                        </table>
+                  </div>
             </div>
         );
     }

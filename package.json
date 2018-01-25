@@ -9,6 +9,7 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.1",
     "react-json-table": "^0.1.1",
+    "react-notifications": "^1.4.3",
     "react-responsive-carousel": "^3.1.28",
     "react-scripts": "1.0.13"
   },

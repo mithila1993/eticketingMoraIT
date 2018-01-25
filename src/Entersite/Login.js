@@ -63,9 +63,10 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container-new">
+            <div className="container  backimage">
+            
                 <div className="container-new login">
-                    <div className="login">
+                    
           <form className="form-horizontal">
                 <fieldset>
                       <legend><h1>Login</h1></legend>
@@ -94,16 +95,13 @@ class Login extends Component {
                 </fieldset>
           </form>
           </div>
-</div>    
-                <button className="btn btn-default" onClick={()=>this.props.menulink(5)}>Go to Event Organizer</button>
+ 
                 
-
-                <br/>
-                <button className="btn btn-default" onClick={()=>this.props.menulink(6)}>Go to User</button>
                 
-                {/* <button onClick={()=>this.props.changeLog(1)}>Checkout</button> */}
-           
-            </div>
+                
+                </div>   
+            
+            
         );
     }
 }

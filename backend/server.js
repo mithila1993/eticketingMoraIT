@@ -967,6 +967,38 @@ server.post('/getOrders',(req,res)=>{
   });
 });
 
+//Display Car parks
+
+server.post('/displayCarPark',(req,res)=>{
+  
+    //getting the prices of car & threewheelers
+    admin.database().ref('react/carparks/'+req.body.carparkingid).once("value", (s) => {
+          
+              //Getting the car park slots
+              admin.database().ref('react/carparks/'+req.body.carparkingid +'/carparkdates').orderByChild("date").equalTo(req.body.date).once("child_added", (snap) => {
+                
+                
+               // Sending the respond
+                res.send({
+                  carprice:s.val().carprice,
+                  threewheelerprice:s.val().threewheelerprice,
+                  carparkslot:snap.val().carparkslot,
+                })
+                
+                
+              }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+              });
+    
+    
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+    
+  
+
+});
 
   
 

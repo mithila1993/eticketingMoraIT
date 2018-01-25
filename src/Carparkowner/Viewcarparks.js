@@ -29,23 +29,26 @@ class Viewcarparks extends Component {
         return (
             <div>
                 <h1>Car Parks</h1>
+                <div className="col-md-12">
+                        <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Car Parks</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
-                    
-                    <div>
-                  <div>
-                  <h1 key={i}> {description[1].name} </h1>
-                  <p> {description[1].description}</p>
-                  <p> {description[0]}</p>
-                  <Link className="btn btn-default" to={`/Addcarparkdate/${description[0]}`}>Add Car Park Date</Link>
-                  <Link className="btn btn-default" to={`/Viewcarparkdate/${description[0]}`}>View Car Park Date</Link>
-
-
-                  </div>
-                  </div>
+                    <tr className="table-hover">
+                    <th scope="row" key={i}>{description[1].name} </th>
+                            <td><Link className="btn btn-info" to={`/Addcarparkdate/${description[0]}`}>Add Car Park Date</Link>  <Link className="btn btn-success" to={`/Viewcarparkdate/${description[0]}`}>View Car Park Date</Link></td>
+                            </tr>
                           )
                   })}
-
+                    </tbody>
+                        </table>
+                  </div>
             </div>
         );
     }

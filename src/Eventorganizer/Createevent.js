@@ -5,6 +5,7 @@ import {
     Link
   } from 'react-router-dom';
   import axios from 'axios';
+  import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 
@@ -22,6 +23,26 @@ class Createevent extends Component {
     }
 
     
+    createNotification = (type) => {
+        return () => {
+          switch (type) {
+            case 'info':
+            NotificationManager.info('Info message');
+              break;
+            case 'success':
+              NotificationManager.success('Success message', 'Title here');
+              break;
+            case 'warning':
+              NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+              break;
+            case 'error':
+              NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                alert('callback');
+              });
+              break;
+          }
+        };
+      };
 
     // addShows(e){
     //     e.preventDefault();
@@ -49,8 +70,8 @@ class Createevent extends Component {
                 image : snapshot.downloadURL
                 
               })
-              .then(function (response) {
-                
+              .then( (response) => {
+                NotificationManager.success('Successfully Event Created');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -130,39 +151,52 @@ class Createevent extends Component {
     //   }
 
         return (
-            <div>
+            <div >
             <form className="form-horizontal">
                   <fieldset>
                         <legend><h1>Create Event</h1></legend>
                               <div className="form-group">
+
+                              <div className="col-lg-12">
                                       <label htmlFor="inputEmail" className="col-lg-2 control-label">Event Name</label>
                                       <div className="col-lg-10">
                                       <input type="text" className="form-control" id="inputEmail" placeholder="Event Name" ref="inputEvent"/>
                                       </div>
+                                      </div>
+
+                                      <div className="col-lg-12 ">
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Description</label>
-                                      <div className="col-lg-10">
+                                      <div className="col-lg-10 textarea">
                                       <textarea rows="4" cols="50" className="form-control" id="inputEmail" placeholder="Write a description" ref="inputDescription"/>
                                     </div>
-                                      <div className="col-lg-10">
+                                    </div>
+
+
+                                    <div className="col-lg-12">
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Category</label>
                                       <div className="col-lg-10">
                                       <input type="text" className="form-control" id="inputCategory" placeholder="Write Category" ref="inputCategory"/>
                                          </div>
-                                     
+                                         </div>
+
+                                         <div className="col-lg-12">
                                     <label htmlFor="inputCategory" className="col-lg-2 control-label">Upload image</label>
                                      <div className="col-lg-10">
                                         
                                         <input type="file" className="upload-group" id="file" ref="inputFile"/>
                                         </div>
-                                      </div>
+                                        </div>
+
+
+                                      
                                       {/* <div className="col-lg-2"></div>
                                       <div className="col-lg-10">
                                       <button type="submit" className="btn btn-default" onClick={this.addShows}>Add Show</button>
                                       </div> */}
                                       {/* {shows} */}
-                                      <br/><br/>
+    
                                       <div className="col-lg-2"></div>
-                                      <div className="col-lg-10">
+                                      <div className="col-lg-10 submitbuttoncreateevent">
                                       <button type="submit" className="btn btn-default" onClick={this.submitEvent}>Submit</button>
                                       
                                       </div>

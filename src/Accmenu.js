@@ -78,7 +78,7 @@ class Component1 extends Component {
         }if(this.state.chooseuser==="ShopOwnerApprove"){
             return <Shopownermain/>
         }
-        
+
     }
     
     
@@ -89,14 +89,22 @@ class Component1 extends Component {
         }
         return (
             <div>
-                <h1>Account</h1>
-                <button className="btn btn-default" onClick={this.signout}>Logout</button>
-                <p>
-                {this.state.user.email}
-      
-                </p>
-
+                <div className="col-md-12 accountheader">
+                <div className="col-md-2">
+                {/* <h1 className="whitefont">Account</h1> */}
+                <p className="accountname">Account</p>
+                </div>
+                <div className="col-md-6"></div>
+                <div className="col-md-2">
+                <p className="accountholdername">Hi.... {this.state.user.displayName}</p>
+                </div>
+                <div className="col-md-2 logout">
+                <button className="btn btn-danger " onClick={this.signout}>Logout</button>
+                </div>
+                </div>
+                
                 {accmenu}
+                
             </div>
         );
     }

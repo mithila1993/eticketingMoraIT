@@ -106,7 +106,7 @@ enterShopCost(){
                <h1>Food Reserve</h1><br/>
                <h1>Total Price - {this.state.total}</h1>
                <button onClick={this.enterShopCost.bind(this)}>Enter Cost</button>
-               <Link className="btn btn-default" to={`/Checkout/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Edit Car Park Date</Link>
+               <Link className="btn btn-default" to={`/Checkout/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Checkout</Link>
 
             {/* <button onClick={() => { this.child.getAlert(); }}>Click</button> */}
                <p>{this.props.match.params.eventId}</p>
@@ -117,7 +117,7 @@ enterShopCost(){
                     
                     <div><Oneproduct 
                         ima={`${description[1].image}`} 
-                        image={`${description[1].image}`} 
+                        
                         name={`${description[1].name}`} 
                         description={`${description[1].description}`} 
                         price={`${description[1].price}`} 

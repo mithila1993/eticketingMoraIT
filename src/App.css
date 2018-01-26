@@ -221,4 +221,14 @@ hello{
   margin-left: -10px;
 }
 
+.search{
+  padding-bottom: 30px;
+  font-size: 25px;
+}
+
+.adminh{
+  color: #ffffff;
+  font-size: 25px;
+  padding-left: 10px;
+}
 

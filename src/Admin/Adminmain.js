@@ -56,22 +56,22 @@ class Adminmain extends Component {
         return (<div>
         <Router>
             <div>
-            <div className="col-md-2" >
+            <div className="col-md-2 leftmenu " >
             <h1></h1>
-            <h1>Recent Users</h1>
-                <ul>
+            <p className="adminh">Recent Users</p>
+                <ul className="nav nav-pills nav-stacked red">
                      <li><NavLink to="/Adminfront">Front</NavLink></li>
                      <li><NavLink to="/Recenteventorganizers">Event Organizers</NavLink></li>
                      <li><NavLink to="/Recentcarparkowners">Car Park Owners</NavLink></li>
                      <li><NavLink to="/Recentshopowners">Shop Owners</NavLink></li>
                 </ul>
-            <h1>Approved </h1>
-                <ul>
+                <p className="adminh">Approved Users</p>
+                <ul className="nav nav-pills nav-stacked red">
                     <li><NavLink to="/Approveeventorganizers">Event Organizers</NavLink></li>
                      
                 </ul>
-            <h1>Deleted </h1>
-                <ul>
+                <p className="adminh">Deleted Users</p>
+                <ul className="nav nav-pills nav-stacked red">
                     <li><NavLink to="/Deleteeventorganizers">Event Organizers</NavLink></li>
                      
                 </ul>

@@ -341,7 +341,7 @@ server.post('/recentEventOrganizersApprove',(req,res)=>{
 
       .then(function(userRecord) {
         
-        
+        res.send("POST");
 
       })
       .catch(function(error) {
@@ -358,7 +358,7 @@ server.post('/recentEventOrganizersDelete',(req,res)=>{
 
       .then(function(userRecord) {
         
-        
+        res.send("POST");
 
       })
       .catch(function(error) {
@@ -409,7 +409,7 @@ server.post('/RecentcarparkownersApprove',(req,res)=>{
 
       .then(function(userRecord) {
         
-        
+        res.send("POST");
 
       })
       .catch(function(error) {
@@ -426,7 +426,7 @@ server.post('/RecentcarparkownersDelete',(req,res)=>{
 
       .then(function(userRecord) {
         
-        
+        res.send("POST");
 
       })
       .catch(function(error) {
@@ -453,7 +453,7 @@ server.post('/RecentshopownersApprove',(req,res)=>{
   admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopOwnerApprove')
 
       .then(function(userRecord) {
-        
+        res.send("POST");
 
       })
       .catch(function(error) {
@@ -469,7 +469,7 @@ server.post('/RecentshopownersDelete',(req,res)=>{
   admin.database().ref().child('react/users/'+req.body.value + '/role').set('ShopOwnerDelete')
 
       .then(function(userRecord) {
-        
+        res.send("POST");
         
 
       })

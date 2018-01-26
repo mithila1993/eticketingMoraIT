@@ -26,10 +26,10 @@ class Eventorganizermain extends Component {
             
                 <ul className="nav nav-pills nav-stacked red">
                      <li><NavLink to="/Eventorganizerfront">Front</NavLink></li>
-                    <li><NavLink to="/seatallocation">Seat Allocation</NavLink></li>
-                    <li><NavLink to="/Createevent">Create event</NavLink></li>
-                    <li><NavLink to="Yourevents">Your events</NavLink></li>
-                    <li><NavLink to="Recentorders">Recent orders</NavLink></li>
+                     <li><NavLink to="Yourevents">Your Events</NavLink></li>
+                     <li><NavLink to="/Createevent">Create Event</NavLink></li> 
+                    <li><NavLink to="/seatallocation">Design Seat Planning</NavLink></li>
+                    <li><NavLink to="Recentorders">Recent Orders</NavLink></li>
 
                 </ul>
 

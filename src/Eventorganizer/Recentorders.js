@@ -33,7 +33,7 @@ componentWillMount() {
                             <tr>
                             <th scope="col">Order Id</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Event Id</th>
+                            
                             <th scope="col">Status</th>
                             </tr>
                         </thead>
@@ -44,7 +44,7 @@ componentWillMount() {
                     <tr className="table-hover">
                   <th scope="row" key={i}>{description[0]} </th>
                   <td> {description[1].name}</td>
-                  <td> {description[1].eventid}</td>
+                  
                   <td> {description[1].status}</td>
                   </tr>
                           )

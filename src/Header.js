@@ -17,6 +17,7 @@ import Accountmain from './Accountmain';
 import Events from './Events';
 import Eventdetails from './Events/Eventdetails';
 import Seatallocation from './Events/Seatallocation';
+import Search from './Events/Search';
 import Carparking from './Events/Carparking';
 import FoodsReserve from './Events/FoodsReserve';
 import Checkout from './Events/Checkout';
@@ -52,8 +53,10 @@ class Header extends Component {
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                   <li className="menulink"><NavLink exact activeClassName="activeNav" to="/">Home</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Events</NavLink></li>
+                  
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Search">Events</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register</NavLink></li>
+                  
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li> */}
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li> */}
                   
@@ -68,6 +71,7 @@ class Header extends Component {
       <Route path="/Premiumregister" component={Premiumregister} />
       <Route path="/Userregister" component={Userregister} />
       <Route path="/Login" component={Login} />
+      <Route path="/Search" component={Search} />
       <Route path="/Accountmain" component={Accountmain} />
       <Route path="/Eventdetails/:eventId" component={Eventdetails} />     
       <Route path="/Seatallocation/:eventId/:showId/:orderId/" component={Seatallocation} />

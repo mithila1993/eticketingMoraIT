@@ -83,8 +83,9 @@ class Eventregister extends Component {
     render() {
         
         return (
+            <div className="container  backimage">
 
-            <div className="container-new">
+            <div className="container-new login">
                 <form className="form-horizontal">
                 <fieldset>
                       <legend><h1>Premium Register</h1></legend>
@@ -118,11 +119,8 @@ class Eventregister extends Component {
                             </div>
                 </fieldset>
           </form>
-          {console.log(this.state.setRole)}
-                <button className="btn btn-default" onClick={()=>this.props.menulink(4)}>Go to login</button>
-                
             </div>
-            
+            </div>
         );
     }
 }

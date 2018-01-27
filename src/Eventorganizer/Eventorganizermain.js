@@ -25,11 +25,11 @@ class Eventorganizermain extends Component {
             <div className="col-md-2 leftmenu ">
             
                 <ul className="nav nav-pills nav-stacked red">
-                     <li><NavLink to="/Eventorganizerfront">Front</NavLink></li>
-                     <li><NavLink to="Yourevents">Your Events</NavLink></li>
-                     <li><NavLink to="/Createevent">Create Event</NavLink></li> 
-                    <li><NavLink to="/seatallocation">Design Seat Planning</NavLink></li>
-                    <li><NavLink to="Recentorders">Recent Orders</NavLink></li>
+                     <li><NavLink to="/Acc/Eventorganizerfront">Front</NavLink></li>
+                     <li><NavLink to="/Acc/Yourevents">Your Events</NavLink></li>
+                     <li><NavLink to="/Acc/Createevent">Create Event</NavLink></li> 
+                    <li><NavLink to="/Acc/seatallocation">Design Seat Planning</NavLink></li>
+                    <li><NavLink to="/Acc/Recentorders">Recent Orders</NavLink></li>
 
                 </ul>
 
@@ -40,15 +40,15 @@ class Eventorganizermain extends Component {
                 <div className="col-md-10 rightcontent">
                 <div className="">
                 <Switch>
-                <Route path="/seatallocation" component={Seatallocation}/>
-                <Route path="/Createevent" component={Createevent}/>
-                <Route path="/Shows/:eventId/" component={Shows}/>
-                <Route path="/Viewshows/:eventId/" component={Viewshows}/>
-                <Route path="/Seatallocation/:eventId/:showid" component={Seatallocation} />
-                <Route path="/Seats/:eventid/:showid" component={Seats} />
-                <Route path="/Foods/:eventid/:showid" component={Foods} />
-                <Route path="/Yourevents" component={Yourevents}/>
-                <Route path="/Recentorders" component={Recentorders}/>
+                <Route path="/Acc/seatallocation" component={Seatallocation}/>
+                <Route path="/Acc/Createevent" component={Createevent}/>
+                <Route path="/Acc/Shows/:eventId/" component={Shows}/>
+                <Route path="/Acc/Viewshows/:eventId/" component={Viewshows}/>
+                <Route path="/Acc/Seatallocation/:eventId/:showid" component={Seatallocation} />
+                <Route path="/Acc/Seats/:eventid/:showid" component={Seats} />
+                <Route path="/Acc/Foods/:eventid/:showid" component={Foods} />
+                <Route path="/Acc/Yourevents" component={Yourevents}/>
+                <Route path="/Acc/Recentorders" component={Recentorders}/>
                 <Route component={Eventorganizerfront}/>
                 
                 </Switch>

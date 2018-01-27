@@ -23,9 +23,9 @@ class Carparkownermain extends Component {
             <div className="col-md-2 leftmenu ">
                 <ul className="nav nav-pills nav-stacked red">
 
-                     <li><NavLink to="/Carparkownerfront">Front</NavLink></li>
-                    <li><NavLink to="/Createcarpark">Create Car Park</NavLink></li>
-                    <li><NavLink to="/Viewcarparks">View Car Parks</NavLink></li>
+                     <li><NavLink to="/Acc/Carparkownerfront">Front</NavLink></li>
+                    <li><NavLink to="/Acc/Createcarpark">Create Car Park</NavLink></li>
+                    <li><NavLink to="/Acc/Viewcarparks">View Car Parks</NavLink></li>
                     
                     
                     
@@ -35,11 +35,11 @@ class Carparkownermain extends Component {
             </div>
                 <div className="col-md-10 rightcontent">
                 <Switch>
-                <Route path="/Createcarpark" component={Createcarpark}/>
-                <Route path="/Viewcarparks" component={Viewcarparks}/>
-                <Route path="/Addcarparkdate/:carparkid/" component={Addcarparkdate}/>
-                <Route path="/Viewcarparkdate/:carparkid/" component={Viewcarparkdate}/>
-                <Route path="/EditCarParkDate/:carparkid/:carparkdateid/" component={EditCarParkDate}/>
+                <Route path="/Acc/Createcarpark" component={Createcarpark}/>
+                <Route path="/Acc/Viewcarparks" component={Viewcarparks}/>
+                <Route path="/Acc/Addcarparkdate/:carparkid/" component={Addcarparkdate}/>
+                <Route path="/Acc/Viewcarparkdate/:carparkid/" component={Viewcarparkdate}/>
+                <Route path="/Acc/EditCarParkDate/:carparkid/:carparkdateid/" component={EditCarParkDate}/>
                 {/* <Route path="/Createevent" component={Createevent}/> */}
                 {/* <Route path="/Shows/:eventId/" component={Shows}/> */}
                 

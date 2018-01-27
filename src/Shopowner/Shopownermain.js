@@ -19,9 +19,9 @@ class Shopownermain extends Component {
             <div>
             <div className="col-md-2 leftmenu">
                 <ul className="nav nav-pills nav-stacked red">
-                     <li><NavLink to="/Shopownerfront">Front</NavLink></li>
-                     <li><NavLink to="/Shoplist">Shop List</NavLink></li>
-                    <li><NavLink to="/Createshop">Add Shops</NavLink></li>
+                     <li><NavLink to="/Acc/Shopownerfront">Front</NavLink></li>
+                     <li><NavLink to="/Acc/Shoplist">Shop List</NavLink></li>
+                    <li><NavLink to="/Acc/Createshop">Add Shops</NavLink></li>
 
                     
 
@@ -30,10 +30,10 @@ class Shopownermain extends Component {
             </div>
                 <div className="col-md-10 rightcontent">
                 <Switch>
-                <Route path="/Shoplist" component={Shoplist}/>
-                <Route path="/Createshop" component={Createshop}/>
-                <Route path="/Createproduct/:shopid/" component={Createproduct}/>
-                <Route path="/Viewproducts/:shopid/" component={Viewproducts}/>
+                <Route path="/Acc/Shoplist" component={Shoplist}/>
+                <Route path="/Acc/Createshop" component={Createshop}/>
+                <Route path="/Acc/Createproduct/:shopid/" component={Createproduct}/>
+                <Route path="/Acc/Viewproducts/:shopid/" component={Viewproducts}/>
                 <Route component={Shopownerfront}/>
                 
                 </Switch>

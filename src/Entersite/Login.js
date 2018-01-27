@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Route } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Login extends Component {
     constructor(props){
@@ -18,16 +19,17 @@ class Login extends Component {
         e.preventDefault(); 
         const emailRegistered = this.refs.inputEmail.value;
         const passRegistered = this.refs.inputPassword.value;
-        console.log('key');
+        
     
         firebase.auth().signInWithEmailAndPassword(emailRegistered, passRegistered)
         .then((firebaseUser) =>{
             console.log('success -',firebaseUser);
+            NotificationManager.success('Login Successful');
             this.props.changeLog(1);
         })
         
         .catch(function(error) {
-            console.log('key2');
+            NotificationManager.error('Login Error');
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;

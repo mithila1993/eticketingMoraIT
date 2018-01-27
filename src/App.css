@@ -39,6 +39,7 @@ select{
 .backimage {
   background-image: url(http://opentickets.com/wp-content/uploads/2013/10/shutterstock_141727294.jpg);
   height: 84vh;
+  filter: alpha(opacity=50);
 }
 
 .container{

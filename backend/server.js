@@ -377,11 +377,56 @@ server.post('/approveEventOrganizersOnAdmin',(req,res)=>{
   });
 });
 
+//Display Approve Car Park Owners on Admin Panel
+server.post('/approveCarParkOwnersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("CarParkOwnerApprove").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Display Approve Shop Owners on Admin Panel
+server.post('/approveShopOwnersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("ShopOwnerApprove").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
 //Display Delete Event Organizers on Admin Panel
 server.post('/deleteEventOrganizersOnAdmin',(req,res)=>{
     
     
   admin.database().ref('react/users').orderByChild("role").equalTo("EventOrganizerDelete").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Display Delete Car Park Owners on Admin Panel
+server.post('/deleteCarParkOwnersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("CarParkOwnerDelete").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Display Delete Shop Owners on Admin Panel
+server.post('/deleteShopOwnersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("ShopOwnerDelete").once("value", function(snapshot) {
     res.json({data:snapshot.val()});
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);

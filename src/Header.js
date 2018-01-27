@@ -56,6 +56,7 @@ class Header extends Component {
                   
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Search">Events</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register</NavLink></li>
+                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Temp</NavLink></li>
                   
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li> */}
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li> */}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Carparking extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class Carparking extends Component {
             
           })
           .then(function (response) {
-            
+            NotificationManager.success('Successfully Car Parking Booking Confirmed');
             console.log("event response",response);
           })
           .catch(function (error) {
@@ -140,21 +141,38 @@ class Carparking extends Component {
 
         return (
             <div className="container-new">
-               <h1>Car parking</h1><br/>
-               <p>{this.props.match.params.eventId}</p>
+               <h1 className="seatplaningtitle">Car parking</h1>
+               {/* <p>{this.props.match.params.eventId}</p>
                 <p>{this.props.match.params.showId}</p>
-                <p>{this.props.match.params.orderId}</p>
-                <p>Car Price - {this.state.carprice}</p>
-                <p>threewheeler Price - {this.state.threewheelerprice}</p>
-                <div className="col-lg-12">
-                                    <div className="col-lg-2">Preview</div> 
+                <p>{this.props.match.params.orderId}</p> */}
+                <div className="col-md-12 informationbar">
+                <div className="col-md-6 seats">
+                <div className="col-md-12">
+                <div className="smallbox car"></div><h4>Car Cost - Rs.{this.state.datas.carprice}</h4>
+                </div>
+
+                <div className="col-md-12">
+                <div className="smallbox threewheeler"></div><h4>threewheeler Cost - Rs.{this.state.datas.threewheelerprice}</h4>
+                </div>
+
+                </div>
+                
+                <div className="col-md-6">
+                        <h4>Your Car Cost - Rs.{this.state.carprice}</h4>
+                        <h4>Your threewheeler Cost - Rs.{this.state.threewheelerprice}</h4>
+                        <h2>Total Seat Booking Cost - Rs.{this.state.carprice + this.state.threewheelerprice} <button className="btn btn-default" onClick={this.updateCarParking}>Confirm</button></h2>
+                </div>        
+                </div>
+                
+                <div className="col-lg-12 seats submitbuttoncreateevent">
+                                    <div className="col-lg-2"></div> 
                                     <div className="col-lg-8">{m}</div>
                                     </div>
                 
-                <div><button className="btn btn-default" onClick={this.updateCarParking}>Submit</button></div>
-
-                <Link className="btn btn-default" to={`/FoodsReserve/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Go to the Food Reserve</Link>
-
+                
+                <div className="submitbuttoncreateevent">
+                <Link className="btn btn-default btn-lg" to={`/FoodsReserve/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Go to the Food Reserve</Link>
+                </div>
             </div>
         );
     }

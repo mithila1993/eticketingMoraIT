@@ -89,7 +89,7 @@ class Shows extends Component {
             eventid :this.props.match.params.eventId,
           })
           .then(function (response) {
-            NotificationManager.success('Successfully Event Created');
+            NotificationManager.success('Successfully Show Created');
             console.log("event response",response);
           })
           .catch(function (error) {

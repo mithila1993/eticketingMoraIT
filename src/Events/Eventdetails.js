@@ -61,7 +61,8 @@ class Eventdetails extends Component {
           .then( (response) => {
             
             this.setState({shows: response.data.data});
-            console.log('response',this.state.shows);
+            //console.log('response',this.state.shows);
+            console.log('res',this.state.shows);
             
           })
           .catch(function (error) {
@@ -73,44 +74,40 @@ class Eventdetails extends Component {
     
 
     render() {
+      
         return (
            <div className="container-new">
            <div className="col-md-12" >
            <div className="col-md-12" >
            <h1>{this.state.datas.name}</h1>
            </div>
-           <div className="col-md-4" >
+           <div className="col-md-4 eventdetailsimage" >
            <img src={this.state.datas.image} height="400px" width="300px"/>
            </div>
            <div className="col-md-8" >
-           <h2>{this.state.datas.description}</h2>
+           <h3>{this.state.datas.description}</h3>
            </div>
            </div>
-            <h1>Shows</h1>
+            <h1 className="eventdetailsimage">Shows</h1>
             { Object.entries(this.state.shows).map((description, i) => {  
                   return (
-                    
-                    <div>
-                  <div>
-                  <div className="col-md-12" >
                  
-                  <div className="col-md-2">
-                  <h1 key={i}> {description[1].destrict} </h1></div>
-                  <div className="col-md-2"><p> {description[1].venue}</p></div>
-                  <div className="col-md-2"><p> {description[1].district}</p></div>
-                  <div className="col-md-2"><p> {description[1].date}</p></div>
-                  <div className="col-md-2"><p> {description[1].time}</p></div>
+                  <div className="col-md-2 showsblock" >
+                 
+                  <div>
+                  <h1 key={i}> {description[1].venue} </h1></div>
+                  <div><p> {description[1].district}</p></div>
+                  <div><p> {description[1].date}</p></div>
+                  <div><p> {description[1].time}</p></div>
                   
                   
-                  <div className="col-md-2">
+                  <div>
                   {/* <Link className="btn btn-default" to={`/Seats/${this.props.match.params.eventId}/${description[0]}`}>Book Now</Link> */}
                   <button className="btn btn-default" onClick={this.seats.bind(this,description[0],description[1].date,description[1].carparkingid,description[1].shopid)}>Book Now</button>
                   </div>
                   </div>
                   
-                  </div>
-
-                  </div>
+                  
                   
                           )
                   })}

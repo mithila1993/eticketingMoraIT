@@ -53,8 +53,8 @@ componentDidMount() {
                         <tr className="table-hover">
                     <th scope="row" key={i}>{description[1].name} </th>
                             <td> {description[1].description}</td>
-                            <td><Link className="btn btn-info" to={`/Shows/${description[0]}`}>Add Shows</Link></td>
-                            <td><Link className="btn btn-success" to={`/Viewshows/${description[0]}`}>View Shows</Link></td>
+                            <td><Link className="btn btn-info" to={`/Acc/Shows/${description[0]}`}>Add Shows</Link></td>
+                            <td><Link className="btn btn-success" to={`/Acc/Viewshows/${description[0]}`}>View Shows</Link></td>
                             </tr>
                                             
                           )

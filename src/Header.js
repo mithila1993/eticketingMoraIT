@@ -56,7 +56,7 @@ class Header extends Component {
                   
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Search">Events</NavLink></li>
                   <li className="menulink"><NavLink activeClassName="activeNav" to="/Premiumregister">Register</NavLink></li>
-                  <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Temp</NavLink></li>
+                  {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Events">Temp</NavLink></li> */}
                   
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Userregister">Register 2</NavLink></li> */}
                   {/* <li className="menulink"><NavLink activeClassName="activeNav" to="/Login">Account</NavLink></li> */}
@@ -66,6 +66,8 @@ class Header extends Component {
               </div>
             </div>
           </nav>
+        
+      <div className="backgroundpage">
 
       <Route exact path="/" component={Home} />
       <Route path="/Events" component={Events} />
@@ -82,7 +84,7 @@ class Header extends Component {
       <Route path="/Paynow/:eventId/:showId/:orderId" component={Paynow} />
       <Route path="/Acc" component={Acc} />
 
-      
+      </div>
 
       {/* <Route path="/Login" component={Login} history={history}/>
       <Route path="/Contactus"/> */}

@@ -158,14 +158,27 @@ server.post('/createShows',(req,res)=>{
   seats : req.body.seats,
   carparkingid : req.body.carparkingid,
   shopid : req.body.shopid,
+  eventid : req.body.eventid,
   
   
 
   })
 
-  .then(function(userRecord) {
+  .then((snap) => {
     
-    res.send('hello world');
+    res.send(snap.key);
+          admin.database().ref().child('react/event/' + eventid + '/shows/'+snap.key+'/showid/').set(snap.key)
+
+          .then((userRecord) => {
+            
+            res.send('POST request');
+
+
+          })
+          .catch(function(error) {
+            console.log("Error creating event:", error);
+          });
+
 
   })
   .catch(function(error) {
@@ -246,7 +259,6 @@ server.post('/addOrder',(req,res)=>{
   .then(function(userRecord) {
     
     
-
   })
   .catch(function(error) {
     console.log("Error creating event:", error);
@@ -1044,6 +1056,9 @@ server.post('/displayCarPark',(req,res)=>{
   
 
 });
+
+
+
 
   
 

@@ -55,7 +55,7 @@ class Component1 extends Component {
         console.log("choose user",error);
         });
 
-        if(this.state.chooseuser==="User"){
+        if(this.state.chooseuser==="UserUnapprove"){
                 return <Usermain/>
         }if(this.state.chooseuser==="Admin"){
             return <Adminmain/>

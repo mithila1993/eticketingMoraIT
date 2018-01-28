@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import Oneproduct from "./Oneproduct";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class FoodsReserve extends Component {
     constructor(props) {
@@ -91,7 +92,7 @@ enterShopCost(){
 
               })
               .then(function (response) {
-                
+                NotificationManager.success('Successfully Foods Confirmed');
                 console.log("event response",response);
               })
               .catch(function (error) {
@@ -103,15 +104,16 @@ enterShopCost(){
     render() {
         return (
             <div className="container-new">
-               <h1>Food Reserve</h1><br/>
-               <h1>Total Price - {this.state.total}</h1>
-               <button onClick={this.enterShopCost.bind(this)}>Enter Cost</button>
-               <Link className="btn btn-default" to={`/Checkout/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Checkout</Link>
-
+            
+               <h1 className="seatplaningtitle">Food Reserve</h1><br/>
+               <div className="col-md-12 informationbar">
+               <h2>Total Food Price - {this.state.total}</h2>
+               <button className="btn btn-default" onClick={this.enterShopCost.bind(this)}>Confirm </button>  <Link className="btn btn-default" to={`/Checkout/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Go To The Checkout</Link>
+            </div>
             {/* <button onClick={() => { this.child.getAlert(); }}>Click</button> */}
-               <p>{this.props.match.params.eventId}</p>
+               {/* <p>{this.props.match.params.eventId}</p>
                 <p>{this.props.match.params.showId}</p>
-                <p>{this.props.match.params.orderId}</p>
+                <p>{this.props.match.params.orderId}</p> */}
                 { Object.entries(this.state.datas).map((description, i) => {  
                   return (
                     

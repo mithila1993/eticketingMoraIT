@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../App.css';
 
 class OneProduct extends Component {
     constructor(props) {
@@ -30,21 +31,20 @@ class OneProduct extends Component {
 
     render() {
         return (
-            <div>
+            <div > 
                 
                 <div className="col-md-12" >
                  <div className="col-md-2"><img src={this.props.ima} height="250px" width="170px"/></div>
                   <div className="col-md-8">
                   <h1 > {this.props.name} </h1>
                   <p> {this.props.description}</p>
-                  <p> price - {this.props.price} category - {this.props.category} </p>
+                  <h4> Price - Rs.{this.props.price} Category - {this.props.category} </h4>
                   
                   </div>
                   <div className="col-md-2">
-                  <p>{this.state.amount}</p>
-                  <p>{this.state.cost}</p>
-                  <div><button className="btn btn-default" onClick={this.setcost.bind(this,this.props.price,"plus")}>+</button></div>
-                  <div><button className="btn btn-default" onClick={this.setcost.bind(this,this.props.price,"minus")}>-</button></div>
+                  <p>Food Amount - {this.state.amount}</p>
+                  <p>Food Item Cost - Rs.{this.state.cost}</p>
+                  <div><button className="btn btn-default" onClick={this.setcost.bind(this,this.props.price,"plus")}>+</button> <button className="btn btn-default" onClick={this.setcost.bind(this,this.props.price,"minus")}>-</button></div>
                   {/* I want
                   <input type="number" name="quantity" ref="amount" defaultValue="0" onChange={(e) => this.changeAmount(i,description[1].price,description[0], e)}/> */}
                   </div>

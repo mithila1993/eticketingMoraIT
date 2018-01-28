@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Seatallocation extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Seatallocation extends Component {
             
           })
           .then(function (response) {
-            
+            NotificationManager.success('Successfully Seat Booking Confirmed');
             console.log("event response",response);
           })
           .catch(function (error) {
@@ -141,6 +142,27 @@ class Seatallocation extends Component {
                 <td  className={description[1][7]} onClick={this.getSeatNum.bind(this,i,7,description[1][7])}>
                 <p key={i}>  </p>
                 </td>  
+                <td  className={description[1][8]} onClick={this.getSeatNum.bind(this,i,8,description[1][8])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][9]} onClick={this.getSeatNum.bind(this,i,9,description[1][9])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][10]} onClick={this.getSeatNum.bind(this,i,10,description[1][10])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][11]} onClick={this.getSeatNum.bind(this,i,11,description[1][11])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][12]} onClick={this.getSeatNum.bind(this,i,12,description[1][12])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][13]} onClick={this.getSeatNum.bind(this,i,13,description[1][13])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][14]} onClick={this.getSeatNum.bind(this,i,14,description[1][14])}>
+                <p key={i}>  </p>
+                </td>  
                 </tr>
                 </div>
                 </div>
@@ -152,19 +174,38 @@ class Seatallocation extends Component {
         
         return (
             <div className="container-new">
-                Seat allocation
-                <p>{this.props.match.params.eventId}</p>
+                
+                <h1 className="seatplaningtitle">Seat Planning</h1>
+                {/* <p>{this.props.match.params.eventId}</p>
                 <p>{this.props.match.params.showId}</p>
-                <p>{this.props.match.params.orderId}</p>
-                <p>VIP Price - {this.state.vipprice}</p>
-                <p>ODC Price - {this.state.odcprice}</p>
-                <div className="col-lg-12">
-                                    <div className="col-lg-2">Preview</div> 
+                <p>{this.props.match.params.orderId}</p> */}
+                <div className="col-md-12 informationbar">
+                <div className="col-md-6 seats">
+                <div className="col-md-12">
+                <div className="smallbox VIP"></div><h4>VIP Cost - Rs.{this.state.datas.vipprice}</h4>
+                </div>
+
+                <div className="col-md-12">
+                <div className="smallbox odc"></div><h4>odc Cost - Rs.{this.state.datas.odcprice}</h4>
+                </div>
+
+                </div>
+                
+                <div className="col-md-6">
+                        <h4>Your VIP Cost - Rs.{this.state.vipprice}</h4>
+                        <h4>Your ODC Cost - Rs.{this.state.odcprice}</h4>
+                        <h2>Total Seat Booking Cost - Rs.{this.state.vipprice + this.state.odcprice} <button className="btn btn-default" onClick={this.updateSeatAllocation}>Confirm</button></h2>
+                </div>        
+                </div>
+                
+                <div className="col-lg-12 users submitbuttoncreateevent">
+                                    <div className="col-lg-2"></div> 
                                     <div className="col-lg-8">{m}</div>
                                     </div>
-                <div><button className="btn btn-default" onClick={this.updateSeatAllocation}>Submit</button></div>
-                <Link className="btn btn-default" to={`/Carparking/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Edit Car Park Date</Link>
-
+               
+                <div className="submitbuttoncreateevent">
+                <Link className="btn btn-default btn-lg" to={`/Carparking/${this.props.match.params.eventId}/${this.props.match.params.showId}/${this.props.match.params.orderId}`}>Go To the Reserve Car Parking</Link>
+                </div>
             </div>
         );
     }

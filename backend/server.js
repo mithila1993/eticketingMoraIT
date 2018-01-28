@@ -40,7 +40,8 @@ server.post('/createUser',(req,res)=>{
   admin.database().ref("react/users").push({
       displayName: req.body.name,
       email: req.body.email,
-      role: req.body.role
+      role: req.body.role,
+      tel:req.body.tel,
         });
 
     res.send('POST request'); 
@@ -123,7 +124,8 @@ server.post('/createevents',(req,res)=>{
       description : req.body.description,
       category : req.body.category,
       name : req.body.name,
-      image : req.body.image
+      image : req.body.image,
+      evntorganizerid :req.body.evntorganizerid
       })
 
       .then(function(userRecord) {
@@ -136,10 +138,10 @@ server.post('/createevents',(req,res)=>{
       });
     });
 
-//Display Events when creates the event
+//Display Events when creates the event - 
     server.post('/displayEventsOrganizer',(req,res)=>{
       
-      admin.database().ref('react/event').once("value", function(snapshot) {
+      admin.database().ref('react/event').orderByChild("evntorganizerid").equalTo(req.body.eventorganizerid).once("value", function(snapshot) {
         res.json({data:snapshot.val()});
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
@@ -535,6 +537,77 @@ server.post('/RecentshopownersDelete',(req,res)=>{
       });
     });
 
+//***********USERS ***************************************************/
+
+//Display Recent Normal Users on Admin Panel
+server.post('/recentNormalUsersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("UserUnapprove").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+//Approve Normal Users on Admin Panel
+
+server.post('/recentNormalUsersApprove',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('UserApprove')
+
+      .then(function(userRecord) {
+        
+        res.send("POST");
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Delete Normal Users On Admin
+
+server.post('/recentNormalUsersDelete',(req,res)=>{
+  
+  
+  admin.database().ref().child('react/users/'+req.body.value + '/role').set('UserDelete')
+
+      .then(function(userRecord) {
+        
+        res.send("POST");
+
+      })
+      .catch(function(error) {
+        console.log("Error creating event:", error);
+      });
+    });
+
+
+//Display Delete Event Organizers on Admin Panel
+server.post('/deleteNormalUsersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("UserDelete").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Display Approve Normal users on Admin Panel
+server.post('/approveNormalUsersOnAdmin',(req,res)=>{
+    
+    
+  admin.database().ref('react/users').orderByChild("role").equalTo("UserApprove").once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
     
 //Add Seat allocation
 server.post('/addSeatAllocation',(req,res)=>{
@@ -1057,8 +1130,123 @@ server.post('/displayCarPark',(req,res)=>{
 
 });
 
+//////////////////////
+
+// server.get('/displayCarPark/:id/:name',(req,res)=>{
+  
+//   //getting the prices of car & threewheelers
+//   console.log(req.params.id);
+//   console.log(req.params.name);
+//   res.send("Hello"+req.params.id);
+// });
 
 
+//////////////////////////////////////
+
+//GET - Display Car parks
+
+server.get('/displayCarPark/:carparkingid/:date',(req,res)=>{
+  
+  //getting the prices of car & threewheelers
+  admin.database().ref('react/carparks/'+req.params.carparkingid).once("value", (s) => {
+        
+            //Getting the car park slots
+            admin.database().ref('react/carparks/'+req.params.carparkingid +'/carparkdates').orderByChild("date").equalTo(req.params.date).once("child_added", (snap) => {
+              
+              
+             // Sending the respond
+              res.send({
+                carprice:s.val().carprice,
+                threewheelerprice:s.val().threewheelerprice,
+                carparkslot:snap.val().carparkslot,
+              })
+              
+              
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+  
+  
+  
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+  
+
+
+});
+
+
+//GET - Create Order with event details
+server.get('/addOrder/:name/:showid/:eventid/:carparkingid/:shopid/:date',(req,res)=>{
+  var eventid = req.params.eventid;
+  var showid = req.params.showid
+  
+  admin.database().ref('react').child('orders').push({
+  name : req.params.name,
+  showid : req.params.showid,
+  eventid : req.params.eventid,
+  carparkingid : req.params.carparkingid,
+  shopid : req.params.shopid,
+  date : req.params.date,
+  status :"Inactive"
+  }).then((snap) => {
+    
+    res.send(snap.key);
+ })
+
+  .then(function(userRecord) {
+    
+    
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+});
+
+
+//Choose user 
+
+server.post('/getId',(req,res)=>{
+  userSystem.orderByChild("email").equalTo(req.body.email).once("child_added", function(snapshot) {
+    // res.json({msg:true, data:snapshot.val().role});
+    res.send(snapshot.key);
+    
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+
+//Display Products on User
+
+server.get('/displayShopProductsOnUser/:shopid',(req,res)=>{
+    //shops 
+    admin.database().ref('react/shops/'+req.params.shopid+'/products').once("value", (s) => {
+          
+          res.send(s.val());
+        
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+    
+  
+
+});
+
+//Get Users Details
+
+server.post('/getUserDetails',(req,res)=>{
+  userSystem.orderByChild("email").equalTo(req.body.email).once("value", function(snapshot) {
+    // res.json({msg:true, data:snapshot.val().role});
+    res.send(snapshot.val());
+    
+    
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
 
   
 

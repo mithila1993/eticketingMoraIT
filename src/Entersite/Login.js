@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
+
 class Login extends Component {
     constructor(props){
         super(props);
@@ -35,14 +36,9 @@ class Login extends Component {
           var errorMessage = error.message;
           console.log('error',errorCode);
 
-        //   setTimeout(() => {
-        //     console.log('time');
-            
-        //   }, 2000);
-    
-          // ...
+        
         });
-        console.log('key3');
+        
     };
 
     
@@ -84,9 +80,9 @@ class Login extends Component {
                                     <div className="col-lg-2"></div>
                                     <div className="col-lg-10">
                                     <button type="submit" className="btn btn-default" onClick={this.getkey}>Login</button>&nbsp;&nbsp;&nbsp;
-                                    <img id="myImg" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" height="52px" weight="50px" alt="Trolltunga, Norway" onClick={this.googlesignin}/>
+                                    {/* <img id="myImg" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" height="52px" weight="50px" alt="Trolltunga, Norway" onClick={this.googlesignin}/>
                                     <img id="myImg" src="https://i.stack.imgur.com/ZW4QC.png"  alt="Trolltunga, Norway" onClick={this.fbsignin} />
-                                    
+                                     */}
                                     </div>
                                     
                                     

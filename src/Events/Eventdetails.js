@@ -29,6 +29,8 @@ class Eventdetails extends Component {
                 carparkingid : carparkingId,
                 shopid : shopId,
                 date :date,
+                eventorganizerid:this.state.datas.eventorganizerid
+
               })
               .then( (response) => {
                 
@@ -49,7 +51,7 @@ class Eventdetails extends Component {
           .then( (response) => {
             
             this.setState({datas: response.data.data});
-            
+            console.log('hhhhhhhhh',response);
           })
           .catch(function (error) {
             console.log("event error",error);

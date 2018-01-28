@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios'; 
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import * as firebase from 'firebase';
 
 class Paynow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isloggin: {},
-            accountmenu:4,
-            chooseuser:{}
+            getDetails:''
         }
         this.payNow = this.payNow.bind(this); 
     }
+
+
+componentWillMount() {
+    if(firebase.auth().currentUser){
+    axios.post('http://localhost:3002/getUserDetails', {
+            email:  firebase.auth().currentUser.email,
+        })
+        .then( (response) => {
+        this.setState({getDetails: response.data});
+                console.log('chooo',this.state.getDetails);
+        })
+        .catch( (error) => {
+        console.log("choose user",error);
+        });
+
+    }
+}
+
 
 payNow(e){
     e.preventDefault();
@@ -56,7 +73,7 @@ payNow(e){
                                       <div className="col-lg-12">
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Telephone number</label>
                                       <div className="col-lg-2">
-                                      <input type="text" className="form-control" id="inputEmail" placeholder="Telephone Number" ref="inputTel"/>
+                                      <input type="text" className="form-control" id="inputEmail" defaultValue="Hello" placeholder="Telephone Number" ref="inputTel"/>
                                          </div></div>
 
                                          <div className="col-lg-12">

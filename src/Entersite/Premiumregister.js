@@ -130,6 +130,7 @@ class Eventregister extends Component {
             email: emailRegistered,
             pass :passRegistered,
             role :roleRegistered,
+            tel :this.refs.inputPhone.value
           })
           .then(function (response) {
             NotificationManager.success('Successfully Account Created');
@@ -182,7 +183,7 @@ class Eventregister extends Component {
 
                                     <label htmlFor="inputEmail" className="col-lg-2 control-label">Phone Number</label>
                                     <div className="col-lg-10">
-                                    <input type="text" className="form-control" id="inputEmail" placeholder="Email" ref="inputPhone" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]}/>
+                                    <input type="text" className="form-control" id="inputEmail" placeholder="Phone Number" ref="inputPhone" onChange={this.handleChange.bind(this, "phone")} value={this.state.fields["phone"]}/>
                                     <span style={{color: "red"}}>{this.state.errors["phone"]}</span>
                                     </div>
                                     

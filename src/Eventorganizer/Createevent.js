@@ -15,7 +15,8 @@ class Createevent extends Component {
         this.state = {
             counter: 0,
             showdeatils :0,
-            datas: {}
+            datas: {},
+            getid:{}
         }
         // this.addShows = this.addShows.bind(this);
         this.submitEvent = this.submitEvent.bind(this);
@@ -52,6 +53,20 @@ class Createevent extends Component {
     // }
 
     
+    componentWillMount() {
+      axios.post('http://localhost:3002/getId', {
+            email:  firebase.auth().currentUser.email,
+        })
+        .then( (response) => {
+        this.setState({getid: response.data});
+                console.log('chooo',this.state.getid);
+        })
+        .catch( (error) => {
+        console.log("choose user",error);
+        });
+    }
+    
+    
     
 
     submitEvent(e){
@@ -67,7 +82,8 @@ class Createevent extends Component {
                 name : thiscom.refs.inputEvent.value,
                 description : thiscom.refs.inputDescription.value,
                 category : thiscom.refs.inputCategory.value,
-                image : snapshot.downloadURL
+                image : snapshot.downloadURL,
+                evntorganizerid:thiscom.state.getid
                 
               })
               .then( (response) => {

@@ -21,6 +21,13 @@ class Seatallocation extends Component {
                 5: 'erase',
                 6: 'erase',
                 7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
             },1: {
                 0: 'erase',
                 1: 'erase', 
@@ -30,6 +37,13 @@ class Seatallocation extends Component {
                 5: 'erase',
                 6: 'erase',
                 7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
             },2: {
                 0: 'erase',
                 1: 'erase', 
@@ -39,6 +53,13 @@ class Seatallocation extends Component {
                 5: 'erase',
                 6: 'erase',
                 7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
             },3: {
                 0: 'erase',
                 1: 'erase', 
@@ -48,6 +69,13 @@ class Seatallocation extends Component {
                 5: 'erase',
                 6: 'erase',
                 7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
             },4: {
                 0: 'erase',
                 1: 'erase', 
@@ -57,13 +85,182 @@ class Seatallocation extends Component {
                 5: 'erase',
                 6: 'erase',
                 7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },5: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },6: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },7: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },8: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },9: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },10: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },11: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },12: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },13: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
+            },14: {
+                0: 'erase',
+                1: 'erase', 
+                2: 'erase',
+                3: 'erase',
+                4: 'erase',
+                5: 'erase',
+                6: 'erase',
+                7: 'erase',
+                8: 'erase',
+                9: 'erase',
+                10: 'erase',
+                11: 'erase',
+                12: 'erase',
+                13: 'erase',
+                14: 'erase',
             },
             
             },
             tool :"not mentioned",
             id: false,
             mousei:0,
-            mousej:0
+            mousej:0,
+            x:0,
+            y:0
         }
         
     }
@@ -77,6 +274,10 @@ class Seatallocation extends Component {
     getSeatNum(value1,value2){
         console.log('value1',value1 );
         console.log('value2',value2 );
+        this.setState({
+            x:value1,
+            y:value2
+        });
     if(this.state.tool=='VIP-square'){
         if(this.state.id=== true){
         for(var i = this.state.mousei ; i <= value1; i++){
@@ -256,7 +457,32 @@ seatCategory(value){
                         <table>
                         <tbody>
                             <div className="seats">
-                            <div  className="col-lg-2"></div><div  className="col-lg-10">
+                            <div  className="col-lg-12">
+                            <div className="col-md-12 informationbar">
+                                    <div  className="col-lg-4">
+                                    <h4>Navigation Details </h4>
+                                    Row:{this.state.x + 1}<br/>
+                                    Col:{this.state.y + 1}<br/>
+                                    </div>
+                                    <div  className="col-lg-4">
+                                    <h4>Tool Details </h4>
+                                    Tool:{this.state.tool} <br/>
+                                    Activation:{this.state.id?"Activated":"Not Activated"}<br/>
+                                    </div>
+                                    <div  className="col-lg-4">
+                                    <button className="btn btn-primary btn-lg submitbuttoncreateevent" onClick={this.submitseat.bind(this)}>Submit The Seat Allocation</button>
+                                    </div>
+                            </div>
+                            <div  className="col-lg-1">
+                            
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'VIP-square')}>VIP Square</button>
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'odc-square')}>ODC Square</button><br/>
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'eraser-square')}>Eraser Square</button><br/>
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'VIP-pen')}>VIP Pen</button><br/>
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'odc-pen')}>ODC Pen</button><br/>
+                            <button className="toolbutton" onClick={this.seatall.bind(this,'eraser-pen')}>Eraser Pen</button><br/>
+                            </div>
+                            <div  className="col-lg-11">
                         { Object.entries(this.state.datas).map((description, i) => {  
                                 
                                 return (
@@ -290,6 +516,28 @@ seatCategory(value){
                                 <td  className={description[1][7]} onClick={this.name.bind(this,i,7)} onMouseOver={this.getSeatNum.bind(this,i,7)}>
                                 <p key={i}> </p>
                                 </td>  
+                                <td  className={description[1][8]} onClick={this.name.bind(this,i,8)} onMouseOver={this.getSeatNum.bind(this,i,8)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][9]} onClick={this.name.bind(this,i,9)} onMouseOver={this.getSeatNum.bind(this,i,9)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][10]} onClick={this.name.bind(this,i,10)} onMouseOver={this.getSeatNum.bind(this,i,10)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][11]} onClick={this.name.bind(this,i,11)} onMouseOver={this.getSeatNum.bind(this,i,11)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][12]} onClick={this.name.bind(this,i,12)} onMouseOver={this.getSeatNum.bind(this,i,12)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][13]} onClick={this.name.bind(this,i,13)} onMouseOver={this.getSeatNum.bind(this,i,13)}>
+                                <p key={i}> </p>
+                                </td>  
+                                <td  className={description[1][14]} onClick={this.name.bind(this,i,14)} onMouseOver={this.getSeatNum.bind(this,i,14)}>
+                                <p key={i}> </p>
+                                </td>  
+                                
                                 </tr>
                                 </div>
                                 </div>
@@ -298,16 +546,12 @@ seatCategory(value){
                             </div>
                         {/* {rows} */}
                         </div>
+                        </div>
                         </tbody>
                         </table>
-                        <button onClick={this.seatall.bind(this,'VIP-square')}>VIP Square</button>
-                        <button onClick={this.seatall.bind(this,'odc-square')}>odc Square</button>
-                        <button onClick={this.seatall.bind(this,'eraser-square')}>Eraser Square</button>
-                        <button onClick={this.seatall.bind(this,'VIP-pen')}>VIP pen</button>
-                        <button onClick={this.seatall.bind(this,'odc-pen')}>odc pen</button>
-                        <button onClick={this.seatall.bind(this,'eraser-pen')}>eraser pen</button>
                         
-                        <button onClick={this.submitseat.bind(this)}>submit</button>
+                        
+                        
                         <p>{this.state.tool}</p>
                         <p>{this.state.id}</p>
                                     

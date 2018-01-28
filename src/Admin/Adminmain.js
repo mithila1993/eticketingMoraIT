@@ -11,6 +11,9 @@ import Approvecarparkowners from './Approve/Approvecarparkowners';
 import Approveshopowners from './Approve/Approveshopowners';
 import Deletecarparkowners from './Delete/Deletecarparkowners';
 import Deleteshopowners from './Delete/Deleteshopowners';
+import Recentnormalusers from './Recent/Recentnormalusers';
+import Approvenormalusers from './Approve/Approvenormalusers';
+import Deletenormalusers from './Delete/Deletenormalusers';
 
 import {
     BrowserRouter as Router,
@@ -52,12 +55,14 @@ class Adminmain extends Component {
                      <li><NavLink to="/Acc/Recenteventorganizers">Event Organizers</NavLink></li>
                      <li><NavLink to="/Acc/Recentcarparkowners">Car Park Owners</NavLink></li>
                      <li><NavLink to="/Acc/Recentshopowners">Shop Owners</NavLink></li>
+                     <li><NavLink to="/Acc/Recentnormalusers">Normal Users</NavLink></li>
                 </ul>
                 <p className="adminh">Approved Users</p>
                 <ul className="nav nav-pills nav-stacked red">
                     <li><NavLink to="/Acc/Approveeventorganizers">Event Organizers</NavLink></li>
                     <li><NavLink to="/Acc/Approvecarparkowners">Car Park Owners</NavLink></li>
                     <li><NavLink to="/Acc/Approveshopowners">Shop Owners</NavLink></li>
+                    <li><NavLink to="/Acc/Approvenormalusers">Normal Users</NavLink></li>
                      
                 </ul>
                 <p className="adminh">Deleted Users</p>
@@ -65,6 +70,7 @@ class Adminmain extends Component {
                     <li><NavLink to="/Acc/Deleteeventorganizers">Event Organizers</NavLink></li>
                     <li><NavLink to="/Acc/Deletecarparkowners">Car Park Owners</NavLink></li>
                     <li><NavLink to="/Acc/Deleteshopowners">Shop Owners</NavLink></li> 
+                    <li><NavLink to="/Acc/Deletenormalusers">Normal Users</NavLink></li> 
                 </ul>
                     {/* <li><NavLink to="/EventOrganizer">Event Organizers</NavLink></li>
                     <li><NavLink to="/Createevent">Create event</NavLink></li> */}
@@ -83,7 +89,10 @@ class Adminmain extends Component {
                 <Route path="/Acc/Approvecarparkowners" component={Approvecarparkowners}/>
                 <Route path="/Acc/Approveshopowners" component={Approveshopowners}/>
                 <Route path="/Acc/Deletecarparkowners" component={Deletecarparkowners}/>
+                <Route path="/Acc/Recentnormalusers" component={Recentnormalusers}/>
                 <Route path="/Acc/Deleteshopowners" component={Deleteshopowners}/>
+                <Route path="/Acc/Approvenormalusers" component={Approvenormalusers}/>
+                <Route path="/Acc/Deletenormalusers" component={Deletenormalusers}/>
                 <Route component={Adminfront}/>
                 
                 </Switch>

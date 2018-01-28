@@ -9,6 +9,7 @@ import { SearchBox,
   Stats,
   Menu
 } from 'react-instantsearch/dom';
+import { Link, Redirect, withRouter } from 'react-router-dom'
 
 //import { displayName, filterProps, WrapWithHits } from './util';
 //import logo from './instant_search_logo@2x.png';
@@ -19,6 +20,7 @@ const Hit = ({hit}) =>
 <div className="hit">
 <div className="col-md-12 recentevents">
   <div className="hit-image col-md-2">
+  <div className="col-md-2"></div>
     <img src={hit.image} height="250px" width="170px"/>
   </div>
   <div className="col-md-10">
@@ -33,6 +35,11 @@ const Hit = ({hit}) =>
     <div className="hit-description">
       {hit.description}
       <Highlight attribute="description" hit={hit}/>
+    </div>
+    <div className="hit-description">
+    <Link className="btn btn-default" to={`/Eventdetails/${hit.eventID}`}>More Details</Link>
+     
+      <Highlight attribute="eventID" hit={hit}/>
     </div>
   </div>
   </div>
@@ -100,26 +107,24 @@ export default function ev() {
     >
 
 <div className="col-md-12">
-<div className="col-md-2"></div>
-<div className="col-md-10">
-    <header className="header search ">
-      <SearchBox translations={{placeholder:'Search for events'}}/>
+
+
+    <header className="header search">
+    
+    <SearchBox 
+    submitComponent={<span><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/105498-200.png" height="60px" width="60px" alt="Mountain View"/></span>}
+     resetComponent={<span>❌</span> } 
+    submitTitle={'Submit your search query.'}
+    resetTitle= {'Clear your search query.'}
+    placeholder= 'Search Events....'
+    />
     </header>
-    </div>
+    
     </div>
     <div className="col-md-12">
-    <div className="sidebar col-md-2">
-        <ul>
-          <li>Colombo</li>
-          <li>Gampaha</li>
-          <li>Anuradhapura</li>
-          <li>Rathnapura</li>
-          <li>Kurunegala</li>
-          <li>Galle</li>
-        </ul>
-      </div>
+    
 
-      <main className="col-md-10">
+      <main>
        
         <Content/>
        

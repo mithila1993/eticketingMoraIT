@@ -49,14 +49,17 @@ class Component1 extends Component {
         })
         .then( (response) => {
         this.setState({chooseuser: response.data});
-
         })
         .catch( (error) => {
         console.log("choose user",error);
         });
 
         if(this.state.chooseuser==="UserUnapprove"){
-                return <Usermain/>
+                return <Unapproved/>
+        }if(this.state.chooseuser==="UserDelete"){
+            return <Deleted/>
+        }if(this.state.chooseuser==="UserApprove"){
+            return <Usermain/>
         }if(this.state.chooseuser==="Admin"){
             return <Adminmain/>
         }if(this.state.chooseuser==="EventOrganizerUnapprove"){

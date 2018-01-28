@@ -12,22 +12,36 @@ class Yourevents extends Component {
         this.state = {
             counter: 0,
             showdeatils :0,
-            datas: {}
+            datas: {},
+            getid:{}
         }
     }
 
 componentDidMount() {
-        axios.post('http://localhost:3002/displayEventsOrganizer', {
-            eventId: this.props.match.params.eventId,
-          })
-          .then( (response) => {
+    axios.post('http://localhost:3002/getId', {
+            email:  firebase.auth().currentUser.email,
+        })
+        .then( (response) => {
+        this.setState({getid: response.data},()=>{
+            axios.post('http://localhost:3002/displayEventsOrganizer', {
+                eventorganizerid:this.state.getid
+              })
+              .then( (response) => {
+                
+                this.setState({datas: response.data.data});
+                
+              })
+              .catch(function (error) {
+                console.log("event error",error);
+              });
+        });
             
-            this.setState({datas: response.data.data});
-            
-          })
-          .catch(function (error) {
-            console.log("event error",error);
-          });
+        })
+        .catch( (error) => {
+        console.log("choose user",error);
+        });
+
+        
     }    
 
     render() {

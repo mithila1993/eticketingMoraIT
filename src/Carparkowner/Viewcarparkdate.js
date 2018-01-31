@@ -41,7 +41,7 @@ class Viewcarparkdate extends Component {
                   return (
                     <tr className="table-hover">
                     <th scope="row" key={i}>{description[1].date}  </th>
-                            <td><Link className="btn btn-success" to={`/EditCarParkDate/${this.props.match.params.carparkid}/${description[0]}`}>Edit Car Park Date</Link></td>
+                            <td><Link className="btn btn-success" to={`/Acc/EditCarParkDate/${this.props.match.params.carparkid}/${description[0]}`}>Edit Car Park Date</Link></td>
                             </tr>
                           )
                   })}

@@ -20,6 +20,7 @@ class Shows extends Component {
           selectshop:'',
           carparkingnames:{},
           selectcarparking:'',
+          vipodc:{},
           
       }
         this.displaySeatallocationsOnEventOrganizers = this.displaySeatallocationsOnEventOrganizers.bind(this);
@@ -77,6 +78,8 @@ class Shows extends Component {
     submitShow(e){
         e.preventDefault();
         console.log(this.refs.inputDate.value);
+        console.log(this.state.vipodc.vipprice);
+        console.log(this.state.vipodc.odcprice);
 
         axios.post('http://localhost:3002/createShows', {
             venue : this.state.venue,
@@ -87,6 +90,8 @@ class Shows extends Component {
             carparkingid:this.state.selectcarparking,
             shopid:this.state.selectshop,
             eventid :this.props.match.params.eventId,
+            vipprice:this.state.vipodc.vipprice,
+            odcprice:this.state.vipodc.odcprice
           })
           .then(function (response) {
             NotificationManager.success('Successfully Show Created');
@@ -154,7 +159,17 @@ handleSeatAllocations(e){
              
         });
       });
-  }
+  
+      firebase.database().ref('react/seatallocations/'+this.state.selectecdseatallocation).on('value', (snapshot) => {
+        
+        this.setState({vipodc:snapshot.val()},()=>{
+             console.log(this.state.vipodc.vipprice);
+        });
+      });
+    
+    
+    
+    }
     
   });   
 }
@@ -215,10 +230,31 @@ handleShop(e){
         </td>     
         <td  className={description[1][6]}>
         <p key={i}>  </p>
-        </td>     
+        </td>  
         <td  className={description[1][7]}>
         <p key={i}>  </p>
+        </td>     
+        <td  className={description[1][8]}>
+        <p key={i}>  </p>
         </td>  
+        <td  className={description[1][9]}>
+        <p key={i}>  </p>
+        </td>  
+        <td  className={description[1][10]}>
+        <p key={i}>  </p>
+        </td>  
+        <td  className={description[1][11]}>
+        <p key={i}>  </p>
+        </td>  
+        <td  className={description[1][12]}>
+        <p key={i}>  </p>
+        </td>  
+        <td  className={description[1][13]}>
+        <p key={i}>  </p>
+        </td>  
+        <td  className={description[1][14]}>
+        <p key={i}>  </p>
+        </td>   
         </tr>
         </div>
         </div>
@@ -242,12 +278,6 @@ handleShop(e){
                                     <option value="Savoy">Savoy</option>
                                     <option value="Liberty">Liberty</option>
                                     <option value="Majestic City">Magestic City</option>
-                                    <option value="Tower">Tower</option>
-                                    <option value="Regal">Regal</option>
-                                    <option value="Sinexpo 3D">Sinexpo 3D</option>
-                                    <option value="Jothi 3D">Jothi 3D</option>
-                                    <option value="Queens 3D">Queens 3D</option>
-                                    <option value="Willmax 3D">Willmax 3D</option>
                                     </select>
                                     </div>
                                     </div>

@@ -20,7 +20,7 @@ componentWillMount() {
         })
         .then( (response) => {
         this.setState({getDetails: response.data});
-                console.log('chooo',this.state.getDetails);
+                console.log('chooo',this.state.getDetails.data.displayName);
         })
         .catch( (error) => {
         console.log("choose user",error);
@@ -34,7 +34,8 @@ payNow(e){
     e.preventDefault();
             axios.post('http://localhost:3002/payNow', {
                 orderid: this.props.match.params.orderId,
-                tel:this.refs.inputTel.value
+                tel:this.refs.inputTel.value,
+                userid:this.state.getDetails.key,
               })
               .then(function (response) {
                 NotificationManager.success('Booking is Confirmed');
@@ -73,7 +74,7 @@ payNow(e){
                                       <div className="col-lg-12">
                                       <label htmlFor="inputPassword" className="col-lg-2 control-label">Telephone number</label>
                                       <div className="col-lg-2">
-                                      <input type="text" className="form-control" id="inputEmail" defaultValue="Hello" placeholder="Telephone Number" ref="inputTel"/>
+                                      <input type="text" className="form-control" id="inputEmail" placeholder="Telephone Number" ref="inputTel"/>
                                          </div></div>
 
                                          <div className="col-lg-12">

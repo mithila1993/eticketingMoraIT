@@ -54,6 +54,7 @@ class Seatallocation extends Component {
                 })
                 .then( (response) => {
                   this.setState({datas: response.data.data},() => {
+                      console.log('hhhhhhhhhhhhhhhhhhhhhh',this.state.datas);
                                    });
                   
                 })
@@ -74,7 +75,7 @@ class Seatallocation extends Component {
             this.setState({jasper});
             
             this.setState(prevState => ({
-                vipprice: prevState.vipprice + this.state.datas.vipprice
+                vipprice: prevState.vipprice + parseInt(this.state.datas.vipprice)
               }));
         }if(value3==='VIP-reserved'){
             let jasper = Object.assign({}, this.state.datas.seats);
@@ -82,7 +83,7 @@ class Seatallocation extends Component {
             jasper[value1][value2] = 'VIP';
             this.setState({jasper});
             this.setState(prevState => ({
-                vipprice: prevState.vipprice - this.state.datas.vipprice
+                vipprice: prevState.vipprice - parseInt(this.state.datas.vipprice)
               }));
         }if(value3==='odc'){
             let jasper = Object.assign({}, this.state.datas.seats);
@@ -91,7 +92,7 @@ class Seatallocation extends Component {
             this.setState({jasper});
             console.log(jasper);
             this.setState(prevState => ({
-                odcprice: prevState.odcprice + this.state.datas.odcprice
+                odcprice: prevState.odcprice + parseInt(this.state.datas.odcprice)
               }));
         }if(value3==='odc-reserved'){
             let jasper = Object.assign({}, this.state.datas.seats);
@@ -100,7 +101,7 @@ class Seatallocation extends Component {
             this.setState({jasper});
             console.log(jasper);
             this.setState(prevState => ({
-                odcprice: prevState.odcprice - this.state.datas.odcprice
+                odcprice: prevState.odcprice - parseInt(this.state.datas.odcprice)
               }));
         }
     
@@ -192,9 +193,9 @@ class Seatallocation extends Component {
                 </div>
                 
                 <div className="col-md-6">
-                        <h4>Your VIP Cost - Rs.{this.state.vipprice}</h4>
-                        <h4>Your ODC Cost - Rs.{this.state.odcprice}</h4>
-                        <h2>Total Seat Booking Cost - Rs.{this.state.vipprice + this.state.odcprice} <button className="btn btn-default" onClick={this.updateSeatAllocation}>Confirm</button></h2>
+                        <h4>Your VIP Cost - Rs.{parseInt(this.state.vipprice)}</h4>
+                        <h4>Your ODC Cost - Rs.{parseInt(this.state.odcprice)}</h4>
+                        <h2>Total Seat Booking Cost - Rs.{parseInt(this.state.vipprice + this.state.odcprice)} <button className="btn btn-default" onClick={this.updateSeatAllocation}>Confirm</button></h2>
                 </div>        
                 </div>
                 

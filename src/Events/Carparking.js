@@ -43,7 +43,7 @@ class Carparking extends Component {
         console.log('value2',value2 );
         console.log('value2',value3 );
         if(value3==='car'){
-            console.log(this.state.datas.carprice);
+            console.log(this.state.carparking.carprice);
             let jasper = Object.assign({}, this.state.carparking.carparkslot);
             
             jasper[value1][value2] = 'car-reserved';
@@ -70,7 +70,7 @@ class Carparking extends Component {
               }));
         }if(value3==='threewheeler-reserved'){
             let jasper = Object.assign({}, this.state.carparking.carparkslot);
-            console.log(this.state.datas);
+            console.log(this.state.carparking);
             jasper[value1][value2] = 'threewheeler';
             this.setState({jasper});
             this.setState(prevState => ({
@@ -88,7 +88,7 @@ class Carparking extends Component {
                 })
                 .then( (response) => {
                   this.setState({carparking: response.data},() => {
-                    console.log(this.state.carparking);
+                    console.log('carpark',this.state.carparking);
                                    });
                   
                 })
@@ -132,6 +132,27 @@ class Carparking extends Component {
                 <td  className={description[1][7]} onClick={this.getCarParkSlot.bind(this,i,7,description[1][7])}>
                 <p key={i}>  </p>
                 </td>  
+                <td  className={description[1][8]} onClick={this.getCarParkSlot.bind(this,i,8,description[1][8])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][9]} onClick={this.getCarParkSlot.bind(this,i,9,description[1][9])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][10]} onClick={this.getCarParkSlot.bind(this,i,10,description[1][10])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][11]} onClick={this.getCarParkSlot.bind(this,i,11,description[1][11])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][12]} onClick={this.getCarParkSlot.bind(this,i,12,description[1][12])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][13]} onClick={this.getCarParkSlot.bind(this,i,13,description[1][13])}>
+                <p key={i}>  </p>
+                </td>  
+                <td  className={description[1][14]} onClick={this.getCarParkSlot.bind(this,i,14,description[1][14])}>
+                <p key={i}>  </p>
+                </td>  
                 </tr>
                 </div>
                 </div>
@@ -148,11 +169,11 @@ class Carparking extends Component {
                 <div className="col-md-12 informationbar">
                 <div className="col-md-6 seats">
                 <div className="col-md-12">
-                <div className="smallbox car"></div><h4>Car Cost - Rs.{this.state.datas.carprice}</h4>
+                <div className="smallbox car"></div><h4>Car Cost - Rs.{this.state.carparking.carprice}</h4>
                 </div>
 
                 <div className="col-md-12">
-                <div className="smallbox threewheeler"></div><h4>threewheeler Cost - Rs.{this.state.datas.threewheelerprice}</h4>
+                <div className="smallbox threewheeler"></div><h4>threewheeler Cost - Rs.{this.state.carparking.threewheelerprice}</h4>
                 </div>
 
                 </div>
@@ -160,11 +181,11 @@ class Carparking extends Component {
                 <div className="col-md-6">
                         <h4>Your Car Cost - Rs.{this.state.carprice}</h4>
                         <h4>Your threewheeler Cost - Rs.{this.state.threewheelerprice}</h4>
-                        <h2>Total Seat Booking Cost - Rs.{this.state.carprice + this.state.threewheelerprice} <button className="btn btn-default" onClick={this.updateCarParking}>Confirm</button></h2>
+                        <h2>Total Car Parking Cost - Rs.{this.state.carprice + this.state.threewheelerprice} <button className="btn btn-default" onClick={this.updateCarParking}>Confirm</button></h2>
                 </div>        
                 </div>
                 
-                <div className="col-lg-12 seats submitbuttoncreateevent">
+                <div className="col-lg-12 users submitbuttoncreateevent">
                                     <div className="col-lg-2"></div> 
                                     <div className="col-lg-8">{m}</div>
                                     </div>

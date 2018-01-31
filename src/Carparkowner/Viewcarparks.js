@@ -42,7 +42,7 @@ class Viewcarparks extends Component {
                   return (
                     <tr className="table-hover">
                     <th scope="row" key={i}>{description[1].name} </th>
-                            <td><Link className="btn btn-info" to={`/Addcarparkdate/${description[0]}`}>Add Car Park Date</Link>  <Link className="btn btn-success" to={`/Viewcarparkdate/${description[0]}`}>View Car Park Date</Link></td>
+                            <td><Link className="btn btn-info" to={`/Acc/Addcarparkdate/${description[0]}`}>Add Car Park Date</Link>  <Link className="btn btn-success" to={`/Acc/Viewcarparkdate/${description[0]}`}>View Car Park Date</Link></td>
                             </tr>
                           )
                   })}

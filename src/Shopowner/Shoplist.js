@@ -46,8 +46,8 @@ componentWillMount() {
                     <th scope="row" key={i}>{description[1].name}</th>
                             <td> {description[1].description}</td>
                             
-                            <td><Link className="btn btn-info" to={`/Createproduct/${description[0]}`}>Add Products</Link>  </td>
-                            <td><Link className="btn btn-success" to={`/Viewproducts/${description[0]}`}>View Products</Link></td>
+                            <td><Link className="btn btn-info" to={`/Acc/Createproduct/${description[0]}`}>Add Products</Link>  </td>
+                            <td><Link className="btn btn-success" to={`/Acc/Viewproducts/${description[0]}`}>View Products</Link></td>
                             </tr>
                     
                    

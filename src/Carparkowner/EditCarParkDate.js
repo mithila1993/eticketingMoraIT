@@ -122,6 +122,27 @@ handleVenue(e){
             <td  className={description[1][7]} onClick={this.getSeatNum.bind(this,i,7,description[1][7])}>
             <p key={i}>  </p>
             </td>  
+            <td  className={description[1][8]} onClick={this.getSeatNum.bind(this,i,7,description[1][8])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][9]} onClick={this.getSeatNum.bind(this,i,7,description[1][9])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][10]} onClick={this.getSeatNum.bind(this,i,7,description[1][10])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][11]} onClick={this.getSeatNum.bind(this,i,7,description[1][11])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][12]} onClick={this.getSeatNum.bind(this,i,7,description[1][12])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][13]} onClick={this.getSeatNum.bind(this,i,7,description[1][13])}>
+            <p key={i}>  </p>
+            </td> 
+            <td  className={description[1][14]} onClick={this.getSeatNum.bind(this,i,7,description[1][14])}>
+            <p key={i}>  </p>
+            </td> 
             </tr>
             </div>
             </div>

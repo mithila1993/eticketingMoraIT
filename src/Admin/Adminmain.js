@@ -51,7 +51,7 @@ class Adminmain extends Component {
             <h1></h1>
             <p className="adminh">Recent Users</p>
                 <ul className="nav nav-pills nav-stacked red">
-                     <li><NavLink to="/Acc/Adminfront">Front</NavLink></li>
+                     
                      <li><NavLink to="/Acc/Recenteventorganizers">Event Organizers</NavLink></li>
                      <li><NavLink to="/Acc/Recentcarparkowners">Car Park Owners</NavLink></li>
                      <li><NavLink to="/Acc/Recentshopowners">Shop Owners</NavLink></li>
@@ -93,7 +93,7 @@ class Adminmain extends Component {
                 <Route path="/Acc/Deleteshopowners" component={Deleteshopowners}/>
                 <Route path="/Acc/Approvenormalusers" component={Approvenormalusers}/>
                 <Route path="/Acc/Deletenormalusers" component={Deletenormalusers}/>
-                <Route component={Adminfront}/>
+                <Route component={Recenteventorganizers}/>
                 
                 </Switch>
                 

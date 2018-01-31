@@ -224,7 +224,7 @@ hello{
 
 .search{
   padding-bottom: 30px;
-  font-size: 25px;
+  font-size: 10px;
 }
 
 .adminh{
@@ -300,14 +300,9 @@ h3{
   background-color: #7bff00;
 }
 
-.users td:hover {
-  -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    -o-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+/* .users td:hover {
     transform: scale(1.5);
-}
+} */
 
 
 
@@ -315,21 +310,29 @@ h3{
   background-color: #ff0000;
 }
 
+.users .VIP:hover{
+  transform: scale(1.5);
+}
+
 .users .odc{
   background-color: #7bff00;
 }
 
+.users .odc:hover{
+  transform: scale(1.5);
+}
+
 .users .erase{
-  opacity: 0.5;
+  opacity: 0.1;
   background-color: cornflowerblue;
 }
 
 .users .VIP-reserved{
-  background-color: #ecd8d8;
+  background-color: #850101;
 }
 
 .users .odc-reserved{
-  background-color: #2c3b1d;
+  background-color: #4a9203;
 }
 
 .toolbutton{
@@ -345,11 +348,39 @@ h3{
   font-weight:bold;
 }
 .header{
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 100;
-  
   padding: 20px;
   background-color: #e2e2e2
   
-  
 }
+
+.users .car{
+  background-color: #ff0000;
+}
+
+.users .car:hover{
+  transform: scale(1.5);
+}
+
+.users .threewheeler{
+  background-color: #7bff00;
+}
+
+.users .threewheeler:hover{
+  transform: scale(1.5);
+}
+
+.users .erase{
+  opacity: 0.1;
+  background-color: cornflowerblue;
+}
+
+.users .car-reserved{
+  background-color: #850101;
+}
+
+.users .threewheeler-reserved{
+  background-color: #4a9203;
+}
+

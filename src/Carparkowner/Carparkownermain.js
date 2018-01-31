@@ -23,7 +23,7 @@ class Carparkownermain extends Component {
             <div className="col-md-2 leftmenu ">
                 <ul className="nav nav-pills nav-stacked red">
 
-                     <li><NavLink to="/Acc/Carparkownerfront">Front</NavLink></li>
+                     
                     <li><NavLink to="/Acc/Createcarpark">Create Car Park</NavLink></li>
                     <li><NavLink to="/Acc/Viewcarparks">View Car Parks</NavLink></li>
                     
@@ -43,7 +43,7 @@ class Carparkownermain extends Component {
                 {/* <Route path="/Createevent" component={Createevent}/> */}
                 {/* <Route path="/Shows/:eventId/" component={Shows}/> */}
                 
-                <Route component={Carparkownerfront}/>
+                <Route component={Viewcarparks}/>
                 
                 </Switch>
                 

@@ -552,8 +552,7 @@ seatCategory(value){
                         
                         
                         
-                        <p>{this.state.tool}</p>
-                        <p>{this.state.id}</p>
+                        
                                     
             </div>
             </div>

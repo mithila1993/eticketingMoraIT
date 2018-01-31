@@ -25,7 +25,7 @@ class Eventorganizermain extends Component {
             <div className="col-md-2 leftmenu ">
             
                 <ul className="nav nav-pills nav-stacked red">
-                     <li><NavLink to="/Acc/Eventorganizerfront">Front</NavLink></li>
+                
                      <li><NavLink to="/Acc/Yourevents">Your Events</NavLink></li>
                      <li><NavLink to="/Acc/Createevent">Create Event</NavLink></li> 
                     <li><NavLink to="/Acc/seatallocation">Design Seat Planning</NavLink></li>
@@ -49,7 +49,7 @@ class Eventorganizermain extends Component {
                 <Route path="/Acc/Foods/:eventid/:showid" component={Foods} />
                 <Route path="/Acc/Yourevents" component={Yourevents}/>
                 <Route path="/Acc/Recentorders" component={Recentorders}/>
-                <Route component={Eventorganizerfront}/>
+                <Route component={Yourevents}/>
                 
                 </Switch>
                 

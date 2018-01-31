@@ -125,7 +125,7 @@ server.post('/createevents',(req,res)=>{
       category : req.body.category,
       name : req.body.name,
       image : req.body.image,
-      evntorganizerid :req.body.evntorganizerid
+      eventorganizerid :req.body.eventorganizerid
       })
 
       .then(function(userRecord) {
@@ -141,7 +141,7 @@ server.post('/createevents',(req,res)=>{
 //Display Events when creates the event - 
     server.post('/displayEventsOrganizer',(req,res)=>{
       
-      admin.database().ref('react/event').orderByChild("evntorganizerid").equalTo(req.body.eventorganizerid).once("value", function(snapshot) {
+      admin.database().ref('react/event').orderByChild("eventorganizerid").equalTo(req.body.eventorganizerid).once("value", function(snapshot) {
         res.json({data:snapshot.val()});
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
@@ -161,6 +161,8 @@ server.post('/createShows',(req,res)=>{
   carparkingid : req.body.carparkingid,
   shopid : req.body.shopid,
   eventid : req.body.eventid,
+  vipprice:req.body.vipprice,
+  odcprice:req.body.odcprice,
   
   
 
@@ -168,7 +170,7 @@ server.post('/createShows',(req,res)=>{
 
   .then((snap) => {
     
-    res.send(snap.key);
+    
           admin.database().ref().child('react/event/' + eventid + '/shows/'+snap.key+'/showid/').set(snap.key)
 
           .then((userRecord) => {
@@ -1071,7 +1073,7 @@ server.post('/payNow',(req,res)=>{
   
   admin.database().ref().child('react/orders/'+req.body.orderid).update({
         tel: req.body.tel,
-        status:"active"   
+        status:"Paid"   
       })
 
       .then(function(userRecord) {
@@ -1225,7 +1227,7 @@ server.get('/displayShopProductsOnUser/:shopid',(req,res)=>{
     //shops 
     admin.database().ref('react/shops/'+req.params.shopid+'/products').once("value", (s) => {
           
-          res.send(s.val());
+          res.send({data:s.val()});
         
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -1238,14 +1240,51 @@ server.get('/displayShopProductsOnUser/:shopid',(req,res)=>{
 //Get Users Details
 
 server.post('/getUserDetails',(req,res)=>{
-  userSystem.orderByChild("email").equalTo(req.body.email).once("value", function(snapshot) {
+  userSystem.orderByChild("email").equalTo(req.body.email).once("child_added", function(snapshot) {
     // res.json({msg:true, data:snapshot.val().role});
-    res.send(snapshot.val());
+    res.send({
+      key:snapshot.key,
+      data:snapshot.val()
+    });
     
     
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+});
+
+////Recent Events by Category
+server.get('/recenteventscat/:category',(req,res)=>{
+    
+    
+  admin.database().ref('react/event').orderByChild("category").equalTo(req.params.category).once("value", function(snapshot) {
+    res.json({data:snapshot.val()});
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+});
+
+////Recent Events by Category
+
+server.get('/order/:price',(req,res)=>{
+    
+    
+  admin.database().ref().child('react/orders').push({
+    price: req.params.price,
+    status:"status",
+    name:"justice league"
+  })
+
+  .then(function(userRecord) {
+    
+    res.send('POST request');
+
+
+  })
+  .catch(function(error) {
+    console.log("Error creating event:", error);
+  });
+
 });
 
   

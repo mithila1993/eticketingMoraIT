@@ -112,7 +112,7 @@ export default function ev() {
     <header className="header search">
     
     <SearchBox 
-    submitComponent={<span><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/105498-200.png" height="60px" width="60px" alt="Mountain View"/></span>}
+    submitComponent={<span><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/105498-200.png" height="35px" width="35px" alt="Mountain View"/></span>}
      resetComponent={<span>❌</span> } 
     submitTitle={'Submit your search query.'}
     resetTitle= {'Clear your search query.'}

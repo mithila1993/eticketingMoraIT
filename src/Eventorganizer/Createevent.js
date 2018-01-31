@@ -83,7 +83,7 @@ class Createevent extends Component {
                 description : thiscom.refs.inputDescription.value,
                 category : thiscom.refs.inputCategory.value,
                 image : snapshot.downloadURL,
-                evntorganizerid:thiscom.state.getid
+                eventorganizerid:thiscom.state.getid
                 
               })
               .then( (response) => {

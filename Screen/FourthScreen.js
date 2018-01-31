@@ -11,20 +11,16 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //import { Icon } from 'react-native-elements';
 import { Icon,Container, Header, Title, Content, Footer, FooterTab, Left, Right, Body,Button} from 'native-base';
 import Profile from '../Login/Profile';
+import ProfLogin from '../Login/ProfLogin';
 
 export default class FourthScreen extends Component{
-    static navigationOption ={
+    static navigationOptions ={
         tabBarLabel:'Screen 4',
         
-        drawerIcon: ({ tintColor }) => {
-            return(
-                <MaterialIcons
-                    name='account-circle'
-                    style={{color:tintColor}}>
-                    
-                </MaterialIcons>
-        );
-    }
+        drawerIcon: <Image style={{height:24,width:24}}
+        source={require('../user-male-circle-blue-512.png')}
+       // style={[styles.icon, {tintColor: tintColor}]}
+      />
     };
     render(){
         return (
@@ -41,7 +37,7 @@ export default class FourthScreen extends Component{
             <Title>Account</Title>
           </Body>
         </Header>    
-        <Profile/>
+        <ProfLogin/>
         </Container>
         );    
     }

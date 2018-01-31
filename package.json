@@ -11,6 +11,12 @@
 		"native-base": "^2.3.3",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
+		"react-native-af-video-player": "^0.1.4",
+		"react-native-data-table": "^0.2.0",
+		"react-native-flexbox-grid": "^0.3.2",
+		"react-native-grid-list": "^1.0.6",
+		"react-native-pinch-zoom-view": "^0.1.3",
+		"react-native-render-html": "^3.7.0",
 		"react-navigation": "^1.0.0-beta.19",
 		"util": "*"
 	},

@@ -4,7 +4,10 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Component1 from './LoginComponent1';
 import * as firebase from 'firebase';
-//const util = require('util');
+import { StackNavigator,} from 'react-navigation';
+import Profile from './Profile';
+const util = require('util');
+
 
 export default class Login extends Component {
 	static navigationOption = {

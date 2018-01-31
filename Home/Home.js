@@ -6,9 +6,17 @@ import { StackNavigator,TabNavigator,DrawerNavigator } from 'react-navigation';
 
 
 export default class Home extends Component {
-   
+  constructor(props){
+		super(props);
+		
+		this.state = {
+			counter:0
+			
+		};
+	
+}
   render() {
-    
+    //console.log(this.props.rowData)
     return (
      
         <Content style={styles.outcontainer}>
@@ -19,23 +27,25 @@ export default class Home extends Component {
                 <Thumbnail source={require('./Oracle2.png')} />
                 <Body >
                   
-                  <Text style={{color:'white'}}>{this.props.items.title}</Text>
+                  <Text style={{color:'white'}}>{this.props.rowData.name}</Text>
                   
                   <Text note>default</Text>
                 </Body>
               </Left>
             </CardItem>
             <CardItem cardBody style={styles.container} >
-              <Image source={{uri: 'http://www1.pictures.zimbio.com/gi/Enrique+Iglesias+Heroes+Concert+Show+Y4N3yobszgUl.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+              <Image source={{uri: this.props.rowData.image}} 
+             style={{width: 400, height: 500, flex: 1}}
+              />
             </CardItem>
             <CardItem style={styles.container}>
-              <Left>
-                <Button transparent>
+              {/* <Left>
+                <Button transparent onPress={this.likeCounter.bind(this)}>
                   <Icon active name="thumbs-up" />
                   <Text>12 Likes</Text>
                 </Button>
-              </Left>
-              <Body>
+              </Left> */}
+              {/* <Body>
                 <Button transparent>
                   <Icon active name="chatbubbles" />
                   <Text>Comments</Text>
@@ -43,11 +53,15 @@ export default class Home extends Component {
               </Body>
               <Right>
                 <Text style={{color:'blue'}}>11h ago</Text>
-              </Right>
+              </Right> */}
             </CardItem>
           </Card>
         </Content>
     );
+  }
+  async likeCounter(){
+    
+    console.log("counter")
   }
 }
 

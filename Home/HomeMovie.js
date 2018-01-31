@@ -19,14 +19,14 @@ export default class HomeMovie extends Component {
                 <Thumbnail source={require('./Oracle2.png')} />
                 <Body >
                   
-                  <Text style={{color:'white'}}>{this.props.items.title}</Text>
+                  <Text style={{color:'white'}}>{this.props.rowData.name}</Text>
                   
                   <Text note>default</Text>
                 </Body>
               </Left>
             </CardItem>
             <CardItem cardBody style={styles.container} >
-              <Image source={{uri: 'http://www1.pictures.zimbio.com/gi/Enrique+Iglesias+Heroes+Concert+Show+Y4N3yobszgUl.jpg'}} style={{height: 200, width: null, flex: 1}}/>
+              <Image source={{uri:this.props.rowData.image}} style={{height: 500, width: 400, flex: 1}}/>
             </CardItem>
             <CardItem style={styles.container}>
               <Left>

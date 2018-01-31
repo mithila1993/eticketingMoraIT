@@ -9,7 +9,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import { Container, Header, Title, Button, Left, Right, Body, Icon,Content,Footer,Thumbnail,Card,CardItem } from 'native-base';
 import Movie from '../Movie';
-
+import Tab3Naviga from './Tab3Naviga';
 export default class Tab3 extends Component {
     static navigationOptions = {
         tabBarLabel: 'Movies'
@@ -17,7 +17,7 @@ export default class Tab3 extends Component {
     render() {
       return (
         <Container style={styles.container}>
-        <Movie/>
+        <Tab3Naviga/>
  </Container>
 );
 }

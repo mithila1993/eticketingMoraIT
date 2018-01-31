@@ -9,21 +9,16 @@ import {
   } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //import { Icon } from 'react-native-elements';
-import { Container, Header, Title, Content, Footer, FooterTab, Left, Right, Body,Button,Icon} from 'native-base';
-import Login from '../Login/Login';
+import { Container, Header, Title, Content, Footer, FooterTab, Left, Right, Body,Button,Icon,Item} from 'native-base';
+import LogProfile from '../Login/LogProfile';
 
 export default class SecondScreen extends Component{
-    static navigationOption ={
+    static navigationOptions ={
         tabBarLabel:'Screen 2',
-        drawerIcon: ({tintColor})=>{
-            return (
-                <Container>
-                    <Item>
-                         <Icon name='home' />
-                    </Item>
-                </Container>    
-            );
-        }
+        drawerIcon: <Image style={{height:24,width:24}}
+        source={require('../lock-open-blue.png')}
+       // style={[styles.icon, {tintColor: tintColor}]}
+      />
     }
     render(){
         return (
@@ -40,7 +35,7 @@ export default class SecondScreen extends Component{
             <Title>Login</Title>
           </Body>
         </Header>  
-        <Login/>    
+        <LogProfile/>    
         </Container> 
         
         );

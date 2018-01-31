@@ -5,7 +5,8 @@ import {
   Text,
   View,
   ListView,
-  ScrollView
+  ScrollView,
+  ImageBackground
 } from 'react-native';
 import { Container, Header, Title, Button, Left, Right, Body, Icon,Content,Footer,Thumbnail,Card,CardItem } from 'native-base';
 import { StackNavigator,} from 'react-navigation';
@@ -42,15 +43,16 @@ export default class Event extends Component {
     var {params} = this.props.navigation.state;
     return (
       <Container >
+          <ImageBackground style={styles.headerBackground} source={require('../Login/headerbg.jpg')}>
         <Content>
         <Content padder style={{backgroundColor:'black'}}>
         <Thumbnail  square source={{uri: 'http://www1.pictures.zimbio.com/gi/Enrique+Iglesias+Heroes+Concert+Show+Y4N3yobszgUl.jpg'}} 
-                    style={{height: 200, width: null, flex: 1}} />
+                    style={styles.Thumbnail} />
         <Title style={{color:'white',fontSize:25}}>{params.name}</Title>
         </Content>
         <ScrollView>
         <Content>
-            <Card>
+            <Card transparent>
               <CardItem>
                   <Body>
                   <Text style={{color:'blue',fontWeight: 'bold'}}>
@@ -113,6 +115,7 @@ export default class Event extends Component {
         </Content>
         </ScrollView>
         </Content>
+        </ImageBackground>
       </Container>
     );
   }
@@ -126,5 +129,18 @@ export default class Event extends Component {
   }
   
 }
+const styles = StyleSheet.create({
+headerBackground:{
+    flex:1,
+    width:null,
+    alignSelf:'stretch'
+  },
+  Thumbnail:{
+    height: 200, 
+    width: null, 
+    flex: 1
 
+  }
+
+})
 AppRegistry.registerComponent('Event', () => Event);

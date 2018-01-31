@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Container, Header, Title, Button, Left, Right, Body, Icon,Content,Footer,Thumbnail,Card,CardItem } from 'native-base';
-import Concert from '../Concert';
+import Tab2Naviga from './Tab2Naviga';
 export default class Tab2 extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Concerts'
+        tabBarLabel: 'Concert'
     }
     render() {
       return (
         <Container style={styles.container}>
-               <Concert/>
+               <Tab2Naviga/>
         </Container>
       );
     }

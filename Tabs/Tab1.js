@@ -13,7 +13,7 @@ import MainScreen from '../MainScreen';
 
 export default class Tab1 extends Component {
     static navigationOptions = {
-        tabBarLabel: 'Recent Events'
+        tabBarLabel: 'Events'
     }
     render() {
       return (

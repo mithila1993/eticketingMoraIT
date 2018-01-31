@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, View,TextInput,TouchableOpacity,Text,AsyncStorage,
-	navigator,ActivityIndicator,ToolbarAndroid ,KeyboardAvoidingView} from 'react-native';
+	navigator,ActivityIndicator,ToolbarAndroid ,KeyboardAvoidingView,Image,ImageBackground} from 'react-native';
 import * as firebase from 'firebase';
 import Login from './Login';
 import { StackNavigator,} from 'react-navigation';
-//const util = require('util');
+const util = require('util');
 
 export default class LoginForm extends Component{
     static navigationOption = {
-        title:'Login'
+        title:'LoginForm'
     };
 	constructor(props){
 		super(props);
@@ -21,26 +21,28 @@ export default class LoginForm extends Component{
 			
 		};
 		this.login=this.login.bind(this);
+		this.gotoProfile = this.gotoProfile.bind(this);
 		//this.signup=this.signup.bind(this);
 }
 	render(){
-		//console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
+		console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
 		
 		const content = this.state.loading ? <ActivityIndicator size="large"/> :
-		//<KeyboardAvoidingView behavior="padding" style={styles.container}>
-			<View style={styles.container}>
-				<TextInput style={styles.text}
+		
+			<View  style={styles.container}>
+				<TextInput 
 							placeholder="Email"
-							placeholderTextColor="rgba(255,255,255,0.7)"
+							placeholderTextColor="rgba(255,255,255,10)"
 							returnKeyType="next"
 							onSubmitEditing={()=>this.passwordInput.focus()}
 							onChangeText={(email)=>this.setState({email})} //
+							keyboardType='email-address'
 							value={this.state.email}   							//
 							style={styles.input}
 					/>
 				<TextInput 
 							placeholder="Password"
-							placeholderTextColor="rgba(255,255,255,0.7)"
+							placeholderTextColor="rgba(255,255,255,10)"
 							returnKeyType="go"
 							secureTextEntry
 							style={styles.input}
@@ -50,6 +52,7 @@ export default class LoginForm extends Component{
 					/>
 					
 			<TouchableOpacity onPress={this.login} 
+			//onPress={()=>this.props.navigation.navigate()
 			style={styles.buttonContainer}>
 			<Text style={styles.buttonText}>LOGIN
 			</Text>
@@ -60,16 +63,35 @@ export default class LoginForm extends Component{
 			</Text>
 			</TouchableOpacity> */}
 			</View>
-			//</KeyboardAvoidingView>	;
+			;
 		return(	
-			<View style={styles.container}>
+			// <View style={styles.container}>
+			// <ToolbarAndroid
+			// 	style={styles.toolbar}
+			// 	title="Sign" />
+			//<View style={styles.container1}>
+			<KeyboardAvoidingView behavior="padding" style={styles.container1}>
 			<ToolbarAndroid
 				style={styles.toolbar}
 				title="Sign" />
-			<View style={styles.body}>
+			<ImageBackground style={styles.headerBackground} source={require('./headerbg.jpg')}>
+			<View style={styles.logoContainer}>
+			{/* <Image 
+			style={styles.logo}
+			source={require('../Oracle2.png')}/> */}
+			
+			</View>
+			<View style={styles.formContainer}>
+			
 				{content}
+			<Text style={styles.title}>Powered by react-native</Text>
 			</View>
-			</View>
+			</ImageBackground> 
+			</KeyboardAvoidingView>	
+			
+			//</View>
+			
+			// </View>
 		);
 	}
 async login() {
@@ -79,11 +101,14 @@ async login() {
 			});
 			await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.pass)
 				.then((userData) => { 
-                    AsyncStorage.setItem('userData', JSON.stringify(userData));
+					this.props.navigation.navigate('Profile')
+					// AsyncStorage.setItem('userData', JSON.stringify(userData));
+					console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
 					alert('Successfully Logged In!');
+					
                 })
 			console.log("Logged In!");
-			
+			//this.gotoProfile()
 			this.setState({
 				email: '',
 				pass: '',
@@ -109,11 +134,14 @@ async login() {
 // signup(){
 // 	this.props.navigation.navigate('Register')
 // 	  }
-	 
+gotoProfile(){
+	console.log("here there");
+	this.props.navigation.navigate('Profile')
+}	 
 async logout(){ 
 	try{
 		firebase.auth().onAuthStateChanged(firebaseUser=>{
-		if(firebaseUser){
+		if(firebaseUser){ 
 			console.log(firebaseUser);
 		}else{
 			console.log('not logged in');
@@ -127,13 +155,27 @@ async logout(){
 } 
 const styles = StyleSheet.create({
 	container: {
-		padding: 20
+		padding: 20,
+		
+	},
+	container1: {
+		flex: 1,
+		backgroundColor: 'black'
+	},
+	logo: {
+		width: 150,
+		height: 150
+	},
+	logoContainer: {
+		alignItems: 'center',
+		flexGrow: 1,
+		//justifyContent: 'center'
 	},
 	input: {
 		height: 40,
-		backgroundColor:'rgba(255,255,255,0.2)',
+		backgroundColor:'rgba(255,255,255,0.5)',
 		marginBottom: 30,
-		color: 'white',
+		color: '#00008b',
 		paddingHorizontal: 15,
 		fontSize:20
 	},
@@ -154,10 +196,24 @@ const styles = StyleSheet.create({
 	buttonText: {
 		textAlign: 'center',
 		fontWeight: '900',
-		color: 'black',
+		color: 'white',
 	},
 	text: {
 		fontSize: 30
-	}
+	},title: {
+		color: 'white',
+		fontWeight: '100',
+		marginTop: 10,
+		marginBottom:5,
+		fontSize: 15,
+		textAlign: 'center',
+		opacity: 0.6
+	},
+	headerBackground:{
+        flex:1,
+        width:null,
+        alignSelf:'stretch'
+      },
+	
 });
-AppRegistry.registerComponent('LoginForm', () => LoginForm);
+AppRegistry.registerComponent('LoginForm', () => Login);

@@ -10,21 +10,16 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //import { Icon } from 'react-native-elements';
 import { Container, Header, Title, Content, Footer, FooterTab, Left, Right, Body,Button,Icon} from 'native-base';
-import Register from '../Login/Register';
+import RegProfile from '../Login/RegProfile';
 
 export default class ThirdScreen extends Component{
-    static navigationOption ={
+    static navigationOptions ={
         tabBarLabel:'Screen 3',
         
-        drawerIcon: ({ tintColor }) => {
-            return(
-                <MaterialIcons
-                    name='account-circle'
-                    style={{color:tintColor}}>
-                    
-                </MaterialIcons>
-        );
-    }
+        drawerIcon: <Image style={{height:24,width:24}}
+        source={require('../Add_user_icon_(blue).svg.png')}
+       // style={[styles.icon, {tintColor: tintColor}]}
+      />
     };
     render(){
         return (
@@ -41,7 +36,7 @@ export default class ThirdScreen extends Component{
             <Title>Register</Title>
           </Body>
         </Header>    
-        <Register/>    
+        <RegProfile/>    
         </Container>
         );    
     }

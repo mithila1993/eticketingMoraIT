@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, View,TextInput,TouchableOpacity,Text,AsyncStorage,
-	navigator,ActivityIndicator,ToolbarAndroid,KeyboardAvoidingView,StatusBar } from 'react-native';
+	navigator,ActivityIndicator,ToolbarAndroid,KeyboardAvoidingView,StatusBar,Image,ImageBackground } from 'react-native';
 import * as firebase from 'firebase';
 import Login from './Login';
 import { StackNavigator,} from 'react-navigation';
+const util = require('util');
 
 export default class LoginForm extends Component{
     static navigationOption = {
@@ -28,7 +29,7 @@ export default class LoginForm extends Component{
         <StatusBar barStyle='light-content'/>
         <TextInput 
                     placeholder="Email" 
-                    placeholderTextColor="rgba(255,255,255,0.7)" 
+                    placeholderTextColor="rgba(255,255,255,10)" 
                     returnKeyType="next"
                     onSubmitEditing={()=>this.passwordInput.focus()}
                     onChangeText={(email)=>this.setState({email})}
@@ -38,7 +39,7 @@ export default class LoginForm extends Component{
         <TextInput 
                     placeholder="Password" 
                     secureTextEntry
-                    placeholderTextColor="rgba(255,255,255,0.7)" 
+                    placeholderTextColor="rgba(255,255,255,10)" 
                     returnKeyType="next"
                     ref={(input) => this.passwordInput = input}
                     onSubmitEditing={()=>this.passwordInput1.focus()}
@@ -48,7 +49,7 @@ export default class LoginForm extends Component{
         <TextInput 
                     placeholder="Confirm Password" 
                     secureTextEntry
-                    placeholderTextColor="rgba(255,255,255,0.7)" 
+                    placeholderTextColor="rgba(255,255,255,10)" 
                     returnKeyType="go"
                     ref={(input) => this.passwordInput1 = input}
                     onChangeText={(pass2)=>this.setState({pass2})}
@@ -60,9 +61,23 @@ export default class LoginForm extends Component{
         </TouchableOpacity>
         </View>
         return(
-            <View>
+            // <View style={styles.container1}>            
+            <KeyboardAvoidingView behavior="padding" style={styles.container1}>
+            <ImageBackground style={styles.headerBackground} source={require('./headerbg.jpg')}>
+            <View style={styles.logoContainer}>
+            {/* <Image 
+            style={styles.logo}
+            source={require('../Oracle2.png')}/> */}
+            {/* <Text style={styles.title}>look it and make it</Text> */}
+            </View>
+            <View style={styles.formContainer}>
                 {content}
-            </View>    
+            <Text style={styles.title}>Powered by react-native</Text>
+            </View>
+            </ImageBackground> 
+            </KeyboardAvoidingView>	 
+            // </View>
+                
         );
 
     }
@@ -75,6 +90,7 @@ export default class LoginForm extends Component{
 			await firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.pass)
 			 		.then((userData) => {
                             // this.props.navigation.navigate('Login')
+                            this.props.navigation.navigate('Profile')
 						    alert('Your account was created!');
 					 })
 			console.log('Signed up');
@@ -92,7 +108,10 @@ export default class LoginForm extends Component{
 			console.log(error.toString()+">>signup")
 			alert("Account creation failed: " + error.message );
 			this.setState({
-				loading:false
+                loading:false,
+                email: '',
+                pass: '',
+                pass2:'',
 			});
         }
     }
@@ -112,23 +131,49 @@ const styles = StyleSheet.create({
     container:{
         padding:20
     },
+    container1: {
+		flex: 1,
+		backgroundColor: 'black'
+	},
     input:{
         height: 40,
 		backgroundColor:'rgba(255,255,255,0.2)',
-		marginBottom: 30,
+		marginBottom: 25,
 		color: 'white',
 		paddingHorizontal: 15,
 		fontSize:20
     },
     buttonContainer:{
         backgroundColor: 'rgba(255,255,255,0.4)',
-		paddingVertical: 10,
-		marginBottom:10
+		paddingVertical: 8,
+		
     },
     buttonText:{
         textAlign: 'center',
 		fontWeight: '900',
 		color: 'black',
-    }
+    },
+    logo: {
+		width: 100,
+		height: 100
+	},
+	logoContainer: {
+		alignItems: 'center',
+		flexGrow: 2,
+		//justifyContent: 'center'
+	},
+	title: {
+		color: 'white',
+		fontWeight: '100',
+		marginTop: 10,
+		fontSize: 15,
+		textAlign: 'center',
+		opacity: 0.6
+    },
+    headerBackground:{
+        flex:1,
+        width:null,
+        alignSelf:'stretch'
+      },
 
 });

@@ -7,35 +7,22 @@ import {
   TouchableHighlight,
   ToolbarAndroid,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  ImageBackground
 } from 'react-native';
 import React, {Component} from 'react';
 import Login from './Login';
+import LoginForm from './LoginForm';
 import * as firebase from 'firebase';
-
+import { StackNavigator,} from 'react-navigation';
 import { Container, Header, Title, Content, Footer, FooterTab, Left, Right, Body, Button,Card,Icon} from 'native-base';
 // Styles specific to the account page
-const styles = StyleSheet.create({
-  email_container: {
-    padding: 20
-  },
-  email_text: {
-    fontSize: 18
-  },
-  primaryButton:{
-   
-  },
-  buttonContainer:{
-  backgroundColor: 'rgba(255,255,255,0.4)',
-  paddingVertical: 10,
-  marginBottom:10
-},
-body:{
-  
-}
-});
-
+const util =require('util');
 export default class Profile extends Component {
+
+  static navigationOption= {
+    title:'First Comp',
+  };
 
   constructor(props) {
     super(props);
@@ -53,61 +40,70 @@ export default class Profile extends Component {
       loading: false
     });
   }else{
+    //console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
     console.log('no users');
     alert('Please Login');
-  }
+    this.props.navigation.navigate('LoginForm')
 
   }
 
+  }
+  
   render() {
-    // If we are loading then we display the indicator, if the account is null and we are not loading
-    // Then we display nothing. If the account is not null then we display the account info.
+    
     const content = this.state.loading ? <ActivityIndicator size="large"/> :
        this.state.user &&
-        <View style={styles.body}>
-          <View style={styles.email_container}>
-          <Icon name='person'>
-            <Text style={styles.email_text}>   {this.state.user.email}</Text>
-            </Icon>
-          </View>
+       
+       <ImageBackground style={styles.headerBackground} source={require('./headerbg.jpg')}>
+       <View style={styles.header}>
+       <View style={styles.profilepicWrap}>
+         <Image  style={styles.profilepic} source={require('./account_circle.png')}/>
+       </View>  
+           <Text style={styles.email_text}>   {this.state.user.email}</Text>
+           </View>
+       
           
-          <TouchableOpacity onPress={this.logout.bind(this)} style={styles.buttonContainer}>
+           <TouchableOpacity  onPress={this.logout.bind(this)} style={styles.buttonContainer}>
             <Text style={styles.primaryButtonText}>Logout</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.changeEmail.bind(this)} style={styles.buttonContainer}>
+          {/* <TouchableOpacity onPress={this.changeEmail.bind(this)} style={styles.buttonContainer}>
             <Text style={styles.primaryButtonText}>Change email</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity onPress={this.changePass.bind(this)} style={styles.buttonContainer}>
             <Text style={styles.primaryButtonText}>Change password</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.deleteAccount.bind(this)} style={styles.buttonContainer}>
             <Text style={styles.primaryButtonText}>Delete Account</Text>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity> 
+          </ImageBackground> 
+        
+       
       ;
     return (
       <View style={styles.container}>
-        <View style={styles.body}>
+        
           {content}
-        </View>
+       
       </View>
+     
     );
   }
 
   logout() {
     // logout, once that is complete, return the user to the login screen.
-    firebase.auth().signOut().then(() => {
+    firebase.auth().signOut().then(function() {
+      this.props.navigation.navigate('Login');
       alert('Successfully Logged out!');
-      // this.setState({
-      //   user:''
-			//   });
-      // this.props.navigator.push({
-      //   component: Login
-      // });
-    })
-    this.setState({
-        user:''
-			  });
+     console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
+      
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
+    // this.setState({
+    //     user:''
+    //     });
+        
   }
   changeEmail() {
     var user = firebase.auth().currentUser;
@@ -129,31 +125,17 @@ export default class Profile extends Component {
    
   }
   changePass() {
-    var user = firebase.auth().currentUser;
-    var newPassword = '654321';
-    var auth = firebase.auth();
-    var emailAddress = "s.manthishamika@gmail.com";
+   // console.log('this.props.navigation='+util.inspect(this.props.navigation,false,null));
+    this.props.navigation.navigate('PasswordReset');
     
-    user.updatePassword(newPassword).then(function() {
-      console.log('password changed');
-      auth.sendPasswordResetEmail(emailAddress).then(function() {
-        console.log('password email is sent');
-        // Email sent.
-      }).catch(function(error) {
-        console.log(error);
-        // An error happened.
-      });
-      // Update successful.
-    }).catch(function(error) {
-      console.log(error);
-      // An error happened.
-    });
+    }
    
-  }
   deleteAccount() {
     var user = firebase.auth().currentUser;
     
     user.delete().then(function() {
+      this.props.navigation.navigate('Login');
+      alert('Account is deleted!');
       console.log('Account is deleted');
       // User deleted.
     }).catch(function(error) {
@@ -163,5 +145,73 @@ export default class Profile extends Component {
    
   }
 }
+
+const styles = StyleSheet.create({
+	container: {
+    backgroundColor: '#000',
+    flex:1
+    },
+    outcontainer: {
+      backgroundColor: '#111111'
+      },
+      email_container: {
+        padding: 20
+      },
+      primaryButton:{
+       
+      },
+      buttonContainer:{
+      backgroundColor: 'rgba(255,255,255,0.2)',
+      paddingVertical: 10,
+      marginBottom:10,
+      alignItems:'center',
+      justifyContent:'center',
+    },
+    body:{
+      
+    },
+    headerBackground:{
+      flex:1,
+      width:null,
+      alignSelf:'stretch'
+    },
+    header:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+      padding:20,
+      backgroundColor:'rgba(0,0,0,0.5)',
+    },
+    profilepicWrap:{
+      width:120,
+      height:120,
+      borderRadius:100,
+      borderColor:'rgba(0,0,0,0.4)',
+      borderWidth:16
+    },
+    profilepic:{
+      flex:1,
+      width:null,
+      alignSelf:'stretch',
+      borderRadius:100,
+      borderColor:'#fff',
+      borderWidth:4
+    },
+    email_text: {
+      marginTop:20,
+      fontSize:20,
+      color:'#fff',
+      fontWeight:'bold'
+      
+      
+    },
+    primaryButtonText:{
+      color:'white',
+      fontWeight:'bold',
+
+    }
+
+
+});
 
 AppRegistry.registerComponent('Profile', () => Profile);
